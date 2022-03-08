@@ -15,13 +15,14 @@ namespace PiratesGame
 
         #region ClassLifeCycles
 
-        public PirateController(ResourcesManager resourcesManager)
+        public PirateController(ResourcesManager resourcesManager, MonoBehaviourManager monoBehaviourManager)
         {
 
             new PirateModel();
 
             _pirateView = GameObject.Instantiate(resourcesManager.Pirate).GetComponent<PirateView>();
 
+            monoBehaviourManager.AddToUpdateList(this);
         }
 
         #endregion
@@ -31,7 +32,7 @@ namespace PiratesGame
 
         public void LetUpdate()
         {
-            throw new System.NotImplementedException();
+            //throw new System.NotImplementedException();
         }
 
         #endregion

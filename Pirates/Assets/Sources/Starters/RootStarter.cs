@@ -16,7 +16,7 @@ namespace PiratesGame
         public RootStarter(MonoBehaviourManager monoBehaviourManager)
         {
             _resourcesManager = new ResourcesManager();
-            _pirateController = new PirateController(_resourcesManager);
+            _pirateController = new PirateController(_resourcesManager, monoBehaviourManager);
         }
 
         #endregion
