@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace PiratesGame
 {
-    public sealed class AnimationController : IUpdatable
+    public sealed class AnimationPlayer : IUpdatable
     {
 
         #region Fields
@@ -36,7 +36,7 @@ namespace PiratesGame
 
         #region ClassLifeCycles
 
-        public AnimationController(float timeBetweenSprites, SpriteRenderer spriteRenderer, List<Sprite> spritesList, MonoBehaviourManager monoBehaviourManager)
+        public AnimationPlayer(float timeBetweenSprites, SpriteRenderer spriteRenderer, List<Sprite> spritesList, MonoBehaviourManager monoBehaviourManager)
         {
             _timeBetweenSprites = timeBetweenSprites;
             _timeToNextSprite = _timeBetweenSprites;

@@ -9,12 +9,12 @@ namespace PiratesGame
 
         #region Fields
 
-        private AnimationController _animator;
+        private AnimationPlayer _animator;
         private PirateModel _pirateModel;
         private PirateView _pirateView;
         private ResourcesManager _resourcesManager;
 
-        private Queue<List<Sprite>> _anima;
+        private Dictionary<AnimationTypes, List<Sprite>> _animations;
 
         #endregion
 
@@ -29,24 +29,24 @@ namespace PiratesGame
 
             _pirateView = GameObject.Instantiate(_resourcesManager.Pirate).GetComponent<PirateView>();
 
-            monoBehaviourManager.AddToUpdateList(this);
+            _animations = new Dictionary<AnimationTypes, List<Sprite>>();
+            _animations.Add(AnimationTypes.Attack, _resourcesManager.PirateAttackSprites);
+            _animations.Add(AnimationTypes.Die, _resourcesManager.PirateDieSprites);
+            _animations.Add(AnimationTypes.Hurt, _resourcesManager.PirateHurtSprites);
+            _animations.Add(AnimationTypes.Idle, _resourcesManager.PirateIdleSprites);
+            _animations.Add(AnimationTypes.Jump, _resourcesManager.PirateJumpSprites);
+            _animations.Add(AnimationTypes.Run, _resourcesManager.PirateRunSprites);
+            _animations.Add(AnimationTypes.Walk, _resourcesManager.PirateWalkSprites);
 
-            _animator = new AnimationController(
+            _animator = new AnimationPlayer(
                 _pirateModel.AnimationFrameInterval,
                 _pirateView.SpriteRenderer,
-                _resourcesManager.PirateIdleSprites,
+                _animations[AnimationTypes.Idle],
                 monoBehaviourManager);
 
             _animator.Play();
 
-            _anima = new Queue<List<Sprite>>();
-            _anima.Enqueue(_resourcesManager.PirateAttackSprites);
-            _anima.Enqueue(_resourcesManager.PirateDieSprites);
-            _anima.Enqueue(_resourcesManager.PirateHurtSprites);
-            _anima.Enqueue(_resourcesManager.PirateIdleSprites);
-            _anima.Enqueue(_resourcesManager.PirateJumpSprites);
-            _anima.Enqueue(_resourcesManager.PirateRunSprites);
-            _anima.Enqueue(_resourcesManager.PirateWalkSprites);
+            //monoBehaviourManager.AddToUpdateList(this);
         }
 
         #endregion
@@ -56,15 +56,15 @@ namespace PiratesGame
 
         public void LetUpdate()
         {
-            if (InputManager.isPause)
-            {
-                _animator.Stop();
-            }
+            //if (InputManager.isPause)
+            //{
+            //    _animator.Stop();
+            //}
 
-            if (InputManager.isJump)
-            {
-                _animator.SpritesList = _anima.Dequeue();
-            }
+            //if (InputManager.isJump)
+            //{
+            //    _animator.SpritesList = _animations[AnimationTypes.Jump];
+            //}
         }
 
         #endregion
