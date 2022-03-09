@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f23cb19bedf1e014ca8e5b5f3995abff, type: 3}
+  m_Name: PirateAnimationsJump
+  m_EditorClassIdentifier: 
+  SpriteList:
+  - {fileID: 21300000, guid: 9629b7c8dee741a409b0819ff711fc87, type: 3}
+  - {fileID: 21300000, guid: 1f9910a169b4dac48b2686b1b14a5733, type: 3}
+  - {fileID: 21300000, guid: a2a99aa26d40e1b47a52ebc67399da41, type: 3}
+  - {fileID: 21300000, guid: 00ac5d325ca37924c8d79330d435743f, type: 3}
+  - {fileID: 21300000, guid: 2d5d09da0a3d35248a2d584dd6876bbd, type: 3}
+  - {fileID: 21300000, guid: a0553b98d8e08044981c12e106db69c0, type: 3}
+  - {fileID: 21300000, guid: 65d4f032a02a98f49bbfc1692886396f, type: 3}

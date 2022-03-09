@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f23cb19bedf1e014ca8e5b5f3995abff, type: 3}
+  m_Name: PirateAnimationsDie
+  m_EditorClassIdentifier: 
+  SpriteList:
+  - {fileID: 21300000, guid: df558d42b86a55d4e856da0577846ae5, type: 3}
+  - {fileID: 21300000, guid: b0407864a93b552478cae4436cb725eb, type: 3}
+  - {fileID: 21300000, guid: 9d420cf4929222445a1d0af0e7436977, type: 3}
+  - {fileID: 21300000, guid: 8c0c9d1c7bf1964409f47a5a7b02dd75, type: 3}
+  - {fileID: 21300000, guid: d1486cd042c93f94fa2149cefc03398e, type: 3}
+  - {fileID: 21300000, guid: 53f6d06b3b485d84090e56f810311137, type: 3}
+  - {fileID: 21300000, guid: 4cf781633a22b3c4480da062ae0efa08, type: 3}

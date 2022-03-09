@@ -15,7 +15,7 @@ namespace PiratesGame
 
         #region UnityMethods
 
-        private void Start()
+        private void Awake()
         {
             SpriteRenderer = GetComponentInChildren<SpriteRenderer>();
         }

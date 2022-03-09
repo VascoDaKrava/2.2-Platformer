@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f23cb19bedf1e014ca8e5b5f3995abff, type: 3}
+  m_Name: PirateAnimationsAttack
+  m_EditorClassIdentifier: 
+  SpriteList:
+  - {fileID: 21300000, guid: 9b4e849602e38324abf7a16ca6afb008, type: 3}
+  - {fileID: 21300000, guid: 01d1f2964a9def5428035ce5c134035e, type: 3}
+  - {fileID: 21300000, guid: 825c4cdc779b6ee49957e996b8ce37bc, type: 3}
+  - {fileID: 21300000, guid: 980d89894b04f044e90b0dcc7d9ae19e, type: 3}
+  - {fileID: 21300000, guid: f7b51ea560d1c0e40802a0888b966548, type: 3}
+  - {fileID: 21300000, guid: bc3f7a9edd3d55749afdc8a6e16ca6b1, type: 3}
+  - {fileID: 21300000, guid: 4a073772061be5f4e8235fb0d2eeb65d, type: 3}

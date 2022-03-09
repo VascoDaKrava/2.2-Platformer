@@ -8,9 +8,8 @@ namespace PiratesGame
 
     [CreateAssetMenu]
     [Serializable]
-    public class PirateAnimations : ScriptableObject
+    public class AnimationsSO : ScriptableObject
     {
-        public List<Sprite> sprites = new List<Sprite>();
-
+        public List<Sprite> SpriteList = new List<Sprite>();
     }
 }
