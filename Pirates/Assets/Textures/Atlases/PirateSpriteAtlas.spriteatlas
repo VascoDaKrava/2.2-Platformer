@@ -1,0 +1,153 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: PirateSpriteAtlas
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 0
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings:
+    - serializedVersion: 3
+      m_BuildTarget: DefaultTexturePlatform
+      m_MaxTextureSize: 2048
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: 4
+      m_TextureCompression: 1
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 0
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    packingSettings:
+      serializedVersion: 2
+      padding: 8
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 1
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 102900000, guid: 15c748969d7650345915ba739e71a9f6, type: 3}
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: b0cfe9308a6b8904199dd32d306b736e, type: 3}
+  - {fileID: 21300000, guid: 0bd01eb0dbf22734ab80721859fbb525, type: 3}
+  - {fileID: 21300000, guid: d1486cd042c93f94fa2149cefc03398e, type: 3}
+  - {fileID: 21300000, guid: 11aa21117ecebe34c88ab59b11fb894b, type: 3}
+  - {fileID: 21300000, guid: 1f9910a169b4dac48b2686b1b14a5733, type: 3}
+  - {fileID: 21300000, guid: d1706be1bfec62940bd10c2f32cfc566, type: 3}
+  - {fileID: 21300000, guid: 65d4f032a02a98f49bbfc1692886396f, type: 3}
+  - {fileID: 21300000, guid: 559db932018f4834e8543828fca16a1e, type: 3}
+  - {fileID: 21300000, guid: 00ac5d325ca37924c8d79330d435743f, type: 3}
+  - {fileID: 21300000, guid: df558d42b86a55d4e856da0577846ae5, type: 3}
+  - {fileID: 21300000, guid: d8318862de8a4b14fadeafd6a8f4d57e, type: 3}
+  - {fileID: 21300000, guid: 4a073772061be5f4e8235fb0d2eeb65d, type: 3}
+  - {fileID: 21300000, guid: dde955a25e39b234ca207c4028fd3f52, type: 3}
+  - {fileID: 21300000, guid: a2a99aa26d40e1b47a52ebc67399da41, type: 3}
+  - {fileID: 21300000, guid: 4cf781633a22b3c4480da062ae0efa08, type: 3}
+  - {fileID: 21300000, guid: 79fea9737b4f89245a5436b548071248, type: 3}
+  - {fileID: 21300000, guid: 6b6f43a3fd8ed9541a288eee662a7dd6, type: 3}
+  - {fileID: 21300000, guid: cf22d3b3e39d2dd4ba858ea07dd14c88, type: 3}
+  - {fileID: 21300000, guid: b0407864a93b552478cae4436cb725eb, type: 3}
+  - {fileID: 21300000, guid: 9d420cf4929222445a1d0af0e7436977, type: 3}
+  - {fileID: 21300000, guid: f7b51ea560d1c0e40802a0888b966548, type: 3}
+  - {fileID: 21300000, guid: 01d1f2964a9def5428035ce5c134035e, type: 3}
+  - {fileID: 21300000, guid: 9b4e849602e38324abf7a16ca6afb008, type: 3}
+  - {fileID: 21300000, guid: 3e5b8e27386b00f48b5608af5e4dbe73, type: 3}
+  - {fileID: 21300000, guid: 7f821077e9ad2024abd1d9e11db6cc0f, type: 3}
+  - {fileID: 21300000, guid: 0956a287a7a61ef45aa81d22a383f781, type: 3}
+  - {fileID: 21300000, guid: 837c6987c85c3384aa41491b214732aa, type: 3}
+  - {fileID: 21300000, guid: b2d6d5c789998e04e9d6f8fee904419b, type: 3}
+  - {fileID: 21300000, guid: a0553b98d8e08044981c12e106db69c0, type: 3}
+  - {fileID: 21300000, guid: 9629b7c8dee741a409b0819ff711fc87, type: 3}
+  - {fileID: 21300000, guid: 3bdf1419a83c8cc42a97f6926d928d4b, type: 3}
+  - {fileID: 21300000, guid: 193cd8194c50805428f1b8bf97363471, type: 3}
+  - {fileID: 21300000, guid: 980d89894b04f044e90b0dcc7d9ae19e, type: 3}
+  - {fileID: 21300000, guid: ff5ef1ca07eb3b342b83f168200c708f, type: 3}
+  - {fileID: 21300000, guid: 2d5d09da0a3d35248a2d584dd6876bbd, type: 3}
+  - {fileID: 21300000, guid: 2aabe5fa0dc00de4c8529b9433164df9, type: 3}
+  - {fileID: 21300000, guid: 53f6d06b3b485d84090e56f810311137, type: 3}
+  - {fileID: 21300000, guid: a9daaf7b6f5ecbf419deca7572290fb6, type: 3}
+  - {fileID: 21300000, guid: 3a80b69b6b78849458be8aabb0170df3, type: 3}
+  - {fileID: 21300000, guid: 393a44bb85a30764b9b0de4e69e3f60f, type: 3}
+  - {fileID: 21300000, guid: 8c0c9d1c7bf1964409f47a5a7b02dd75, type: 3}
+  - {fileID: 21300000, guid: deda9d2ca70c8a84781b8369d6f1efcb, type: 3}
+  - {fileID: 21300000, guid: 825c4cdc779b6ee49957e996b8ce37bc, type: 3}
+  - {fileID: 21300000, guid: 792141fcb8639b04c8dd93a067c474f1, type: 3}
+  - {fileID: 21300000, guid: 10677c9d4ca1a8f47acc834f632e8770, type: 3}
+  - {fileID: 21300000, guid: 2a0c72cd43ba61c44a446ed5b7d340b7, type: 3}
+  - {fileID: 21300000, guid: 27552f2e826fd0646bad7d884bed7740, type: 3}
+  - {fileID: 21300000, guid: bc3f7a9edd3d55749afdc8a6e16ca6b1, type: 3}
+  - {fileID: 21300000, guid: b0e1209f4acd2ff49bbfa0d39f776418, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - 1_entity_000_IDLE_004
+  - 1_entity_000_RUN_004
+  - 1_entity_000_DIE_004
+  - 1_entity_000_RUN_002
+  - 1_entity_000_JUMP_001
+  - 1_entity_000_RUN_001
+  - 1_entity_000_JUMP_006
+  - 1_entity_000_RUN_003
+  - 1_entity_000_JUMP_003
+  - 1_entity_000_DIE_000
+  - 1_entity_000_IDLE_005
+  - 1_entity_000_ATTACK_006
+  - 1_entity_000_HURT_005
+  - 1_entity_000_JUMP_002
+  - 1_entity_000_DIE_006
+  - 1_entity_000_RUN_005
+  - 1_entity_000_RUN_006
+  - 1_entity_000_IDLE_000
+  - 1_entity_000_DIE_001
+  - 1_entity_000_DIE_002
+  - 1_entity_000_ATTACK_004
+  - 1_entity_000_ATTACK_001
+  - 1_entity_000_ATTACK_000
+  - 1_entity_000_WALK_006
+  - 1_entity_000_WALK_003
+  - 1_entity_000_IDLE_001
+  - 1_entity_000_HURT_001
+  - 1_entity_000_IDLE_002
+  - 1_entity_000_JUMP_005
+  - 1_entity_000_JUMP_000
+  - 1_entity_000_WALK_000
+  - 1_entity_000_IDLE_003
+  - 1_entity_000_ATTACK_003
+  - 1_entity_000_HURT_006
+  - 1_entity_000_JUMP_004
+  - 1_entity_000_WALK_004
+  - 1_entity_000_DIE_005
+  - 1_entity_000_IDLE_006
+  - 1_entity_000_WALK_001
+  - 1_entity_000_WALK_002
+  - 1_entity_000_DIE_003
+  - 1_entity_000_HURT_000
+  - 1_entity_000_ATTACK_002
+  - 1_entity_000_RUN_000
+  - 1_entity_000_HURT_003
+  - 1_entity_000_WALK_005
+  - 1_entity_000_HURT_004
+  - 1_entity_000_ATTACK_005
+  - 1_entity_000_HURT_002
+  m_RenderDataMap: {}
+  m_Tag: PirateSpriteAtlas
+  m_IsVariant: 0
