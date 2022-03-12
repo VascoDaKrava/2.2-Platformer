@@ -21,16 +21,27 @@ namespace PiratesGame
         #region Methods
 
         /// <summary>
-        /// 
+        /// Normalized direction
         /// </summary>
         /// <returns></returns>
-        public static Vector2 GetDirection()
+        public static Vector3 GetDirection()
         {
-            Vector2 direction = new Vector2();
+            Vector3 direction = new Vector3();
             direction.x = Input.GetAxis(InputKeysAndAxis.AXIS_HORIZONTAL);
             direction.y = Input.GetAxis(InputKeysAndAxis.AXIS_VERTICAL);
+            direction.z = 0.0f;
 
             return direction.normalized;
+        }
+
+        public static Vector3 GetDirectionX()
+        {
+            Vector3 direction = new Vector3();
+            direction.x = Input.GetAxis(InputKeysAndAxis.AXIS_HORIZONTAL);
+            direction.y = 0.0f;
+            direction.z = 0.0f;
+
+            return direction;
         }
 
         #endregion

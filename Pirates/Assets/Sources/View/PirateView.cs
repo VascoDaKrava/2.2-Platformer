@@ -9,6 +9,7 @@ namespace PiratesGame
         #region Properties
 
         public SpriteRenderer SpriteRenderer { get; private set; }
+        public Transform PirateTransform { get; private set; }
 
         #endregion
 
@@ -18,6 +19,7 @@ namespace PiratesGame
         private void Awake()
         {
             SpriteRenderer = GetComponentInChildren<SpriteRenderer>();
+            PirateTransform = GetComponent<Transform>();
         }
 
         #endregion

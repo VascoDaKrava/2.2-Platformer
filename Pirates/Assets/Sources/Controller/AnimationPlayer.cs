@@ -9,12 +9,15 @@ namespace PiratesGame
 
         #region Fields
 
+        private bool _isPlay;
         private int _currentSpriteNumber;
         private float _timeBetweenSprites;
         private float _timeToNextSprite;
         private SpriteRenderer _spriteRenderer;
         private List<Sprite> _sprites;
         private MonoBehaviourManager _monoBehaviourManager;
+
+        public bool IsLoop;
 
         #endregion
 
@@ -31,6 +34,29 @@ namespace PiratesGame
             }
         }
 
+        public bool IsPlay
+        {
+            get
+            {
+                return _isPlay;
+            }
+            set
+            {
+                if (_isPlay != value)
+                {
+                    _isPlay = value;
+                    if (_isPlay)
+                    {
+                        _monoBehaviourManager.AddToUpdateList(this);
+                    }
+                    else
+                    {
+                        _monoBehaviourManager.RemoveFromUpdateList(this);
+                    }
+                }
+            }
+        }
+
         #endregion
 
 
@@ -44,6 +70,7 @@ namespace PiratesGame
             _sprites = new List<Sprite>(spritesList);
             _monoBehaviourManager = monoBehaviourManager;
             _currentSpriteNumber = 0;
+            IsLoop = true;
         }
 
         #endregion
@@ -64,22 +91,30 @@ namespace PiratesGame
 
                 if (_currentSpriteNumber == _sprites.Count)
                 {
-                    _currentSpriteNumber = 0;
+                    if (IsLoop)
+                    {
+                        _currentSpriteNumber = 0;
+                    }
+                    else
+                    {
+                        _currentSpriteNumber--;
+                        IsPlay = false;
+                    }
                 }
 
                 _spriteRenderer.sprite = _sprites[_currentSpriteNumber];
             }
         }
 
-        public void Play()
-        {
-            _monoBehaviourManager.AddToUpdateList(this);
-        }
+        //public void Play()
+        //{
+        //    _monoBehaviourManager.AddToUpdateList(this);
+        //}
 
-        public void Stop()
-        {
-            _monoBehaviourManager.RemoveFromUpdateList(this);
-        }
+        //public void Stop()
+        //{
+        //    _monoBehaviourManager.RemoveFromUpdateList(this);
+        //}
 
         #endregion
 
