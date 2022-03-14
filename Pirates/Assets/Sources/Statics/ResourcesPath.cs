@@ -11,7 +11,7 @@ namespace PiratesGame
 
         #region Fields
 
-        private const string FOLDER_ANIMATION = "Configs";
+        private const string FOLDER_ANIMATION = "Animations";
 
         private const string FILE_ANIMATION_PIRATE_ATTACK = "PirateAnimationsAttack";
         private const string FILE_ANIMATION_PIRATE_DIE = "PirateAnimationsDie";
