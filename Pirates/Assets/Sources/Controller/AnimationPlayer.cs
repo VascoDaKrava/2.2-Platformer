@@ -31,6 +31,7 @@ namespace PiratesGame
                 _sprites.Clear();
                 _sprites = new List<Sprite>(value);
                 _timeToNextSprite = _timeBetweenSprites;
+                _currentSpriteNumber = 0;
             }
         }
 
@@ -105,16 +106,6 @@ namespace PiratesGame
                 _spriteRenderer.sprite = _sprites[_currentSpriteNumber];
             }
         }
-
-        //public void Play()
-        //{
-        //    _monoBehaviourManager.AddToUpdateList(this);
-        //}
-
-        //public void Stop()
-        //{
-        //    _monoBehaviourManager.RemoveFromUpdateList(this);
-        //}
 
         #endregion
 
