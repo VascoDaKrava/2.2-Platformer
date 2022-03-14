@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,7 +10,8 @@ namespace PiratesGame
 
         #region Fields
 
-        private bool _isPlay;
+        private event Action _animationPlayFinishedEvent;
+
         private int _currentSpriteNumber;
         private float _timeBetweenSprites;
         private float _timeToNextSprite;
@@ -24,6 +26,12 @@ namespace PiratesGame
 
         #region Properties
 
+        public event Action AnimationPlayFinished
+        {
+            add { _animationPlayFinishedEvent += value; }
+            remove { _animationPlayFinishedEvent -= value; }
+        }
+
         public List<Sprite> SpritesList
         {
             set
@@ -32,29 +40,6 @@ namespace PiratesGame
                 _sprites = new List<Sprite>(value);
                 _timeToNextSprite = _timeBetweenSprites;
                 _currentSpriteNumber = 0;
-            }
-        }
-
-        public bool IsPlay
-        {
-            get
-            {
-                return _isPlay;
-            }
-            set
-            {
-                if (_isPlay != value)
-                {
-                    _isPlay = value;
-                    if (_isPlay)
-                    {
-                        _monoBehaviourManager.AddToUpdateList(this);
-                    }
-                    else
-                    {
-                        _monoBehaviourManager.RemoveFromUpdateList(this);
-                    }
-                }
             }
         }
 
@@ -72,6 +57,7 @@ namespace PiratesGame
             _monoBehaviourManager = monoBehaviourManager;
             _currentSpriteNumber = 0;
             IsLoop = true;
+            _monoBehaviourManager.AddToUpdateList(this);
         }
 
         #endregion
@@ -99,7 +85,7 @@ namespace PiratesGame
                     else
                     {
                         _currentSpriteNumber--;
-                        IsPlay = false;
+                        _animationPlayFinishedEvent.Invoke();
                     }
                 }
 

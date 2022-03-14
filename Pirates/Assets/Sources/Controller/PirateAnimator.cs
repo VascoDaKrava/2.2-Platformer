@@ -24,7 +24,7 @@ namespace PiratesGame
             get { return _animationState; }
             set
             {
-                if (_animationState != value)
+                if (_animationState != value && _animationPlayer.IsLoop)
                 {
                     switch (value)
                     {
@@ -41,18 +41,13 @@ namespace PiratesGame
                             break;
 
                         case AnimationTypes.Idle:
-                            //if (_animationState != AnimationTypes.Jump)
-                            //{
-                                _animationPlayer.SpritesList = _animations[AnimationTypes.Idle];
-                                _animationPlayer.IsLoop = true;
-                                _animationPlayer.IsPlay = true;
-                            //}
+                            _animationPlayer.SpritesList = _animations[AnimationTypes.Idle];
+                            _animationPlayer.IsLoop = true;
                             break;
 
                         case AnimationTypes.Jump:
                             _animationPlayer.SpritesList = _animations[AnimationTypes.Jump];
                             _animationPlayer.IsLoop = false;
-                            _animationPlayer.IsPlay = true;
                             break;
 
                         case AnimationTypes.Run:
@@ -61,24 +56,12 @@ namespace PiratesGame
                         case AnimationTypes.Walk:
                             _animationPlayer.SpritesList = _animations[AnimationTypes.Walk];
                             _animationPlayer.IsLoop = true;
-                            _animationPlayer.IsPlay = true;
                             break;
 
                         default:
                             break;
                     }
                     _animationState = value;
-                }
-                else
-                {
-                    if (_animationState == AnimationTypes.Jump)
-                    {
-                        if (!_animationPlayer.IsPlay)
-                        {
-                            _animationState = AnimationTypes.Idle;
-                            AnimationState = AnimationTypes.Idle;
-                        }
-                    }
                 }
             }
         }
@@ -101,9 +84,25 @@ namespace PiratesGame
 
             _animationPlayer = new AnimationPlayer(animationFrameInterval, spriteRenderer, _animations[AnimationTypes.Idle], monoBehaviourManager);
 
-            _animationState = AnimationTypes.Idle;
+            _animationPlayer.AnimationPlayFinished += AnimationOnePlayFinishedEventHandler;
 
-            _animationPlayer.IsPlay = true;
+            _animationState = AnimationTypes.Idle;
+        }
+
+        ~PirateAnimator()
+        {
+            _animationPlayer.AnimationPlayFinished -= AnimationOnePlayFinishedEventHandler;
+        }
+
+        #endregion
+
+
+        #region Methods
+
+        private void AnimationOnePlayFinishedEventHandler()
+        {
+            _animationPlayer.IsLoop = true;
+            AnimationState = AnimationTypes.Idle;
         }
 
         #endregion

@@ -40,19 +40,21 @@ namespace PiratesGame
 
         private void LetMove()
         {
-            if (InputManager.GetDirectionX() != Vector3.zero)
-            {
-                _animator.AnimationState = AnimationTypes.Walk;
-                _pirateView.PirateTransform.position += InputManager.GetDirectionX() * _pirateModel.Speed * Time.deltaTime;
-            }
-            else
-            {
-                    _animator.AnimationState = AnimationTypes.Idle;
-            }
-
             if (InputManager.isJump)
             {
                 _animator.AnimationState = AnimationTypes.Jump;
+            }
+            else
+            {
+                if (InputManager.GetDirectionX() != Vector3.zero)
+                {
+                    _animator.AnimationState = AnimationTypes.Walk;
+                    _pirateView.PirateTransform.position += InputManager.GetDirectionX() * _pirateModel.Speed * Time.deltaTime;
+                }
+                else
+                {
+                    _animator.AnimationState = AnimationTypes.Idle;
+                }
             }
         }
 
