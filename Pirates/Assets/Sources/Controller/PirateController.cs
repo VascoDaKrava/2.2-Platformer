@@ -50,6 +50,7 @@ namespace PiratesGame
                 {
                     _animator.AnimationState = AnimationTypes.Walk;
                     _pirateView.PirateTransform.position += InputManager.GetDirectionX() * _pirateModel.Speed * Time.deltaTime;
+                    _pirateView.SpriteRenderer.flipX = InputManager.GetDirectionX().x < 0 ? true : false;
                 }
                 else
                 {
