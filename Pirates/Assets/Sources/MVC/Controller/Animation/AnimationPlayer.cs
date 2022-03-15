@@ -67,7 +67,7 @@ namespace PiratesGame
 
         private void PlayAnimation()
         {
-            if (_timeToNextSprite > 0)
+            if (_timeToNextSprite > 0.0f)
             {
                 _timeToNextSprite -= Time.deltaTime;
             }

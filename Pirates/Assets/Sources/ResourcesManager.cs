@@ -20,6 +20,7 @@ namespace PiratesGame
         public GameObject Pirate { get; private set; }
 
         public GameObject Cannon { get; private set; }
+        public GameObject CannonBall { get; private set; }
 
         #endregion
 
@@ -30,15 +31,16 @@ namespace PiratesGame
         {
             Pirate = Resources.Load<GameObject>(ResourcesPath.PIRATE);
 
-            PirateAttackSprites = new List<Sprite>(Resources.Load<AnimationsSO>(ResourcesPath.PIRATE_ATTACK).SpriteList);
-            PirateDieSprites = new List<Sprite>(Resources.Load<AnimationsSO>(ResourcesPath.PIRATE_DIE).SpriteList);
-            PirateHurtSprites = new List<Sprite>(Resources.Load<AnimationsSO>(ResourcesPath.PIRATE_HURT).SpriteList);
-            PirateIdleSprites = new List<Sprite>(Resources.Load<AnimationsSO>(ResourcesPath.PIRATE_IDLE).SpriteList);
-            PirateJumpSprites = new List<Sprite>(Resources.Load<AnimationsSO>(ResourcesPath.PIRATE_JUMP).SpriteList);
-            PirateRunSprites = new List<Sprite>(Resources.Load<AnimationsSO>(ResourcesPath.PIRATE_RUN).SpriteList);
-            PirateWalkSprites = new List<Sprite>(Resources.Load<AnimationsSO>(ResourcesPath.PIRATE_WALK).SpriteList);
+            PirateAttackSprites = new List<Sprite>(Resources.Load<AnimationsSO>(ResourcesPath.PIRATE_ATTACK_ANIMATION).SpriteList);
+            PirateDieSprites = new List<Sprite>(Resources.Load<AnimationsSO>(ResourcesPath.PIRATE_DIE_ANIMATION).SpriteList);
+            PirateHurtSprites = new List<Sprite>(Resources.Load<AnimationsSO>(ResourcesPath.PIRATE_HURT_ANIMATION).SpriteList);
+            PirateIdleSprites = new List<Sprite>(Resources.Load<AnimationsSO>(ResourcesPath.PIRATE_IDLE_ANIMATION).SpriteList);
+            PirateJumpSprites = new List<Sprite>(Resources.Load<AnimationsSO>(ResourcesPath.PIRATE_JUMP_ANIMATION).SpriteList);
+            PirateRunSprites = new List<Sprite>(Resources.Load<AnimationsSO>(ResourcesPath.PIRATE_RUN_ANIMATION).SpriteList);
+            PirateWalkSprites = new List<Sprite>(Resources.Load<AnimationsSO>(ResourcesPath.PIRATE_WALK_ANIMATION).SpriteList);
 
             Cannon = Resources.Load<GameObject>(ResourcesPath.CANNON);
+            CannonBall = Resources.Load<GameObject>(ResourcesPath.CANNON_BALL);
         }
 
         #endregion

@@ -8,6 +8,7 @@ namespace PiratesGame
 
         #region Fields
 
+        private BulletPool _bulletPool;
         private CannonModel _model;
         private CannonView _view;
         private Transform _pirateTransform;
@@ -23,6 +24,8 @@ namespace PiratesGame
             _view = GameObject.Instantiate(resourcesManager.Cannon, _model.StartPosition, Quaternion.identity).GetComponent<CannonView>();
 
             _pirateTransform = pirateTransform;
+
+            _bulletPool = new BulletPool(_model.BulletsInPool, monoBehaviourManager);
 
             monoBehaviourManager.AddToUpdateList(this);
         }
@@ -44,7 +47,15 @@ namespace PiratesGame
 
         private void Shoot()
         {
-
+            if (_model.TimeToNextShoot > 0.0f)
+            {
+                _model.TimeToNextShoot -= Time.deltaTime;
+            }
+            else
+            {
+                _model.TimeToNextShoot = _model.RateOfFire / 60.0f;
+                _bulletPool.PopFromPool(_view.BulletStartTransform);
+            }
         }
 
         #endregion
