@@ -9,8 +9,15 @@ namespace PiratesGame
         #region Fields
 
         private PirateAnimator _animator;
-        private PirateModel _pirateModel;
-        private PirateView _pirateView;
+        private PirateModel _model;
+        private PirateView _view;
+
+        #endregion
+
+
+        #region Properties
+
+        public Transform PirateTransform => _view.transform;
 
         #endregion
 
@@ -19,14 +26,13 @@ namespace PiratesGame
 
         public PirateController(ResourcesManager resourcesManager, MonoBehaviourManager monoBehaviourManager)
         {
-            _pirateModel = new PirateModel();
-
-            _pirateView = GameObject.Instantiate(resourcesManager.Pirate, new Vector3(0, _pirateModel.GroundLevel, 0), Quaternion.identity).GetComponent<PirateView>();
+            _model = new PirateModel();
+            _view = GameObject.Instantiate(resourcesManager.Pirate, _model.StartPosition, Quaternion.identity).GetComponent<PirateView>();
 
             _animator = new PirateAnimator(
                 resourcesManager,
-                _pirateModel.AnimationFrameInterval,
-                _pirateView.SpriteRenderer,
+                _model.AnimationFrameInterval,
+                _view.SpriteRenderer,
                 monoBehaviourManager
                 );
 
@@ -49,8 +55,8 @@ namespace PiratesGame
                 if (InputManager.GetDirectionX() != Vector3.zero)
                 {
                     _animator.AnimationState = AnimationTypes.Walk;
-                    _pirateView.PirateTransform.position += InputManager.GetDirectionX() * _pirateModel.Speed * Time.deltaTime;
-                    _pirateView.SpriteRenderer.flipX = InputManager.GetDirectionX().x < 0 ? true : false;
+                    _view.PirateTransform.position += InputManager.GetDirectionX() * _model.Speed * Time.deltaTime;
+                    _view.SpriteRenderer.flipX = InputManager.GetDirectionX().x < 0 ? true : false;
                 }
                 else
                 {

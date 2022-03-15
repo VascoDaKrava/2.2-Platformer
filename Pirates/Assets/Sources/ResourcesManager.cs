@@ -19,6 +19,8 @@ namespace PiratesGame
 
         public GameObject Pirate { get; private set; }
 
+        public GameObject Cannon { get; private set; }
+
         #endregion
 
 
@@ -35,6 +37,8 @@ namespace PiratesGame
             PirateJumpSprites = new List<Sprite>(Resources.Load<AnimationsSO>(ResourcesPath.PIRATE_JUMP).SpriteList);
             PirateRunSprites = new List<Sprite>(Resources.Load<AnimationsSO>(ResourcesPath.PIRATE_RUN).SpriteList);
             PirateWalkSprites = new List<Sprite>(Resources.Load<AnimationsSO>(ResourcesPath.PIRATE_WALK).SpriteList);
+
+            Cannon = Resources.Load<GameObject>(ResourcesPath.CANNON);
         }
 
         #endregion

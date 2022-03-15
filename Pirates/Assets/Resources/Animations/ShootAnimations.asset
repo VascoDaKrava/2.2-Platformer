@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f23cb19bedf1e014ca8e5b5f3995abff, type: 3}
-  m_Name: ShotAnimations
+  m_Name: ShootAnimations
   m_EditorClassIdentifier: 
   SpriteList:
   - {fileID: -2625406059805260970, guid: 9ac95a117d31abb49b76fc09eaf934a1, type: 3}
