@@ -48,9 +48,9 @@ namespace PiratesGame
 
         #region ClassLifeCycles
 
-        public AnimationPlayer(float timeBetweenSprites, SpriteRenderer spriteRenderer, List<Sprite> spritesList, MonoBehaviourManager monoBehaviourManager)
+        public AnimationPlayer(float animationDuration, SpriteRenderer spriteRenderer, List<Sprite> spritesList, MonoBehaviourManager monoBehaviourManager)
         {
-            _timeBetweenSprites = timeBetweenSprites;
+            _timeBetweenSprites = animationDuration / spritesList.Count;
             _timeToNextSprite = _timeBetweenSprites;
             _spriteRenderer = spriteRenderer;
             _sprites = new List<Sprite>(spritesList);

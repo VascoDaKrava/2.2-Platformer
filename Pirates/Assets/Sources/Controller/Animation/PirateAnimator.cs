@@ -71,7 +71,7 @@ namespace PiratesGame
 
         #region ClassLifeCycles
 
-        public PirateAnimator(ResourcesManager resources, float animationFrameInterval, SpriteRenderer spriteRenderer, MonoBehaviourManager monoBehaviourManager)
+        public PirateAnimator(ResourcesManager resources, float animationDuration, SpriteRenderer spriteRenderer, MonoBehaviourManager monoBehaviourManager)
         {
             _animations = new Dictionary<AnimationTypes, List<Sprite>>();
             _animations.Add(AnimationTypes.Attack, resources.PirateAttackSprites);
@@ -82,7 +82,7 @@ namespace PiratesGame
             _animations.Add(AnimationTypes.Run, resources.PirateRunSprites);
             _animations.Add(AnimationTypes.Walk, resources.PirateWalkSprites);
 
-            _animationPlayer = new AnimationPlayer(animationFrameInterval, spriteRenderer, _animations[AnimationTypes.Idle], monoBehaviourManager);
+            _animationPlayer = new AnimationPlayer(animationDuration, spriteRenderer, _animations[AnimationTypes.Idle], monoBehaviourManager);
 
             _animationPlayer.AnimationPlayFinished += AnimationOnePlayFinishedEventHandler;
 

@@ -6,11 +6,21 @@ namespace PiratesGame
     public sealed class PirateModel
     {
 
+        #region Fields
+
+        public float VerticalVelocity = 0.0f;
+        public bool IsFly = false;
+
+        #endregion
+
+
         #region Properties
 
-        public float AnimationFrameInterval => 0.1f;
-        public float Speed => 0.6f;
+        public float G => 9.8f;
+        public float AnimationDuration => 0.7f;
         public float GroundLevel => -0.6f;
+        public float WalkSpeed => 0.6f;
+        public float JumpPower => 6.0f;
 
         public Vector3 StartPosition = new Vector3(0.0f, -0.6f, 0.0f);
 

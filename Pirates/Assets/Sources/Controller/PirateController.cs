@@ -31,7 +31,7 @@ namespace PiratesGame
 
             _animator = new PirateAnimator(
                 resourcesManager,
-                _model.AnimationFrameInterval,
+                _model.AnimationDuration,
                 _view.SpriteRenderer,
                 monoBehaviourManager
                 );
@@ -48,19 +48,45 @@ namespace PiratesGame
         {
             if (InputManager.isJump)
             {
-                _animator.AnimationState = AnimationTypes.Jump;
+                if (!_model.IsFly)
+                {
+                    _animator.AnimationState = AnimationTypes.Jump;
+                    DoJump();
+                }
             }
             else
             {
                 if (InputManager.GetDirectionX() != Vector3.zero)
                 {
                     _animator.AnimationState = AnimationTypes.Walk;
-                    _view.PirateTransform.position += InputManager.GetDirectionX() * _model.Speed * Time.deltaTime;
+                    _view.PirateTransform.position += InputManager.GetDirectionX() * _model.WalkSpeed * Time.deltaTime;
                     _view.SpriteRenderer.flipX = InputManager.GetDirectionX().x < 0 ? true : false;
                 }
                 else
                 {
                     _animator.AnimationState = AnimationTypes.Idle;
+                }
+            }
+        }
+
+        private void DoJump()
+        {
+            _model.VerticalVelocity += _model.JumpPower;
+            _model.IsFly = true;
+        }
+
+        private void DoFly()
+        {
+            if (_model.IsFly)
+            {
+                _view.PirateTransform.position += _model.VerticalVelocity * Vector3.up * Time.deltaTime;
+                _model.VerticalVelocity -= _model.G * Time.deltaTime;
+
+                if (_view.PirateTransform.position.y <= _model.GroundLevel)
+                {
+                    _model.IsFly = false;
+                    _model.VerticalVelocity = 0.0f;
+                    _view.PirateTransform.position = new Vector3(_view.PirateTransform.position.x, _model.GroundLevel, _view.PirateTransform.position.z);
                 }
             }
         }
@@ -73,6 +99,7 @@ namespace PiratesGame
         public void LetUpdate()
         {
             LetMove();
+            DoFly();
         }
 
         #endregion
