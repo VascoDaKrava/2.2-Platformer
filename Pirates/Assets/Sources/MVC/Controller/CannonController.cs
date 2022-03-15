@@ -25,7 +25,7 @@ namespace PiratesGame
 
             _pirateTransform = pirateTransform;
 
-            _bulletPool = new BulletPool(_model.BulletsInPool, monoBehaviourManager);
+            _bulletPool = new BulletPool(_model.BulletsInPool, monoBehaviourManager, resourcesManager);
 
             monoBehaviourManager.AddToUpdateList(this);
         }
