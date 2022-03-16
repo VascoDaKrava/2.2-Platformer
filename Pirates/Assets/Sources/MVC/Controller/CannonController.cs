@@ -11,6 +11,7 @@ namespace PiratesGame
         private BulletPool _bulletPool;
         private CannonModel _model;
         private CannonView _view;
+        private SimpleAnimator _animator;
         private Transform _pirateTransform;
 
         #endregion
@@ -20,12 +21,14 @@ namespace PiratesGame
 
         public CannonController(ResourcesManager resourcesManager, MonoBehaviourManager monoBehaviourManager, Transform pirateTransform)
         {
+            _pirateTransform = pirateTransform;
+
             _model = new CannonModel();
             _view = GameObject.Instantiate(resourcesManager.Cannon, _model.StartPosition, Quaternion.identity).GetComponent<CannonView>();
 
-            _pirateTransform = pirateTransform;
+            _bulletPool = new BulletPool(_model.BulletsInPool, monoBehaviourManager, resourcesManager, _view.BulletStartTransform);
 
-            _bulletPool = new BulletPool(_model.BulletsInPool, monoBehaviourManager, resourcesManager);
+            _animator = new SimpleAnimator(resourcesManager.ShootSprites, _model.ShootAnimationDuration, _view.BulletStartRenderer, monoBehaviourManager);
 
             monoBehaviourManager.AddToUpdateList(this);
         }
@@ -53,8 +56,9 @@ namespace PiratesGame
             }
             else
             {
-                _model.TimeToNextShoot = _model.RateOfFire / 60.0f;
-                _bulletPool.PopFromPool(_view.BulletStartTransform);
+                _model.ResetTime();
+                _bulletPool.PopFromPool();
+                _animator.PlayOnce();
             }
         }
 

@@ -8,6 +8,7 @@ namespace PiratesGame
 
         #region Properties
 
+        public SpriteRenderer BulletStartRenderer { get; private set; }
         public Transform BulletStartTransform { get; private set; }
         public Transform BurrelTransform { get; private set; }
 
@@ -24,6 +25,7 @@ namespace PiratesGame
                 {
                     case Names.BULLET_START_POSITION:
                         BulletStartTransform = item;
+                        BulletStartRenderer = item.GetComponent<SpriteRenderer>();
                         break;
 
                     case Names.BURREL:

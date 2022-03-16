@@ -8,7 +8,12 @@ namespace PiratesGame
 
         #region Fields
 
-        public float TimeToNextShoot = 0.0f;
+        private float _timeToNextShoot = 0.0f;
+
+        /// <summary>
+        /// Shots per minute
+        /// </summary>
+        private float _rateOfFire => 6.0f;
 
         #endregion
 
@@ -17,13 +22,38 @@ namespace PiratesGame
 
         public int BulletsInPool => 10;
         public float MaxBurrelAngle => 70.0f;
-
-        /// <summary>
-        /// Shots per minute
-        /// </summary>
-        public float RateOfFire => 20.0f;
-        
+        public float ShootAnimationDuration => 0.2f;
         public Vector3 StartPosition => new Vector3(2.5f, -0.6f, 0.0f);
+
+        public float TimeToNextShoot
+        {
+            get => _timeToNextShoot;
+            
+            set
+            {
+                _timeToNextShoot = value;
+            }
+        }
+
+        #endregion
+
+
+        #region CodeLifeCycles
+
+        public CannonModel()
+        {
+            ResetTime();
+        }
+
+        #endregion
+
+
+        #region Methods
+
+        public void ResetTime()
+        {
+            _timeToNextShoot = 60.0f / _rateOfFire;
+        }
 
         #endregion
 

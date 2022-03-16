@@ -12,6 +12,7 @@ namespace PiratesGame
 
         private event Action _animationPlayFinishedEvent;
 
+        private bool _isPlaying;
         private int _currentSpriteNumber;
         private float _timeBetweenSprites;
         private float _timeToNextSprite;
@@ -43,6 +44,27 @@ namespace PiratesGame
             }
         }
 
+        public bool Play
+        {
+            set
+            {
+                if (_isPlaying != value)
+                {
+                    _isPlaying = value;
+                    if (_isPlaying)
+                    {
+                        _monoBehaviourManager.AddToUpdateList(this);
+                        _timeToNextSprite = _timeBetweenSprites;
+                        _currentSpriteNumber = 0;
+                    }
+                    else
+                    {
+                        _monoBehaviourManager.RemoveFromUpdateList(this);
+                    }
+                }
+            }
+        }
+
         #endregion
 
 
@@ -57,7 +79,6 @@ namespace PiratesGame
             _monoBehaviourManager = monoBehaviourManager;
             _currentSpriteNumber = 0;
             IsLoop = true;
-            _monoBehaviourManager.AddToUpdateList(this);
         }
 
         #endregion

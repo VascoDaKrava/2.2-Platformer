@@ -24,7 +24,7 @@ namespace PiratesGame
             _bulletsStack = new Stack<BulletController>(capacity);
             for (int i = 0; i < capacity; i++)
             {
-                _bulletsStack.Push(new BulletController(monoBehaviourManager, this, resourcesManager, _startPoint));
+                new BulletController(monoBehaviourManager, this, resourcesManager, _startPoint);
             }
         }
 
@@ -35,9 +35,11 @@ namespace PiratesGame
 
         public void PopFromPool()
         {
-            _bulletsStack.Peek().SetActive = true;
-            _bulletsStack.Peek().SetStartPoint = _startPoint;
-            _bulletsStack.Pop();
+            if (_bulletsStack.Count > 0)
+            {
+                _bulletsStack.Peek().SetActive = true;
+                _bulletsStack.Pop();
+            }
         }
 
         public void PushToPool(BulletController bulletController)

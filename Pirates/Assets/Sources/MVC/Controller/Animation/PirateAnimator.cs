@@ -83,6 +83,7 @@ namespace PiratesGame
             _animations.Add(AnimationTypes.Walk, resources.PirateWalkSprites);
 
             _animationPlayer = new AnimationPlayer(animationDuration, spriteRenderer, _animations[AnimationTypes.Idle], monoBehaviourManager);
+            _animationPlayer.Play = true;
 
             _animationPlayer.AnimationPlayFinished += AnimationOnePlayFinishedEventHandler;
 

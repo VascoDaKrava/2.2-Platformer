@@ -21,6 +21,8 @@ namespace PiratesGame
 
         public GameObject Cannon { get; private set; }
         public GameObject CannonBall { get; private set; }
+        public List<Sprite> ShootSprites { get; private set; }
+        public List<Sprite> ExplosionSprites { get; private set; }
 
         #endregion
 
@@ -41,6 +43,9 @@ namespace PiratesGame
 
             Cannon = Resources.Load<GameObject>(ResourcesPath.CANNON);
             CannonBall = Resources.Load<GameObject>(ResourcesPath.CANNON_BALL);
+
+            ShootSprites = new List<Sprite>(Resources.Load<AnimationsSO>(ResourcesPath.CANNON_SHOOT_ANIMATION).SpriteList);
+            ExplosionSprites = new List<Sprite>(Resources.Load<AnimationsSO>(ResourcesPath.EXPLOSION_ANIMATION).SpriteList);
         }
 
         #endregion
