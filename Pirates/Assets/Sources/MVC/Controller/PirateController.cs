@@ -59,7 +59,7 @@ namespace PiratesGame
                 if (InputManager.GetDirectionX() != Vector3.zero)
                 {
                     _animator.AnimationState = AnimationTypes.Walk;
-                    _view.PirateTransform.position += InputManager.GetDirectionX() * _model.WalkSpeed * Time.deltaTime;
+                    _view.transform.position += InputManager.GetDirectionX() * _model.WalkSpeed * Time.deltaTime;
                     _view.SpriteRenderer.flipX = InputManager.GetDirectionX().x < 0 ? true : false;
                 }
                 else
@@ -79,14 +79,14 @@ namespace PiratesGame
         {
             if (_model.IsFly)
             {
-                _view.PirateTransform.position += _model.VerticalVelocity * Vector3.up * Time.deltaTime;
+                _view.transform.position += _model.VerticalVelocity * Vector3.up * Time.deltaTime;
                 _model.VerticalVelocity -= _model.G * Time.deltaTime;
 
-                if (_view.PirateTransform.position.y <= _model.GroundLevel)
+                if (_view.transform.position.y <= _model.GroundLevel)
                 {
                     _model.IsFly = false;
                     _model.VerticalVelocity = 0.0f;
-                    _view.PirateTransform.position = new Vector3(_view.PirateTransform.position.x, _model.GroundLevel, _view.PirateTransform.position.z);
+                    _view.transform.position = new Vector3(_view.transform.position.x, _model.GroundLevel, _view.transform.position.z);
                 }
             }
         }

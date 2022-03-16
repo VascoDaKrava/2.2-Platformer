@@ -34,6 +34,9 @@ namespace PiratesGame
                     {
                         _view.transform.position = _startPoint.position;
                         _view.transform.rotation = _startPoint.rotation;
+                        _model.HorizontalVelocity = _startPoint.right.normalized.x * _model.BulletSpeed;
+                        _model.VerticalVelocity = _startPoint.right.normalized.y * _model.BulletSpeed;
+                        _model.IsFly = true;
                         _monoBehaviourManager.AddToUpdateList(this);
                     }
                     else
@@ -71,7 +74,23 @@ namespace PiratesGame
 
         private void DoFly()
         {
+            if (_model.IsFly)
+            {
+                _view.transform.position += _model.HorizontalVelocity * Vector3.right * Time.deltaTime;
+                _view.transform.position += _model.VerticalVelocity * Vector3.up * Time.deltaTime;
+                _model.VerticalVelocity -= _model.G * Time.deltaTime;
 
+                if (_view.transform.position.y <= _model.GroundLevel)
+                {
+                    _model.HorizontalVelocity *= _model.ReboundFactor;
+                    _model.VerticalVelocity *= -_model.ReboundFactor;
+                }
+
+                if (Mathf.Approximately(_model.HorizontalVelocity, 0.0f) && Mathf.Approximately(_model.VerticalVelocity, 0.0f))
+                {
+                    _model.IsFly = false;
+                }
+            }
         }
 
         #endregion
@@ -81,6 +100,7 @@ namespace PiratesGame
 
         public void LetUpdate()
         {
+            DoFly();
         }
 
         #endregion

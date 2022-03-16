@@ -1,10 +1,25 @@
-//using some;
-
-
 namespace PiratesGame
 {
     public sealed class BulletModel
     {
-        
+
+        #region Fields
+
+        public float VerticalVelocity = 0.0f;
+        public float HorizontalVelocity = 0.0f;
+        public bool IsFly = true;
+
+        #endregion
+
+
+        #region Properties
+
+        public float G => 9.8f;
+        public float BulletSpeed => 5.0f;
+        public float GroundLevel => -1.6f;
+        public float ReboundFactor => 0.7f;
+
+        #endregion
+
     }
 }
