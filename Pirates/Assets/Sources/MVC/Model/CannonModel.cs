@@ -13,14 +13,14 @@ namespace PiratesGame
         /// <summary>
         /// Shots per minute
         /// </summary>
-        private float _rateOfFire => 6.0f;
+        private float _rateOfFire => 20.0f;
 
         #endregion
 
 
         #region Properties
 
-        public int BulletsInPool => 10;
+        public int BulletsInPool => 5;
         public float MaxBurrelAngle => 70.0f;
         public float ShootAnimationDuration => 0.2f;
         public Vector3 StartPosition => new Vector3(2.5f, -0.6f, 0.0f);

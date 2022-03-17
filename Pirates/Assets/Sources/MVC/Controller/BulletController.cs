@@ -9,10 +9,14 @@ namespace PiratesGame
         #region Fields
 
         private bool _isActive;
+        private bool _isWaitForDie;
         private BulletModel _model;
         private BulletView _view;
         private BulletPool _pool;
+        private float _currentTimeToLive;
+        private float _waitForEndAnimation;
         private MonoBehaviourManager _monoBehaviourManager;
+        private SimpleAnimator _animator;
         private Transform _startPoint;
 
         #endregion
@@ -34,9 +38,10 @@ namespace PiratesGame
                     {
                         _view.transform.position = _startPoint.position;
                         _view.transform.rotation = _startPoint.rotation;
-                        _model.HorizontalVelocity = _startPoint.right.normalized.x * _model.BulletSpeed;
-                        _model.VerticalVelocity = _startPoint.right.normalized.y * _model.BulletSpeed;
+                        _model.HorizontalVelocity = _startPoint.up.normalized.x * _model.BulletSpeed;
+                        _model.VerticalVelocity = _startPoint.up.normalized.y * _model.BulletSpeed;
                         _model.IsFly = true;
+                        _currentTimeToLive = _model.TimeToLive;
                         _monoBehaviourManager.AddToUpdateList(this);
                     }
                     else
@@ -61,6 +66,8 @@ namespace PiratesGame
 
             _model = new BulletModel();
             _view = GameObject.Instantiate(resourcesManager.CannonBall, startPoint.position, startPoint.rotation).GetComponent<BulletView>();
+
+            _animator = new SimpleAnimator(resourcesManager.ExplosionSprites, _model.ExplosionAnimationDuration, _view.SpriteRenderer, monoBehaviourManager);
 
             _isActive = true;
 
@@ -93,6 +100,40 @@ namespace PiratesGame
             }
         }
 
+        private void CheckLive()
+        {
+            if (_currentTimeToLive >= 0.0f)
+            {
+                _currentTimeToLive -= Time.deltaTime;
+            }
+            else
+            {
+                if (_isWaitForDie)
+                {
+                    WaitForDie();
+                }
+                else
+                {
+                    _isWaitForDie = true;
+                    _waitForEndAnimation = _model.ExplosionAnimationDuration;
+                    _animator.PlayOnce();
+                }
+            }
+        }
+
+        private void WaitForDie()
+        {
+            if (_waitForEndAnimation >= 0)
+            {
+                _waitForEndAnimation -= Time.deltaTime;
+            }
+            else
+            {
+                SetActive = false;
+                _isWaitForDie = false;
+            }
+        }
+
         #endregion
 
 
@@ -101,6 +142,7 @@ namespace PiratesGame
         public void LetUpdate()
         {
             DoFly();
+            CheckLive();
         }
 
         #endregion
