@@ -28,11 +28,7 @@ namespace PiratesGame
         public float TimeToNextShoot
         {
             get => _timeToNextShoot;
-            
-            set
-            {
-                _timeToNextShoot = value;
-            }
+            set => _timeToNextShoot = value;
         }
 
         #endregion

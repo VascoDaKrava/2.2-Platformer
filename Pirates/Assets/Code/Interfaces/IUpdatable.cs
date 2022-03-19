@@ -8,7 +8,7 @@ namespace PiratesGame
         /// <summary>
         /// Contains methods for runnig in Update()
         /// </summary>
-        public void LetUpdate();
+        void LetUpdate();
         
         #endregion
 

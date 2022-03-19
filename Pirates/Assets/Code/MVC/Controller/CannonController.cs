@@ -24,7 +24,7 @@ namespace PiratesGame
             _pirateTransform = pirateTransform;
 
             _model = new CannonModel();
-            _view = GameObject.Instantiate(resourcesManager.Cannon, _model.StartPosition, Quaternion.identity).GetComponent<CannonView>();
+            _view = GameObject.Instantiate(resourcesManager.Cannon, _model.StartPosition, Quaternion.identity);
 
             _bulletPool = new BulletPool(_model.BulletsInPool, monoBehaviourManager, resourcesManager, _view.BulletStartTransform);
 

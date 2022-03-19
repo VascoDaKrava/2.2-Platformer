@@ -27,7 +27,7 @@ namespace PiratesGame
         public PirateController(ResourcesManager resourcesManager, MonoBehaviourManager monoBehaviourManager)
         {
             _model = new PirateModel();
-            _view = GameObject.Instantiate(resourcesManager.Pirate, _model.StartPosition, Quaternion.identity).GetComponent<PirateView>();
+            _view = GameObject.Instantiate(resourcesManager.Pirate, _model.StartPosition, Quaternion.identity);
 
             _animator = new PirateAnimator(
                 resourcesManager,
