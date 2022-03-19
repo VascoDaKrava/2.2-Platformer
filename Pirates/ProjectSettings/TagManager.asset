@@ -47,9 +47,6 @@ TagManager:
   - name: Platforms
     uniqueID: 3639829363
     locked: 0
-  - name: Items
-    uniqueID: 47590171
-    locked: 0
-  - name: Player
+  - name: Foreground
     uniqueID: 4053227251
     locked: 0

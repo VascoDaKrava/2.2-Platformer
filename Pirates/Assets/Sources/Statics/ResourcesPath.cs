@@ -11,7 +11,7 @@ namespace PiratesGame
 
         #region Fields
 
-        private const string FOLDER_ANIMATION = "Configs";
+        private const string FOLDER_ANIMATION = "Animations";
 
         private const string FILE_ANIMATION_PIRATE_ATTACK = "PirateAnimationsAttack";
         private const string FILE_ANIMATION_PIRATE_DIE = "PirateAnimationsDie";
@@ -21,20 +21,28 @@ namespace PiratesGame
         private const string FILE_ANIMATION_PIRATE_RUN = "PirateAnimationsRun";
         private const string FILE_ANIMATION_PIRATE_WALK = "PirateAnimationsWalk";
 
+        private const string FILE_ANIMATION_SHOOT = "ShootAnimations";
+        private const string FILE_ANIMATION_EXPLOSION = "ExplosionAnimations";
+
         public const string PIRATE = "Player";
+        public const string CANNON = "Cannon";
+        public const string CANNON_BALL = "CannonBall";
 
         #endregion
 
 
         #region Properties
 
-        public static string PIRATE_ATTACK => Path.Combine(FOLDER_ANIMATION, FILE_ANIMATION_PIRATE_ATTACK);
-        public static string PIRATE_DIE => Path.Combine(FOLDER_ANIMATION, FILE_ANIMATION_PIRATE_DIE);
-        public static string PIRATE_HURT => Path.Combine(FOLDER_ANIMATION, FILE_ANIMATION_PIRATE_HURT);
-        public static string PIRATE_IDLE => Path.Combine(FOLDER_ANIMATION, FILE_ANIMATION_PIRATE_IDLE);
-        public static string PIRATE_JUMP => Path.Combine(FOLDER_ANIMATION, FILE_ANIMATION_PIRATE_JUMP);
-        public static string PIRATE_RUN => Path.Combine(FOLDER_ANIMATION, FILE_ANIMATION_PIRATE_RUN);
-        public static string PIRATE_WALK => Path.Combine(FOLDER_ANIMATION, FILE_ANIMATION_PIRATE_WALK);
+        public static string PIRATE_ATTACK_ANIMATION => Path.Combine(FOLDER_ANIMATION, FILE_ANIMATION_PIRATE_ATTACK);
+        public static string PIRATE_DIE_ANIMATION => Path.Combine(FOLDER_ANIMATION, FILE_ANIMATION_PIRATE_DIE);
+        public static string PIRATE_HURT_ANIMATION => Path.Combine(FOLDER_ANIMATION, FILE_ANIMATION_PIRATE_HURT);
+        public static string PIRATE_IDLE_ANIMATION => Path.Combine(FOLDER_ANIMATION, FILE_ANIMATION_PIRATE_IDLE);
+        public static string PIRATE_JUMP_ANIMATION => Path.Combine(FOLDER_ANIMATION, FILE_ANIMATION_PIRATE_JUMP);
+        public static string PIRATE_RUN_ANIMATION => Path.Combine(FOLDER_ANIMATION, FILE_ANIMATION_PIRATE_RUN);
+        public static string PIRATE_WALK_ANIMATION => Path.Combine(FOLDER_ANIMATION, FILE_ANIMATION_PIRATE_WALK);
+
+        public static string CANNON_SHOOT_ANIMATION => Path.Combine(FOLDER_ANIMATION, FILE_ANIMATION_SHOOT);
+        public static string EXPLOSION_ANIMATION => Path.Combine(FOLDER_ANIMATION, FILE_ANIMATION_EXPLOSION);
 
         #endregion
 

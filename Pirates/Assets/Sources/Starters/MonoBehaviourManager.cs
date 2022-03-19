@@ -28,11 +28,6 @@ namespace PiratesGame
             _rootStarter = new RootStarter(this);
         }
 
-        private void Start()
-        {
-            //_rootStarter.SoundSystemVolumeController.ApplySettings();
-        }
-
         private void Update()
         {
             foreach (IUpdatable item in _updatables)
@@ -53,7 +48,10 @@ namespace PiratesGame
             {
                 foreach (IUpdatable item in _candidatsForRemovingFromUpdatables)
                 {
-                    _updatables.Remove(item);
+                    if (_updatables.Contains(item))
+                    {
+                        _updatables.Remove(item);
+                    }
                 }
                 _candidatsForRemovingFromUpdatables.Clear();
             }
