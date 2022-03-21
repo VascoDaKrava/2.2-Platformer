@@ -9,10 +9,11 @@ namespace PiratesGame
 
         #region Fields
 
-        private List<IUpdatable> _updatables;
-        private List<IUpdatable> _candidatsForAddingToUpdatables;
-        private List<IUpdatable> _candidatsForRemovingFromUpdatables;
-        private RootStarter _rootStarter;
+        private Dictionary<UpdatableTypes, List<IUpdatable>> _updatables;
+        //private List<IUpdatable> _updatables;
+        //private List<IUpdatable> _updatablesFixed;
+        //private List<IUpdatable> _candidatsForAddingToUpdatables;
+        //private List<IUpdatable> _candidatsForRemovingFromUpdatables;
 
         #endregion
 
@@ -21,16 +22,28 @@ namespace PiratesGame
 
         private void Awake()
         {
-            _updatables = new List<IUpdatable>();
-            _candidatsForAddingToUpdatables = new List<IUpdatable>();
-            _candidatsForRemovingFromUpdatables = new List<IUpdatable>();
+            _updatables = new Dictionary<UpdatableTypes, List<IUpdatable>>();
+            _updatables.Add(UpdatableTypes.Update, new List<IUpdatable>());
+            _updatables.Add(UpdatableTypes.FixedUpdate, new List<IUpdatable>());
+            _updatables.Add(UpdatableTypes.AddCandidateUpdate, new List<IUpdatable>());
+            _updatables.Add(UpdatableTypes.RemoveCandidateUpdate, new List<IUpdatable>());
+            _updatables.Add(UpdatableTypes.AddCandidateUpdateFixed, new List<IUpdatable>());
+            _updatables.Add(UpdatableTypes.RemoveCandidateUpdateFixed, new List<IUpdatable>());
 
-            _rootStarter = new RootStarter(this);
+            new RootStarter(this);
         }
 
         private void Update()
         {
-            foreach (IUpdatable item in _updatables)
+            foreach (IUpdatable item in _updatables[UpdatableTypes.Update])
+            {
+                item.LetUpdate();
+            }
+        }
+
+        private void FixedUpdate()
+        {
+            foreach (IUpdatable item in _updatables[UpdatableTypes.FixedUpdate])
             {
                 item.LetUpdate();
             }
@@ -38,22 +51,48 @@ namespace PiratesGame
 
         private void LateUpdate()
         {
-            if (_candidatsForAddingToUpdatables.Count > 0)
+            foreach (KeyValuePair<UpdatableTypes, List<IUpdatable>> pair in _updatables)
             {
-                _updatables.AddRange(_candidatsForAddingToUpdatables);
-                _candidatsForAddingToUpdatables.Clear();
-            }
-
-            if (_candidatsForRemovingFromUpdatables.Count > 0)
-            {
-                foreach (IUpdatable item in _candidatsForRemovingFromUpdatables)
+                if (pair.Value.Count > 0)
                 {
-                    if (_updatables.Contains(item))
+                    switch (pair.Key)
                     {
-                        _updatables.Remove(item);
+                        case UpdatableTypes.AddCandidateUpdate:
+                            _updatables[UpdatableTypes.Update].AddRange(pair.Value);
+                            pair.Value.Clear();
+                            break;
+
+                        case UpdatableTypes.RemoveCandidateUpdate:
+                            foreach (IUpdatable item in _updatables[pair.Key])
+                            {
+                                if (_updatables[UpdatableTypes.Update].Contains(item))
+                                {
+                                    _updatables[UpdatableTypes.Update].Remove(item);
+                                }
+                            }
+                            _updatables[pair.Key].Clear();
+                            break;
+
+                        case UpdatableTypes.AddCandidateUpdateFixed:
+                            _updatables[UpdatableTypes.FixedUpdate].AddRange(pair.Value);
+                            pair.Value.Clear();
+                            break;
+
+                        case UpdatableTypes.RemoveCandidateUpdateFixed:
+                            foreach (IUpdatable item in _updatables[pair.Key])
+                            {
+                                if (_updatables[UpdatableTypes.FixedUpdate].Contains(item))
+                                {
+                                    _updatables[UpdatableTypes.FixedUpdate].Remove(item);
+                                }
+                            }
+                            _updatables[pair.Key].Clear();
+                            break;
+
+                        default:
+                            break;
                     }
                 }
-                _candidatsForRemovingFromUpdatables.Clear();
             }
         }
 
@@ -63,21 +102,13 @@ namespace PiratesGame
         #region Methods
 
         /// <summary>
-        /// Add item to list for Update (in the current LateUpdate)
+        /// Add/remove item to/from list for Update/FixedUpdate (in the current LateUpdate)
         /// </summary>
-        /// <param name="updatableObject"></param>
-        public void AddToUpdateList(IUpdatable updatableObject)
+        /// <param name="updatableObject">IUpdatable object to add/remove</param>
+        /// <param name="updatableType">Type of list</param>
+        public void ChangeUpdateList(IUpdatable updatableObject, UpdatableTypes updatableType)
         {
-            _candidatsForAddingToUpdatables.Add(updatableObject);
-        }
-
-        /// <summary>
-        /// Remove item from list for Update
-        /// </summary>
-        /// <param name="updatableObject"></param>
-        public void RemoveFromUpdateList(IUpdatable updatableObject)
-        {
-            _candidatsForRemovingFromUpdatables.Add(updatableObject);
+            _updatables[updatableType].Add(updatableObject);
         }
 
         #endregion

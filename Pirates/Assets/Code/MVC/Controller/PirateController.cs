@@ -32,11 +32,11 @@ namespace PiratesGame
             _animator = new PirateAnimator(
                 resourcesManager,
                 _model.AnimationDuration,
-                _view.SpriteRenderer,
+                _view.PlayerSpriteRenderer,
                 monoBehaviourManager
                 );
 
-            monoBehaviourManager.AddToUpdateList(this);
+            monoBehaviourManager.ChangeUpdateList(this, UpdatableTypes.AddCandidateUpdateFixed);
         }
 
         #endregion
@@ -56,11 +56,11 @@ namespace PiratesGame
             }
             else
             {
-                if (InputManager.GetDirectionX() != Vector3.zero)
+                if (!Mathf.Approximately(InputManager.DirectionX, 0.0f))
                 {
                     _animator.AnimationState = AnimationTypes.Walk;
-                    _view.transform.position += InputManager.GetDirectionX() * _model.WalkSpeed * Time.deltaTime;
-                    _view.SpriteRenderer.flipX = InputManager.GetDirectionX().x < 0 ? true : false;
+                    _view.PlayerRigidbody.velocity = new Vector2(InputManager.DirectionX * _model.WalkSpeed, _view.PlayerRigidbody.velocity.y);
+                    _view.PlayerSpriteRenderer.flipX = InputManager.DirectionX < 0 ? true : false;
                 }
                 else
                 {
@@ -71,7 +71,7 @@ namespace PiratesGame
 
         private void DoJump()
         {
-            _model.VerticalVelocity += _model.JumpPower;
+            _view.PlayerRigidbody.AddForce(Vector2.up * _model.JumpForce);
             _model.IsFly = true;
         }
 
@@ -79,14 +79,9 @@ namespace PiratesGame
         {
             if (_model.IsFly)
             {
-                _view.transform.position += _model.VerticalVelocity * Vector3.up * Time.deltaTime;
-                _model.VerticalVelocity -= _model.G * Time.deltaTime;
-
                 if (_view.transform.position.y <= _model.GroundLevel)
                 {
                     _model.IsFly = false;
-                    _model.VerticalVelocity = 0.0f;
-                    _view.transform.position = new Vector3(_view.transform.position.x, _model.GroundLevel, _view.transform.position.z);
                 }
             }
         }

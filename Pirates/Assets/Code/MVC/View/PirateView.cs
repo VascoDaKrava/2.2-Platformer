@@ -11,12 +11,16 @@ namespace PiratesGame
         [SerializeField]
         private SpriteRenderer _bodySpriteRenderer;
 
+        [SerializeField]
+        private Rigidbody2D _rigidbody;
+
         #endregion
 
 
         #region Properties
 
-        public SpriteRenderer SpriteRenderer => _bodySpriteRenderer;
+        public SpriteRenderer PlayerSpriteRenderer => _bodySpriteRenderer;
+        public Rigidbody2D PlayerRigidbody => _rigidbody;
 
         #endregion
 

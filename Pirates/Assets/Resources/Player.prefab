@@ -166,3 +166,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _bodySpriteRenderer: {fileID: 7394518404505502718}
+  _rigidbody: {fileID: 1043882638613883916}

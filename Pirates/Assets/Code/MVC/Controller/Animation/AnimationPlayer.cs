@@ -53,13 +53,13 @@ namespace PiratesGame
                     _isPlaying = value;
                     if (_isPlaying)
                     {
-                        _monoBehaviourManager.AddToUpdateList(this);
+                        _monoBehaviourManager.ChangeUpdateList(this, UpdatableTypes.AddCandidateUpdate);
                         _timeToNextSprite = _timeBetweenSprites;
                         _currentSpriteNumber = 0;
                     }
                     else
                     {
-                        _monoBehaviourManager.RemoveFromUpdateList(this);
+                        _monoBehaviourManager.ChangeUpdateList(this, UpdatableTypes.RemoveCandidateUpdate);
                     }
                 }
             }

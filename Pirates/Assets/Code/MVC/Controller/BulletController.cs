@@ -42,11 +42,11 @@ namespace PiratesGame
                         _model.VerticalVelocity = _startPoint.up.normalized.y * _model.BulletSpeed;
                         _model.IsFly = true;
                         _currentTimeToLive = _model.TimeToLive;
-                        _monoBehaviourManager.AddToUpdateList(this);
+                        _monoBehaviourManager.ChangeUpdateList(this, UpdatableTypes.AddCandidateUpdate); ;
                     }
                     else
                     {
-                        _monoBehaviourManager.RemoveFromUpdateList(this);
+                        _monoBehaviourManager.ChangeUpdateList(this, UpdatableTypes.RemoveCandidateUpdate);
                         _pool.PushToPool(this);
                     }
                 }

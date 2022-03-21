@@ -30,7 +30,7 @@ namespace PiratesGame
 
             _animator = new SimpleAnimator(resourcesManager.ShootSprites, _model.ShootAnimationDuration, _view.BulletStartRenderer, monoBehaviourManager);
 
-            monoBehaviourManager.AddToUpdateList(this);
+            monoBehaviourManager.ChangeUpdateList(this, UpdatableTypes.AddCandidateUpdate);
         }
 
         #endregion
