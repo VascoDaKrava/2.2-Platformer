@@ -19,12 +19,16 @@ namespace PiratesGame
 
         #region CodeLifeCicles
 
-        public CannonController(ResourcesManager resourcesManager, MonoBehaviourManager monoBehaviourManager, Transform pirateTransform)
+        public CannonController(ResourcesManager resourcesManager, MonoBehaviourManager monoBehaviourManager, Transform pirateTransform, int layer)
         {
             _pirateTransform = pirateTransform;
 
             _model = new CannonModel();
             _view = GameObject.Instantiate(resourcesManager.Cannon, _model.StartPosition, Quaternion.identity);
+            foreach (var item in _view.gameObject.GetComponentsInChildren<Transform>())
+            {
+                item.gameObject.layer = layer;
+            }
 
             _bulletPool = new BulletPool(_model.BulletsInPool, monoBehaviourManager, resourcesManager, _view.BulletStartTransform);
 
