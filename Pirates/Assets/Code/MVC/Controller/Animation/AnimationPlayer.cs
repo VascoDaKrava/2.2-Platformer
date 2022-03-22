@@ -21,6 +21,7 @@ namespace PiratesGame
         private MonoBehaviourManager _monoBehaviourManager;
 
         public bool IsLoop;
+        public float AnimationDuration;
 
         #endregion
 
@@ -37,8 +38,9 @@ namespace PiratesGame
         {
             set
             {
-                _sprites.Clear();
+                _sprites?.Clear();
                 _sprites = new List<Sprite>(value);
+                _timeBetweenSprites = AnimationDuration / _sprites.Count;
                 _timeToNextSprite = _timeBetweenSprites;
                 _currentSpriteNumber = 0;
             }
@@ -72,12 +74,11 @@ namespace PiratesGame
 
         public AnimationPlayer(float animationDuration, SpriteRenderer spriteRenderer, List<Sprite> spritesList, MonoBehaviourManager monoBehaviourManager)
         {
-            _timeBetweenSprites = animationDuration / spritesList.Count;
-            _timeToNextSprite = _timeBetweenSprites;
+            AnimationDuration = animationDuration;
             _spriteRenderer = spriteRenderer;
-            _sprites = new List<Sprite>(spritesList);
             _monoBehaviourManager = monoBehaviourManager;
-            _currentSpriteNumber = 0;
+
+            SpritesList = spritesList;
             IsLoop = true;
         }
 

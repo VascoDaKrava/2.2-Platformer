@@ -41,7 +41,8 @@ namespace PiratesGame
 
             _animator = new PirateAnimator(
                 resourcesManager,
-                _model.AnimationDuration,
+                _model.AnimationDurationIdle,
+                _model.AnimationDurationWalk,
                 _view.PlayerSpriteRenderer,
                 _monoBehaviourManager
                 );

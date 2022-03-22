@@ -9,6 +9,9 @@ namespace PiratesGame
 
         #region Fields
 
+        private float _idleAnimationDuration;
+        private float _walkAnimationDuration;
+
         private AnimationPlayer _animationPlayer;
         private AnimationTypes _animationState;
 
@@ -42,11 +45,13 @@ namespace PiratesGame
 
                         case AnimationTypes.Idle:
                             _animationPlayer.SpritesList = _animations[AnimationTypes.Idle];
+                            _animationPlayer.AnimationDuration = _idleAnimationDuration;
                             _animationPlayer.IsLoop = true;
                             break;
 
                         case AnimationTypes.Jump:
                             _animationPlayer.SpritesList = _animations[AnimationTypes.Jump];
+                            _animationPlayer.AnimationDuration = _idleAnimationDuration;
                             _animationPlayer.IsLoop = false;
                             break;
 
@@ -55,6 +60,7 @@ namespace PiratesGame
 
                         case AnimationTypes.Walk:
                             _animationPlayer.SpritesList = _animations[AnimationTypes.Walk];
+                            _animationPlayer.AnimationDuration = _walkAnimationDuration;
                             _animationPlayer.IsLoop = true;
                             break;
 
@@ -71,7 +77,12 @@ namespace PiratesGame
 
         #region ClassLifeCycles
 
-        public PirateAnimator(ResourcesManager resources, float animationDuration, SpriteRenderer spriteRenderer, MonoBehaviourManager monoBehaviourManager)
+        public PirateAnimator(
+            ResourcesManager resources,
+            float animationDurationIdle,
+            float animationDurationWalk,
+            SpriteRenderer spriteRenderer,
+            MonoBehaviourManager monoBehaviourManager)
         {
             _animations = new Dictionary<AnimationTypes, List<Sprite>>();
             _animations.Add(AnimationTypes.Attack, resources.PirateAttackSprites);
@@ -82,7 +93,10 @@ namespace PiratesGame
             _animations.Add(AnimationTypes.Run, resources.PirateRunSprites);
             _animations.Add(AnimationTypes.Walk, resources.PirateWalkSprites);
 
-            _animationPlayer = new AnimationPlayer(animationDuration, spriteRenderer, _animations[AnimationTypes.Idle], monoBehaviourManager);
+            _idleAnimationDuration = animationDurationIdle;
+            _walkAnimationDuration = animationDurationWalk;
+
+            _animationPlayer = new AnimationPlayer(_idleAnimationDuration, spriteRenderer, _animations[AnimationTypes.Idle], monoBehaviourManager);
             _animationPlayer.Play = true;
 
             _animationPlayer.AnimationPlayFinished += AnimationOnePlayFinishedEventHandler;
