@@ -17,7 +17,7 @@ namespace PiratesGame
         {
             _resourcesManager = new ResourcesManager();
             _pirateController = new PirateController(_resourcesManager, monoBehaviourManager);
-            new CannonController(_resourcesManager, monoBehaviourManager, _pirateController.PirateTransform, Layers.Back);
+            new CannonController(_resourcesManager, monoBehaviourManager, _pirateController.PirateTransform);
         }
 
         #endregion

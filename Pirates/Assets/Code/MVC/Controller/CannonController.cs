@@ -11,6 +11,7 @@ namespace PiratesGame
         private BulletPool _bulletPool;
         private CannonModel _model;
         private CannonView _view;
+        private MonoBehaviourManager _monoBehaviourManager;
         private SimpleAnimator _animator;
         private Transform _pirateTransform;
 
@@ -19,22 +20,28 @@ namespace PiratesGame
 
         #region CodeLifeCicles
 
-        public CannonController(ResourcesManager resourcesManager, MonoBehaviourManager monoBehaviourManager, Transform pirateTransform, int layer)
+        public CannonController(ResourcesManager resourcesManager, MonoBehaviourManager monoBehaviourManager, Transform pirateTransform)
         {
+            _monoBehaviourManager = monoBehaviourManager;
             _pirateTransform = pirateTransform;
 
             _model = new CannonModel();
             _view = GameObject.Instantiate(resourcesManager.Cannon, _model.StartPosition, Quaternion.identity);
             foreach (var item in _view.gameObject.GetComponentsInChildren<Transform>())
             {
-                item.gameObject.layer = layer;
+                item.gameObject.layer = _model.Layer;
             }
 
-            _bulletPool = new BulletPool(_model.BulletsInPool, monoBehaviourManager, resourcesManager, _view.BulletStartTransform);
+            _bulletPool = new BulletPool(_model.BulletsInPool, _monoBehaviourManager, resourcesManager, _view.BulletStartTransform);
 
-            _animator = new SimpleAnimator(resourcesManager.ShootSprites, _model.ShootAnimationDuration, _view.BulletStartRenderer, monoBehaviourManager);
+            _animator = new SimpleAnimator(resourcesManager.ShootSprites, _model.ShootAnimationDuration, _view.BulletStartRenderer, _monoBehaviourManager);
 
-            monoBehaviourManager.ChangeUpdateList(this, UpdatableTypes.AddCandidateUpdate);
+            _monoBehaviourManager.ChangeUpdateList(this, UpdatableTypes.AddCandidateUpdate);
+        }
+
+        ~CannonController()
+        {
+            _monoBehaviourManager.ChangeUpdateList(this, UpdatableTypes.RemoveCandidateUpdate);
         }
 
         #endregion
@@ -76,6 +83,8 @@ namespace PiratesGame
             Aiming();
             Shoot();
         }
+
+        public void LetFixedUpdate() { }
 
         #endregion
 

@@ -8,9 +8,15 @@ namespace PiratesGame
 
         #region Fields
 
+        private MonoBehaviourManager _monoBehaviourManager;
+
         private PirateAnimator _animator;
         private PirateModel _model;
         private PirateView _view;
+
+        private RigidbodyContactChecker _contactChecker;
+
+        private float _calculateVelocityX;
 
         #endregion
 
@@ -26,17 +32,28 @@ namespace PiratesGame
 
         public PirateController(ResourcesManager resourcesManager, MonoBehaviourManager monoBehaviourManager)
         {
+            _monoBehaviourManager = monoBehaviourManager;
+
             _model = new PirateModel();
             _view = GameObject.Instantiate(resourcesManager.Pirate, _model.StartPosition, Quaternion.identity);
+
+            _contactChecker = new RigidbodyContactChecker(_view.PlayerRigidbody, _monoBehaviourManager);
 
             _animator = new PirateAnimator(
                 resourcesManager,
                 _model.AnimationDuration,
                 _view.PlayerSpriteRenderer,
-                monoBehaviourManager
+                _monoBehaviourManager
                 );
 
-            monoBehaviourManager.ChangeUpdateList(this, UpdatableTypes.AddCandidateUpdateFixed);
+            _monoBehaviourManager.ChangeUpdateList(this, UpdatableTypes.AddCandidateUpdate);
+            _monoBehaviourManager.ChangeUpdateList(this, UpdatableTypes.AddCandidateUpdateFixed);
+        }
+
+        ~PirateController()
+        {
+            _monoBehaviourManager.ChangeUpdateList(this, UpdatableTypes.RemoveCandidateUpdate);
+            _monoBehaviourManager.ChangeUpdateList(this, UpdatableTypes.RemoveCandidateUpdateFixed);
         }
 
         #endregion
@@ -44,11 +61,13 @@ namespace PiratesGame
 
         #region Methods
 
-        private void LetMove()
+        private void CheckMove()
         {
+            _model.isGrounded = _contactChecker.BottomContact;
+
             if (InputManager.isJump)
             {
-                if (!_model.IsFly)
+                if (_model.isGrounded)
                 {
                     _animator.AnimationState = AnimationTypes.Jump;
                     DoJump();
@@ -59,8 +78,14 @@ namespace PiratesGame
                 if (!Mathf.Approximately(InputManager.DirectionX, 0.0f))
                 {
                     _animator.AnimationState = AnimationTypes.Walk;
-                    _view.PlayerRigidbody.velocity = new Vector2(InputManager.DirectionX * _model.WalkSpeed, _view.PlayerRigidbody.velocity.y);
+                    _calculateVelocityX = InputManager.DirectionX * _model.WalkSpeed;
                     _view.PlayerSpriteRenderer.flipX = InputManager.DirectionX < 0 ? true : false;
+
+                    if (_calculateVelocityX < 0.0f && _contactChecker.LeftContact ||
+                        _calculateVelocityX > 0.0f && _contactChecker.RightContact)
+                    {
+                        _calculateVelocityX = 0.0f;
+                    }
                 }
                 else
                 {
@@ -69,21 +94,17 @@ namespace PiratesGame
             }
         }
 
+        private void DoMove()
+        {
+            if (!Mathf.Approximately(_calculateVelocityX, 0.0f))
+            {
+                _view.PlayerRigidbody.velocity = new Vector2(_calculateVelocityX, _view.PlayerRigidbody.velocity.y);
+            }
+        }
+
         private void DoJump()
         {
             _view.PlayerRigidbody.AddForce(Vector2.up * _model.JumpForce);
-            _model.IsFly = true;
-        }
-
-        private void DoFly()
-        {
-            if (_model.IsFly)
-            {
-                if (_view.transform.position.y <= _model.GroundLevel)
-                {
-                    _model.IsFly = false;
-                }
-            }
         }
 
         #endregion
@@ -93,8 +114,12 @@ namespace PiratesGame
 
         public void LetUpdate()
         {
-            LetMove();
-            DoFly();
+            CheckMove();
+        }
+
+        public void LetFixedUpdate()
+        {
+            DoMove();
         }
 
         #endregion

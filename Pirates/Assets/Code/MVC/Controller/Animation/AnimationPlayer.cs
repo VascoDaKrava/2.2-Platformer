@@ -124,6 +124,8 @@ namespace PiratesGame
             PlayAnimation();
         }
 
+        public void LetFixedUpdate() { }
+
         #endregion
 
     }

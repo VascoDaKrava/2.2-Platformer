@@ -67,7 +67,7 @@ namespace PiratesGame
             _model = new BulletModel();
             _view = GameObject.Instantiate(resourcesManager.CannonBall, startPoint.position, startPoint.rotation).GetComponent<BulletView>();
 
-            _animator = new SimpleAnimator(resourcesManager.ExplosionSprites, _model.ExplosionAnimationDuration, _view.SpriteRenderer, monoBehaviourManager);
+            _animator = new SimpleAnimator(resourcesManager.ExplosionSprites, _model.ExplosionAnimationDuration, _view.SpriteRenderer, _monoBehaviourManager);
 
             _isActive = true;
 
@@ -144,6 +144,8 @@ namespace PiratesGame
             DoFly();
             CheckLive();
         }
+
+        public void LetFixedUpdate() { }
 
         #endregion
 

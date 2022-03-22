@@ -45,7 +45,7 @@ namespace PiratesGame
         {
             foreach (IUpdatable item in _updatables[UpdatableTypes.FixedUpdate])
             {
-                item.LetUpdate();
+                item.LetFixedUpdate();
             }
         }
 

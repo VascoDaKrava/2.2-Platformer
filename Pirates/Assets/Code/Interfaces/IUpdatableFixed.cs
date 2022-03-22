@@ -1,6 +1,6 @@
 namespace PiratesGame
 {
-    public interface IUpdatable
+    public interface IUpdatableFixed
     {
 
         #region Methods
@@ -8,13 +8,8 @@ namespace PiratesGame
         /// <summary>
         /// Contains methods for runnig in Update()
         /// </summary>
-        void LetUpdate();
-
-        /// <summary>
-        /// Contains methods for runnig in FixedUpdate()
-        /// </summary>
         void LetFixedUpdate();
-
+        
         #endregion
 
     }
