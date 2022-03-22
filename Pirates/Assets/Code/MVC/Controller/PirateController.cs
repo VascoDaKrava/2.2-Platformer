@@ -49,12 +49,16 @@ namespace PiratesGame
 
             _monoBehaviourManager.ChangeUpdateList(this, UpdatableTypes.AddCandidateUpdate);
             _monoBehaviourManager.ChangeUpdateList(this, UpdatableTypes.AddCandidateUpdateFixed);
+
+            _view.OnTriggerEvent += OnTriggerEventHandler;
         }
 
         ~PirateController()
         {
             _monoBehaviourManager.ChangeUpdateList(this, UpdatableTypes.RemoveCandidateUpdate);
             _monoBehaviourManager.ChangeUpdateList(this, UpdatableTypes.RemoveCandidateUpdateFixed);
+
+            _view.OnTriggerEvent -= OnTriggerEventHandler;
         }
 
         #endregion
@@ -106,6 +110,15 @@ namespace PiratesGame
         private void DoJump()
         {
             _view.PlayerRigidbody.AddForce(Vector2.up * _model.JumpForce);
+        }
+
+        private void OnTriggerEventHandler(GameObject triggerObject)
+        {
+            if (triggerObject.CompareTag(TagsAndLayers.TagCoin))
+            {
+                Debug.Log("Coin collected");
+                triggerObject.SetActive(false);
+            }
         }
 
         #endregion

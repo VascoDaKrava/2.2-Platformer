@@ -19,14 +19,17 @@ namespace PiratesGame
         {
             _monoBehaviourManager = monoBehaviourManager;
 
-            foreach (GameObject coinView in coins)
+            foreach (GameObject coinGameObject in coins)
             {
-                new SimpleAnimator(
+                if (coinGameObject.TryGetComponent<CoinView> (out CoinView coinView))
+                {
+                    new SimpleAnimator(
                     resourcesManager.CoinSprites,
                     CoinModel.RotationAnimationDuration,
                     true,
-                    coinView.GetComponent<CoinView>().CoinSpriteRenderer,
+                    coinView.CoinSpriteRenderer,
                     _monoBehaviourManager).Play();
+                }
             }
         }
 

@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 
@@ -21,6 +22,17 @@ namespace PiratesGame
 
         public SpriteRenderer PlayerSpriteRenderer => _bodySpriteRenderer;
         public Rigidbody2D PlayerRigidbody => _rigidbody;
+        public Action<GameObject> OnTriggerEvent { get; set; }
+
+        #endregion
+
+
+        #region UnityMethods
+
+        private void OnTriggerEnter2D(Collider2D collision)
+        {
+            OnTriggerEvent?.Invoke(collision.gameObject);
+        }
 
         #endregion
 
