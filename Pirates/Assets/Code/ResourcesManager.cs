@@ -20,7 +20,7 @@ namespace PiratesGame
         public PirateView Pirate { get; private set; }
 
         public CannonView Cannon { get; private set; }
-        public GameObject CannonBall { get; private set; }
+        public BulletView CannonBall { get; private set; }
         public List<Sprite> ShootSprites { get; private set; }
         public List<Sprite> ExplosionSprites { get; private set; }
 
@@ -42,7 +42,7 @@ namespace PiratesGame
             PirateWalkSprites = new List<Sprite>(Resources.Load<AnimationsSO>(ResourcesPath.PIRATE_WALK_ANIMATION).SpriteList);
 
             Cannon = Resources.Load<CannonView>(ResourcesPath.CANNON);
-            CannonBall = Resources.Load<GameObject>(ResourcesPath.CANNON_BALL);
+            CannonBall = Resources.Load<BulletView>(ResourcesPath.CANNON_BALL);
 
             ShootSprites = new List<Sprite>(Resources.Load<AnimationsSO>(ResourcesPath.CANNON_SHOOT_ANIMATION).SpriteList);
             ExplosionSprites = new List<Sprite>(Resources.Load<AnimationsSO>(ResourcesPath.EXPLOSION_ANIMATION).SpriteList);

@@ -92,6 +92,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5310298444030502}
   - component: {fileID: 1972557262459838269}
+  - component: {fileID: 5322593094513057443}
   m_Layer: 0
   m_Name: CannonBall
   m_TagString: Untagged
@@ -128,6 +129,28 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _explosionSpriteRenderer: {fileID: 254748843373173360}
+  _rigidbody: {fileID: 5322593094513057443}
+--- !u!50 &5322593094513057443
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1651671494125516823}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &9014516435952278660
 GameObject:
   m_ObjectHideFlags: 0
@@ -139,7 +162,6 @@ GameObject:
   - component: {fileID: 1455434753216649152}
   - component: {fileID: 5899727784909275821}
   - component: {fileID: 8392171595636432093}
-  - component: {fileID: 8108980891599738682}
   m_Layer: 0
   m_Name: Body
   m_TagString: Untagged
@@ -228,24 +250,3 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 1.6499999
---- !u!50 &8108980891599738682
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9014516435952278660}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0

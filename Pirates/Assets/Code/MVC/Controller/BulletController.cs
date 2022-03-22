@@ -38,9 +38,8 @@ namespace PiratesGame
                     {
                         _view.transform.position = _startPoint.position;
                         _view.transform.rotation = _startPoint.rotation;
-                        _model.HorizontalVelocity = _startPoint.up.normalized.x * _model.BulletSpeed;
-                        _model.VerticalVelocity = _startPoint.up.normalized.y * _model.BulletSpeed;
-                        _model.IsFly = true;
+
+                        _view.BulletRigidbody.AddForce(_view.transform.up * _model.BulletStartForce);
                         _currentTimeToLive = _model.TimeToLive;
                         _monoBehaviourManager.ChangeUpdateList(this, UpdatableTypes.AddCandidateUpdate); ;
                     }
@@ -65,7 +64,7 @@ namespace PiratesGame
             _startPoint = startPoint;
 
             _model = new BulletModel();
-            _view = GameObject.Instantiate(resourcesManager.CannonBall, startPoint.position, startPoint.rotation).GetComponent<BulletView>();
+            _view = GameObject.Instantiate(resourcesManager.CannonBall, startPoint.position, startPoint.rotation);
 
             _animator = new SimpleAnimator(resourcesManager.ExplosionSprites, _model.ExplosionAnimationDuration, _view.SpriteRenderer, _monoBehaviourManager);
 
@@ -78,27 +77,6 @@ namespace PiratesGame
 
 
         #region Methods
-
-        private void DoFly()
-        {
-            if (_model.IsFly)
-            {
-                _view.transform.position += _model.HorizontalVelocity * Vector3.right * Time.deltaTime;
-                _view.transform.position += _model.VerticalVelocity * Vector3.up * Time.deltaTime;
-                _model.VerticalVelocity -= _model.G * Time.deltaTime;
-
-                if (_view.transform.position.y <= _model.GroundLevel)
-                {
-                    _model.HorizontalVelocity *= _model.ReboundFactor;
-                    _model.VerticalVelocity *= -_model.ReboundFactor;
-                }
-
-                if (Mathf.Approximately(_model.HorizontalVelocity, 0.0f) && Mathf.Approximately(_model.VerticalVelocity, 0.0f))
-                {
-                    _model.IsFly = false;
-                }
-            }
-        }
 
         private void CheckLive()
         {
@@ -141,7 +119,6 @@ namespace PiratesGame
 
         public void LetUpdate()
         {
-            DoFly();
             CheckLive();
         }
 
