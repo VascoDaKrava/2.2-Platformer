@@ -23,7 +23,7 @@ namespace PiratesGame
 
         #region Properties
 
-        public Transform PirateTransform => _view.transform;
+        public Transform PirateTransform => _view.PlayerRigidbody.transform;
 
         #endregion
 
