@@ -114,18 +114,24 @@ namespace PiratesGame
 
         private void OnTriggerEventHandler(GameObject triggerObject)
         {
-            if (triggerObject.CompareTag(TagsAndLayers.TagCoin))
+            switch (triggerObject.tag)
             {
-                Debug.Log("Coin collected");
-                triggerObject.SetActive(false);
-            }
-            else
-            {
-                if (triggerObject.CompareTag(TagsAndLayers.TagDanger))
-                {
+                case TagsAndLayers.TagCoin:
+                    Debug.Log("Coin collected");
+                    triggerObject.SetActive(false);
+                    break;
+
+                case TagsAndLayers.TagDanger:
                     Debug.Log("Death become..");
                     _view.transform.position = _model.StartPosition;
-                }
+                    break;
+
+                case TagsAndLayers.TagWin:
+                    Debug.Log("WIN");
+                    break;
+
+                default:
+                    break;
             }
         }
 
