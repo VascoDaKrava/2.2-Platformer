@@ -14,6 +14,7 @@ namespace PiratesGame
 
         private bool _isPlaying;
         private int _currentSpriteNumber;
+        private float _animationDuration;
         private float _timeBetweenSprites;
         private float _timeToNextSprite;
         private SpriteRenderer _spriteRenderer;
@@ -21,12 +22,23 @@ namespace PiratesGame
         private MonoBehaviourManager _monoBehaviourManager;
 
         public bool IsLoop;
-        public float AnimationDuration;
 
         #endregion
 
 
         #region Properties
+
+        public float AnimationDuration
+        {
+            get => _animationDuration;
+
+            set
+            {
+                _animationDuration = value;
+                _timeBetweenSprites = _animationDuration / _sprites.Count;
+                _timeToNextSprite = _timeBetweenSprites;
+            }
+        }
 
         public event Action AnimationPlayFinished
         {
@@ -40,8 +52,7 @@ namespace PiratesGame
             {
                 _sprites?.Clear();
                 _sprites = new List<Sprite>(value);
-                _timeBetweenSprites = AnimationDuration / _sprites.Count;
-                _timeToNextSprite = _timeBetweenSprites;
+                AnimationDuration = _animationDuration;
                 _currentSpriteNumber = 0;
             }
         }
@@ -74,7 +85,7 @@ namespace PiratesGame
 
         public AnimationPlayer(float animationDuration, SpriteRenderer spriteRenderer, List<Sprite> spritesList, MonoBehaviourManager monoBehaviourManager)
         {
-            AnimationDuration = animationDuration;
+            _animationDuration = animationDuration;
             _spriteRenderer = spriteRenderer;
             _monoBehaviourManager = monoBehaviourManager;
 

@@ -20,14 +20,20 @@ namespace PiratesGame
 
         #region Properties
 
-        public SpriteRenderer PlayerSpriteRenderer => _bodySpriteRenderer;
-        public Rigidbody2D PlayerRigidbody => _rigidbody;
         public Action<GameObject> OnTriggerEvent { get; set; }
+        public Rigidbody2D PlayerRigidbody => _rigidbody;
+        public SpriteRenderer PlayerSpriteRenderer => _bodySpriteRenderer;
+        public Timer Timer { get; private set; }
 
         #endregion
 
 
         #region UnityMethods
+
+        private void Awake()
+        {
+            Timer = GetComponent<Timer>();
+        }
 
         private void OnTriggerEnter2D(Collider2D collision)
         {
