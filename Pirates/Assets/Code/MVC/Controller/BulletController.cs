@@ -66,7 +66,7 @@ namespace PiratesGame
             _model = new BulletModel();
             _view = GameObject.Instantiate(resourcesManager.CannonBall, startPoint.position, startPoint.rotation);
 
-            _animator = new SimpleAnimator(resourcesManager.ExplosionSprites, _model.ExplosionAnimationDuration, _view.SpriteRenderer, _monoBehaviourManager);
+            _animator = new SimpleAnimator(resourcesManager.ExplosionSprites, _model.ExplosionAnimationDuration, false, _view.SpriteRenderer, _monoBehaviourManager);
 
             _isActive = true;
 
@@ -94,7 +94,7 @@ namespace PiratesGame
                 {
                     _isWaitForDie = true;
                     _waitForEndAnimation = _model.ExplosionAnimationDuration;
-                    _animator.PlayOnce();
+                    _animator.Play();
                 }
             }
         }

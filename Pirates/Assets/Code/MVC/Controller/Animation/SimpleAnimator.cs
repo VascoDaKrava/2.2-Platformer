@@ -16,12 +16,15 @@ namespace PiratesGame
 
         #region CodeLifeCycles
 
-        public SimpleAnimator(List<Sprite> animation, float animationDuration, SpriteRenderer spriteRenderer, MonoBehaviourManager monoBehaviourManager)
+        public SimpleAnimator(List<Sprite> animation, float animationDuration, bool isLoop, SpriteRenderer spriteRenderer, MonoBehaviourManager monoBehaviourManager)
         {
-            animation.Add(null);
+            if (!isLoop)
+            {
+                animation.Add(null);
+            }
 
             _animationPlayer = new AnimationPlayer(animationDuration, spriteRenderer, animation, monoBehaviourManager);
-            _animationPlayer.IsLoop = false;
+            _animationPlayer.IsLoop = isLoop;
 
             _animationPlayer.AnimationPlayFinished += AnimationOnePlayFinishedEventHandler;
         }
@@ -41,7 +44,7 @@ namespace PiratesGame
             _animationPlayer.Play = false;
         }
 
-        public void PlayOnce()
+        public void Play()
         {
             _animationPlayer.Play = true;
         }

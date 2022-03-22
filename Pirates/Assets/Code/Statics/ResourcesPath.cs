@@ -24,6 +24,8 @@ namespace PiratesGame
         private const string FILE_ANIMATION_SHOOT = "ShootAnimations";
         private const string FILE_ANIMATION_EXPLOSION = "ExplosionAnimations";
 
+        private const string FILE_ANIMATION_COIN = "CoinAnimations";
+
         public const string PIRATE = "Player";
         public const string CANNON = "Cannon";
         public const string CANNON_BALL = "CannonBall";
@@ -43,6 +45,8 @@ namespace PiratesGame
 
         public static string CANNON_SHOOT_ANIMATION => Path.Combine(FOLDER_ANIMATION, FILE_ANIMATION_SHOOT);
         public static string EXPLOSION_ANIMATION => Path.Combine(FOLDER_ANIMATION, FILE_ANIMATION_EXPLOSION);
+
+        public static string COIN_ANIMATION => Path.Combine(FOLDER_ANIMATION, FILE_ANIMATION_COIN);
 
         #endregion
 

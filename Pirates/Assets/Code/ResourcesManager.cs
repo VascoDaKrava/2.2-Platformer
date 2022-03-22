@@ -24,6 +24,8 @@ namespace PiratesGame
         public List<Sprite> ShootSprites { get; private set; }
         public List<Sprite> ExplosionSprites { get; private set; }
 
+        public List<Sprite> CoinSprites { get; private set; }
+
         #endregion
 
 
@@ -46,6 +48,8 @@ namespace PiratesGame
 
             ShootSprites = new List<Sprite>(Resources.Load<AnimationsSO>(ResourcesPath.CANNON_SHOOT_ANIMATION).SpriteList);
             ExplosionSprites = new List<Sprite>(Resources.Load<AnimationsSO>(ResourcesPath.EXPLOSION_ANIMATION).SpriteList);
+
+            CoinSprites = new List<Sprite>(Resources.Load<AnimationsSO>(ResourcesPath.COIN_ANIMATION).SpriteList);
         }
 
         #endregion

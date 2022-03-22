@@ -34,7 +34,7 @@ namespace PiratesGame
 
             _bulletPool = new BulletPool(_model.BulletsInPool, _monoBehaviourManager, resourcesManager, _view.BulletStartTransform);
 
-            _animator = new SimpleAnimator(resourcesManager.ShootSprites, _model.ShootAnimationDuration, _view.BulletStartRenderer, _monoBehaviourManager);
+            _animator = new SimpleAnimator(resourcesManager.ShootSprites, _model.ShootAnimationDuration, false, _view.BulletStartRenderer, _monoBehaviourManager);
 
             _monoBehaviourManager.ChangeUpdateList(this, UpdatableTypes.AddCandidateUpdate);
         }
@@ -69,7 +69,7 @@ namespace PiratesGame
             {
                 _model.ResetTime();
                 _bulletPool.PopFromPool();
-                _animator.PlayOnce();
+                _animator.Play();
             }
         }
 
