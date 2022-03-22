@@ -119,6 +119,14 @@ namespace PiratesGame
                 Debug.Log("Coin collected");
                 triggerObject.SetActive(false);
             }
+            else
+            {
+                if (triggerObject.CompareTag(TagsAndLayers.TagDanger))
+                {
+                    Debug.Log("Death become..");
+                    _view.transform.position = _model.StartPosition;
+                }
+            }
         }
 
         #endregion

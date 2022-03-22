@@ -11,6 +11,7 @@ namespace PiratesGame
         public const int LayerBack = 3;
 
         public const string TagCoin = "Coin";
+        public const string TagDanger = "Danger";
 
         #endregion
 
