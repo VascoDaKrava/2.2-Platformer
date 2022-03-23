@@ -122,6 +122,7 @@ namespace PiratesGame
 
         private void DoDie()
         {
+            _view.OnTriggerEvent -= OnTriggerEventHandler;
             _model.isMotorStop = true;
             _calculateVelocityX = 0.0f;
             _view.PlayerRigidbody.velocity = Vector2.zero;
@@ -134,7 +135,9 @@ namespace PiratesGame
             _animator.AnimationPlayFinished -= AnimationOnePlayFinishedEventHandler;
             _view.transform.position = _model.StartPosition;
             _model.isMotorStop = false;
+            _view.PlayerRigidbody.velocity = Vector2.zero;
             _animator.AnimationState = AnimationTypes.Idle;
+            _view.OnTriggerEvent += OnTriggerEventHandler;
         }
 
         private void OnTriggerEventHandler(GameObject triggerObject)

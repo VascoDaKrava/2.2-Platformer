@@ -9,8 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5310298444030502}
-  m_Layer: 0
-  m_Name: PlatformRightCorner
+  m_Layer: 7
+  m_Name: PlatformInnerRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -41,8 +41,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1455434753216649152}
   - component: {fileID: 5899727784909275821}
-  - component: {fileID: 5727732214089246135}
-  m_Layer: 0
+  - component: {fileID: 3994019011326869884}
+  m_Layer: 7
   m_Name: Square
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -103,7 +103,7 @@ SpriteRenderer:
   m_SortingLayerID: -655137933
   m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 789c899c6444ced4ea6405c0b7dfd024, type: 3}
+  m_Sprite: {fileID: 21300000, guid: fb1ab072fb41f1b4c89ad352d1fd5010, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -114,7 +114,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!61 &5727732214089246135
+--- !u!61 &3994019011326869884
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
