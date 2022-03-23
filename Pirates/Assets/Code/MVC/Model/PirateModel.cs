@@ -21,6 +21,7 @@ namespace PiratesGame
         public float AnimationDurationIdle => 0.7f;
         public float AnimationDurationWalk => _animationSynCoefficient / WalkSpeed;
         public float AnimationDurationDie => 0.5f;
+        public float TimeToReset => 3.5f;
         public float WalkSpeed => 2.0f;
         public float JumpForce => 300.0f;
 

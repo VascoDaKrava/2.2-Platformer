@@ -162,7 +162,7 @@ namespace PiratesGame
 
         private void AnimationOnePlayFinishedEventHandler()
         {
-            _view.Timer.StartTimer(5f);
+            _view.Timer.StartTimer(_model.TimeToReset);
         }
 
         #endregion
