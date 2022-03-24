@@ -11,6 +11,10 @@ namespace PiratesGame
 
         #region Fields
 
+        public const string PIRATE = "Player";
+        public const string CANNON = "Cannon";
+        public const string CANNON_BALL = "CannonBall";
+
         private const string FOLDER_ANIMATION = "Animations";
 
         private const string FILE_ANIMATION_PIRATE_ATTACK = "PirateAnimationsAttack";
@@ -25,10 +29,6 @@ namespace PiratesGame
         private const string FILE_ANIMATION_EXPLOSION = "ExplosionAnimations";
 
         private const string FILE_ANIMATION_COIN = "CoinAnimations";
-
-        public const string PIRATE = "Player";
-        public const string CANNON = "Cannon";
-        public const string CANNON_BALL = "CannonBall";
 
         #endregion
 

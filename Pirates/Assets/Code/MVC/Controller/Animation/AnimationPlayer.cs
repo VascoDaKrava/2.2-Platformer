@@ -10,6 +10,8 @@ namespace PiratesGame
 
         #region Fields
 
+        public bool IsLoop;
+
         private event Action _animationPlayFinishedEvent;
 
         private bool _isPlaying;
@@ -20,8 +22,6 @@ namespace PiratesGame
         private SpriteRenderer _spriteRenderer;
         private List<Sprite> _sprites;
         private MonoBehaviourManager _monoBehaviourManager;
-
-        public bool IsLoop;
 
         #endregion
 

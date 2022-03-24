@@ -1,9 +1,10 @@
+using System;
 using UnityEngine;
 
 
 namespace PiratesGame
 {
-    public sealed class CannonController : IUpdatable
+    public sealed class CannonController : IUpdatable, IDisposable
     {
 
         #region Fields
@@ -37,11 +38,6 @@ namespace PiratesGame
             _animator = new SimpleAnimator(resourcesManager.ShootSprites, _model.ShootAnimationDuration, false, _view.BulletStartRenderer, _monoBehaviourManager);
 
             _monoBehaviourManager.ChangeUpdateList(this, UpdatableTypes.AddCandidateUpdate);
-        }
-
-        ~CannonController()
-        {
-            _monoBehaviourManager.ChangeUpdateList(this, UpdatableTypes.RemoveCandidateUpdate);
         }
 
         #endregion
@@ -85,6 +81,16 @@ namespace PiratesGame
         }
 
         public void LetFixedUpdate() { }
+
+        #endregion
+
+
+        #region IDisposable
+
+        public void Dispose()
+        {
+            _monoBehaviourManager.ChangeUpdateList(this, UpdatableTypes.RemoveCandidateUpdate);
+        }
 
         #endregion
 

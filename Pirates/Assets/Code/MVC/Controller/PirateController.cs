@@ -1,9 +1,10 @@
+using System;
 using UnityEngine;
 
 
 namespace PiratesGame
 {
-    public sealed class PirateController : IUpdatable
+    public sealed class PirateController : IUpdatable, IDisposable
     {
 
         #region Fields
@@ -51,15 +52,6 @@ namespace PiratesGame
 
             _view.OnTriggerEvent += OnTriggerEventHandler;
             _view.Timer.TimerFinishedEvent += DoRestart;
-        }
-
-        ~PirateController()
-        {
-            _monoBehaviourManager.ChangeUpdateList(this, UpdatableTypes.RemoveCandidateUpdate);
-            _monoBehaviourManager.ChangeUpdateList(this, UpdatableTypes.RemoveCandidateUpdateFixed);
-
-            _view.OnTriggerEvent -= OnTriggerEventHandler;
-            _view.Timer.TimerFinishedEvent -= DoRestart;
         }
 
         #endregion
@@ -184,6 +176,20 @@ namespace PiratesGame
         public void LetFixedUpdate()
         {
             DoMove();
+        }
+
+        #endregion
+
+
+        #region IDisposable
+
+        public void Dispose()
+        {
+            _monoBehaviourManager.ChangeUpdateList(this, UpdatableTypes.RemoveCandidateUpdate);
+            _monoBehaviourManager.ChangeUpdateList(this, UpdatableTypes.RemoveCandidateUpdateFixed);
+
+            _view.OnTriggerEvent -= OnTriggerEventHandler;
+            _view.Timer.TimerFinishedEvent -= DoRestart;
         }
 
         #endregion

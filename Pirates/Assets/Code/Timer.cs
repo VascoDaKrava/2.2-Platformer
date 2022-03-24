@@ -26,22 +26,22 @@ namespace PiratesGame
         #endregion
 
 
-        #region Methods
-
-        public void StartTimer(float time)
-        {
-            StartCoroutine(Wait(time));
-        }
-
-        #endregion
-
-
         #region UnityMethods
 
         private IEnumerator Wait(float time)
         {
             yield return new WaitForSecondsRealtime(time);
             _timerFinishedEvent.Invoke();
+        }
+
+        #endregion
+
+
+        #region Methods
+
+        public void StartTimer(float time)
+        {
+            StartCoroutine(Wait(time));
         }
 
         #endregion

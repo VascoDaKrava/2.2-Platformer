@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace PiratesGame
 {
-    public sealed class PirateAnimator
+    public sealed class PirateAnimator : IDisposable
     {
 
         #region Fields
@@ -121,11 +121,6 @@ namespace PiratesGame
             _animationState = AnimationTypes.Idle;
         }
 
-        ~PirateAnimator()
-        {
-            _animationPlayer.AnimationPlayFinished -= AnimationOnePlayFinishedEventHandler;
-        }
-
         #endregion
 
 
@@ -142,6 +137,16 @@ namespace PiratesGame
             {
                 AnimationState = AnimationTypes.Idle;
             }
+        }
+
+        #endregion
+
+
+        #region IDisposable
+
+        public void Dispose()
+        {
+            _animationPlayer.AnimationPlayFinished -= AnimationOnePlayFinishedEventHandler;
         }
 
         #endregion

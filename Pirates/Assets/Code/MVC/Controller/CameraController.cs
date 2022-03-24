@@ -1,9 +1,10 @@
+using System;
 using UnityEngine;
 
 
 namespace PiratesGame
 {
-    public sealed class CameraController : IUpdatable
+    public sealed class CameraController : IUpdatable, IDisposable
     {
 
         #region Fields
@@ -26,10 +27,6 @@ namespace PiratesGame
             _monoBehaviourManager.ChangeUpdateList(this, UpdatableTypes.AddCandidateUpdate);
         }
 
-        ~CameraController()
-        {
-            _monoBehaviourManager.ChangeUpdateList(this, UpdatableTypes.RemoveCandidateUpdate);
-        }
         #endregion
 
 
@@ -41,6 +38,16 @@ namespace PiratesGame
         }
 
         public void LetFixedUpdate() { }
+
+        #endregion
+
+
+        #region IDisposable
+
+        public void Dispose()
+        {
+            _monoBehaviourManager.ChangeUpdateList(this, UpdatableTypes.RemoveCandidateUpdate);
+        }
 
         #endregion
 

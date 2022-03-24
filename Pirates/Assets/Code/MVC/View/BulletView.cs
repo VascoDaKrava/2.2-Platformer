@@ -13,6 +13,7 @@ namespace PiratesGame
 
         [SerializeField]
         private Rigidbody2D _rigidbody;
+
         #endregion
 
 

@@ -1,10 +1,11 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 
 namespace PiratesGame
 {
-    public class SimpleAnimator
+    public class SimpleAnimator : IDisposable
     {
 
         #region Fields
@@ -29,24 +30,29 @@ namespace PiratesGame
             _animationPlayer.AnimationPlayFinished += AnimationOnePlayFinishedEventHandler;
         }
 
-        ~SimpleAnimator()
-        {
-            _animationPlayer.AnimationPlayFinished -= AnimationOnePlayFinishedEventHandler;
-        }
-
         #endregion
 
 
         #region Methods
+
+        public void Play()
+        {
+            _animationPlayer.Play = true;
+        }
 
         private void AnimationOnePlayFinishedEventHandler()
         {
             _animationPlayer.Play = false;
         }
 
-        public void Play()
+        #endregion
+
+
+        #region IDisposable
+
+        public void Dispose()
         {
-            _animationPlayer.Play = true;
+            _animationPlayer.AnimationPlayFinished -= AnimationOnePlayFinishedEventHandler;
         }
 
         #endregion

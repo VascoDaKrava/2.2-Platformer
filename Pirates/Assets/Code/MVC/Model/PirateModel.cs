@@ -8,10 +8,10 @@ namespace PiratesGame
 
         #region Fields
 
-        private float _animationSynCoefficient = 0.6f;
-
         public bool isGrounded = false;
         public bool isMotorStop = false;
+
+        private float _animationSynCoefficient = 0.6f;
 
         #endregion
 
