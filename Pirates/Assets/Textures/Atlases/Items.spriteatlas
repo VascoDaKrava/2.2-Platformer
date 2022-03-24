@@ -118,17 +118,17 @@ SpriteAtlas:
   - plant4
   - coin3
   - treasure1
-  - arrow4
+  - arrow_death
   - box3
   - tree11
   - plant2
   - box2
-  - arrow1
+  - arrow_up
   - plant1
   - obstacle
   - coin6
-  - arrow3
-  - arrow2
+  - arrow_right
+  - arrow_down
   - tree22
   - rock
   - tree12
@@ -138,9 +138,9 @@ SpriteAtlas:
   - fruit2
   - coin5
   - coin4
-  - arrow5
+  - arrow_stop
   - tree21
-  - arrow6
+  - arrow_left
   - box1
   - coin1
   - treasure2
