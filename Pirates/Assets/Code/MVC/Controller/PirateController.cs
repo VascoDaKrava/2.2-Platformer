@@ -9,6 +9,8 @@ namespace PiratesGame
 
         #region Fields
 
+        private int _framesLeftBeforeCheck;
+
         private float _calculateVelocityX;
 
         private MonoBehaviourManager _monoBehaviourManager;
@@ -61,7 +63,15 @@ namespace PiratesGame
 
         private void CheckMove()
         {
-            _model.isGrounded = _contactChecker.BottomContact;
+
+            if (_framesLeftBeforeCheck > 0)
+            {
+                _framesLeftBeforeCheck--;
+            }
+            else
+            {
+                _model.isGrounded = _contactChecker.BottomContact;
+            }
 
             if (InputManager.isJump)
             {
@@ -69,6 +79,8 @@ namespace PiratesGame
                 {
                     _animator.AnimationState = AnimationTypes.Jump;
                     DoJump();
+                    _framesLeftBeforeCheck = _model.FrameSkipForJumpCheck;
+                    _model.isGrounded = false;
                 }
             }
             else
@@ -125,9 +137,9 @@ namespace PiratesGame
         private void DoRestart()
         {
             _animator.AnimationPlayFinished -= AnimationOnePlayFinishedEventHandler;
-            _view.transform.position = _model.StartPosition;
             _model.isMotorStop = false;
             _view.PlayerRigidbody.velocity = Vector2.zero;
+            _view.transform.position = _model.StartPosition;
             _animator.AnimationState = AnimationTypes.Idle;
             _view.OnTriggerEvent += OnTriggerEventHandler;
         }

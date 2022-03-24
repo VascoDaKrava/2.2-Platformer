@@ -52,12 +52,14 @@ namespace PiratesGame
             BottomContact = false;
 
             _rigidbody.GetContacts(_contacts);
+            
             foreach (ContactPoint2D contactPoint in _contacts)
             {
                 if (contactPoint.normal.y > COLLISION_FACTOR)
                 {
                     BottomContact = true;
                 }
+
                 if (contactPoint.rigidbody == null)
                 {
                     if (contactPoint.normal.x > COLLISION_FACTOR)

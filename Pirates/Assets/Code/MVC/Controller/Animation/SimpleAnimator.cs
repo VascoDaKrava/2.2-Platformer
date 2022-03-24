@@ -19,13 +19,8 @@ namespace PiratesGame
 
         public SimpleAnimator(List<Sprite> animation, float animationDuration, bool isLoop, SpriteRenderer spriteRenderer, MonoBehaviourManager monoBehaviourManager)
         {
-            if (!isLoop)
-            {
-                animation.Add(null);
-            }
-
-            _animationPlayer = new AnimationPlayer(animationDuration, spriteRenderer, animation, monoBehaviourManager);
-            _animationPlayer.IsLoop = isLoop;
+            _animationPlayer = new AnimationPlayer(spriteRenderer, monoBehaviourManager);
+            _animationPlayer.ChangeAnimation(animation, animationDuration, isLoop);
 
             _animationPlayer.AnimationPlayFinished += AnimationOnePlayFinishedEventHandler;
         }

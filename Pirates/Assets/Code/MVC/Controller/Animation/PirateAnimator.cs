@@ -5,13 +5,13 @@ using UnityEngine;
 
 namespace PiratesGame
 {
-    public sealed class PirateAnimator : IDisposable
+    public sealed class PirateAnimator
     {
 
         #region Fields
 
         private AnimationPlayer _animationPlayer;
-        private AnimationTypes _animationState;
+        private AnimationTypes _currentAnimationState;
 
         private PirateModel _model;
 
@@ -37,14 +37,12 @@ namespace PiratesGame
 
         public AnimationTypes AnimationState
         {
-            get => _animationState;
+            get => _currentAnimationState;
 
             set
             {
-                if (_animationState != value && _animationPlayer.IsLoop ||
-                    value == AnimationTypes.Die)
+                if (value != _currentAnimationState)
                 {
-                    _animationPlayer.Play = true;
                     switch (value)
                     {
                         case AnimationTypes.None:
@@ -54,39 +52,32 @@ namespace PiratesGame
                             break;
 
                         case AnimationTypes.Die:
-                            _animationPlayer.SpritesList = _animations[AnimationTypes.Die];
-                            _animationPlayer.AnimationDuration = _model.AnimationDurationDie;
-                            _animationPlayer.IsLoop = false;
+                            _animationPlayer.ChangeAnimation(_animations[AnimationTypes.Die], _model.AnimationDurationDie, false);
                             break;
 
                         case AnimationTypes.Hurt:
                             break;
 
                         case AnimationTypes.Idle:
-                            _animationPlayer.SpritesList = _animations[AnimationTypes.Idle];
-                            _animationPlayer.AnimationDuration = _model.AnimationDurationIdle;
-                            _animationPlayer.IsLoop = true;
+                            _animationPlayer.ChangeAnimation(_animations[AnimationTypes.Idle], _model.AnimationDurationIdle, true);
                             break;
 
                         case AnimationTypes.Jump:
-                            _animationPlayer.SpritesList = _animations[AnimationTypes.Jump];
-                            _animationPlayer.AnimationDuration = _model.AnimationDurationIdle;
-                            _animationPlayer.IsLoop = false;
+                            _animationPlayer.ChangeAnimation(_animations[AnimationTypes.Jump], _model.AnimationDurationDie, false);
                             break;
 
                         case AnimationTypes.Run:
                             break;
 
                         case AnimationTypes.Walk:
-                            _animationPlayer.SpritesList = _animations[AnimationTypes.Walk];
-                            _animationPlayer.AnimationDuration = _model.AnimationDurationWalk;
-                            _animationPlayer.IsLoop = true;
+                            _animationPlayer.ChangeAnimation(_animations[AnimationTypes.Walk], _model.AnimationDurationWalk, true);
                             break;
 
                         default:
                             break;
                     }
-                    _animationState = value;
+                    _currentAnimationState = value;
+                    _animationPlayer.Play = true;
                 }
             }
         }
@@ -113,40 +104,9 @@ namespace PiratesGame
 
             _model = model;
 
-            _animationPlayer = new AnimationPlayer(_model.AnimationDurationIdle, spriteRenderer, _animations[AnimationTypes.Idle], monoBehaviourManager);
-            _animationPlayer.Play = true;
+            _animationPlayer = new AnimationPlayer(spriteRenderer, monoBehaviourManager);
 
-            _animationPlayer.AnimationPlayFinished += AnimationOnePlayFinishedEventHandler;
-
-            _animationState = AnimationTypes.Idle;
-        }
-
-        #endregion
-
-
-        #region Methods
-
-        private void AnimationOnePlayFinishedEventHandler()
-        {
-            _animationPlayer.IsLoop = true;
-            if (AnimationState == AnimationTypes.Die)
-            {
-                _animationPlayer.Play = false;
-            }
-            else
-            {
-                AnimationState = AnimationTypes.Idle;
-            }
-        }
-
-        #endregion
-
-
-        #region IDisposable
-
-        public void Dispose()
-        {
-            _animationPlayer.AnimationPlayFinished -= AnimationOnePlayFinishedEventHandler;
+            AnimationState = AnimationTypes.Idle;
         }
 
         #endregion
