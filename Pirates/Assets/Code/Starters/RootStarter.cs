@@ -22,7 +22,7 @@ namespace PiratesGame
             _pirateController = new PirateController(_resourcesManager, monoBehaviourManager);
             new CannonController(_resourcesManager, monoBehaviourManager, _pirateController.PirateTransform);
             new CoinController(GameObject.FindGameObjectsWithTag(TagsAndLayers.TagCoin), _resourcesManager, monoBehaviourManager);
-            new CameraController(monoBehaviourManager, _pirateController.PirateTransform);
+            new CameraController(monoBehaviourManager, _pirateController.PirateTransform, Camera.main);
         }
 
         #endregion

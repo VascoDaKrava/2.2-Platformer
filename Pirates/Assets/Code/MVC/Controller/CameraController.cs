@@ -18,11 +18,11 @@ namespace PiratesGame
 
         #region CodeLifeCycles
 
-        public CameraController(MonoBehaviourManager monoBehaviourManager, Transform playerTransfom)
+        public CameraController(MonoBehaviourManager monoBehaviourManager, Transform playerTransfom, Camera camera)
         {
             _monoBehaviourManager = monoBehaviourManager;
             _playerTransform = playerTransfom;
-            _camera = Camera.main;
+            _camera = camera;
 
             _monoBehaviourManager.ChangeUpdateList(this, UpdatableTypes.AddCandidateUpdate);
         }
