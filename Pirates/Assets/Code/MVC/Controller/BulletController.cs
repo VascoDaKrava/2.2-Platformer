@@ -8,7 +8,6 @@ namespace PiratesGame
 
         #region Fields
 
-        private bool _isActive;
         private bool _isWaitForDie;
         private BulletModel _model;
         private BulletView _view;
@@ -18,39 +17,6 @@ namespace PiratesGame
         private MonoBehaviourManager _monoBehaviourManager;
         private SimpleAnimator _animator;
         private Transform _startPoint;
-
-        #endregion
-
-
-        #region Properties
-
-        public bool SetActive
-        {
-            get => _isActive;
-
-            set
-            {
-                if (_isActive != value)
-                {
-                    _isActive = value;
-                    _view.gameObject.SetActive(value);
-                    if (value)
-                    {
-                        _view.transform.position = _startPoint.position;
-                        _view.transform.rotation = _startPoint.rotation;
-
-                        _view.BulletRigidbody.AddForce(_view.transform.up * _model.BulletStartForce);
-                        _currentTimeToLive = _model.TimeToLive;
-                        _monoBehaviourManager.ChangeUpdateList(this, UpdatableTypes.AddCandidateUpdate); ;
-                    }
-                    else
-                    {
-                        _monoBehaviourManager.ChangeUpdateList(this, UpdatableTypes.RemoveCandidateUpdate);
-                        _pool.PushToPool(this);
-                    }
-                }
-            }
-        }
 
         #endregion
 
@@ -68,15 +34,33 @@ namespace PiratesGame
 
             _animator = new SimpleAnimator(resourcesManager.ExplosionSprites, _model.ExplosionAnimationDuration, false, _view.SpriteRenderer, _monoBehaviourManager);
 
-            _isActive = true;
-
-            SetActive = false;
+            SetActive(false);
         }
 
         #endregion
 
 
         #region Methods
+
+        public void SetActive(bool state)
+        {
+            _view.gameObject.SetActive(state);
+
+            if (state)
+            {
+                _view.transform.position = _startPoint.position;
+                _view.transform.rotation = _startPoint.rotation;
+
+                _view.BulletRigidbody.AddForce(_view.transform.up * _model.BulletStartForce);
+                _currentTimeToLive = _model.TimeToLive;
+                _monoBehaviourManager.ChangeUpdateList(this, UpdatableTypes.AddCandidateUpdate); ;
+            }
+            else
+            {
+                _monoBehaviourManager.ChangeUpdateList(this, UpdatableTypes.RemoveCandidateUpdate);
+                _pool.PushToPool(this);
+            }
+        }
 
         private void CheckLive()
         {
@@ -107,7 +91,7 @@ namespace PiratesGame
             }
             else
             {
-                SetActive = false;
+                SetActive(false);
                 _isWaitForDie = false;
             }
         }
