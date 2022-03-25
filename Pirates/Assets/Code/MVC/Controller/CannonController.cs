@@ -28,10 +28,6 @@ namespace PiratesGame
 
             _model = new CannonModel();
             _view = GameObject.Instantiate(resourcesManager.Cannon, _model.StartPosition, Quaternion.identity);
-            foreach (var item in _view.gameObject.GetComponentsInChildren<Transform>())
-            {
-                item.gameObject.layer = _model.Layer;
-            }
 
             _bulletPool = new BulletPool(_model.BulletsInPool, _monoBehaviourManager, resourcesManager, _view.BulletStartTransform);
 
