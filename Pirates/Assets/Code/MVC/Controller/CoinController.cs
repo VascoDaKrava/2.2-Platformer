@@ -21,7 +21,7 @@ namespace PiratesGame
 
             foreach (GameObject coinGameObject in coins)
             {
-                if (coinGameObject.TryGetComponent<CoinView> (out CoinView coinView))
+                if (coinGameObject.TryGetComponent(out CoinView coinView))
                 {
                     new SimpleAnimator(
                     resourcesManager.CoinSprites,
