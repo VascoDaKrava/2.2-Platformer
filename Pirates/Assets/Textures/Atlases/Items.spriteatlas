@@ -70,11 +70,7 @@ SpriteAtlas:
     - {fileID: 2800000, guid: e2a30481f8ee2ca4faf006dab240b977, type: 3}
     - {fileID: 2800000, guid: 994b301d76a2fe24097afab45beb758e, type: 3}
     - {fileID: 2800000, guid: 4e269b0370b64ba4a9a5ec663ad78de0, type: 3}
-    - {fileID: 2800000, guid: d3e315c7d5a5e4344be3357b92893b0d, type: 3}
-    - {fileID: 2800000, guid: 9457330c897ada0459761892c808dba4, type: 3}
     - {fileID: 2800000, guid: 01d8ce370d93eec41b7902150705e285, type: 3}
-    - {fileID: 2800000, guid: 2b0a2acf8f714cd45b325c1afbf3a335, type: 3}
-    - {fileID: 2800000, guid: 48e630a9d1ac3f447b4bc7cca2ef02c3, type: 3}
     bindAsDefault: 1
     isAtlasV2: 0
     cachedData: {fileID: 0}
@@ -96,14 +92,11 @@ SpriteAtlas:
   - {fileID: 21300000, guid: fd6634d6f3436854494b95ec5c94fe5c, type: 3}
   - {fileID: 21300000, guid: 01d8ce370d93eec41b7902150705e285, type: 3}
   - {fileID: 21300000, guid: c49a75b79880c0d4a9b8761db28a2458, type: 3}
-  - {fileID: 21300000, guid: d3e315c7d5a5e4344be3357b92893b0d, type: 3}
   - {fileID: 21300000, guid: 3af90119f02cc244ba8db181d39cc1cf, type: 3}
   - {fileID: 21300000, guid: 8f0e8279dfe57d64f9c24da6f8f800c9, type: 3}
-  - {fileID: 21300000, guid: 48e630a9d1ac3f447b4bc7cca2ef02c3, type: 3}
   - {fileID: 21300000, guid: 23f5f3ca0bdefba42a40ec573836c284, type: 3}
   - {fileID: 21300000, guid: 8b3e174b247b88e45a1b0bf2c7c00fc8, type: 3}
   - {fileID: 21300000, guid: 0cb0816b0dbcb604e856f609e13b3cfe, type: 3}
-  - {fileID: 21300000, guid: 9457330c897ada0459761892c808dba4, type: 3}
   - {fileID: 21300000, guid: 53b5f21c7d84b754083aa9492091b064, type: 3}
   - {fileID: 21300000, guid: 97d6bedc1b177934c9d822b3b5136900, type: 3}
   - {fileID: 21300000, guid: 406a1bec61a811844b3df87d02eb5f86, type: 3}
@@ -111,40 +104,35 @@ SpriteAtlas:
   - {fileID: 21300000, guid: f9e2b1cdc94bb6c41a2a16c36904c2fc, type: 3}
   - {fileID: 21300000, guid: c3ad9d8e28e218e45b39d03c287b65ee, type: 3}
   - {fileID: 21300000, guid: 96b706cf3961cb545bd10f691d279b4e, type: 3}
-  - {fileID: 21300000, guid: 2b0a2acf8f714cd45b325c1afbf3a335, type: 3}
   m_PackedSpriteNamesToIndex:
   - plant4
   - coin3
   - treasure1
   - Arrow_death
   - box3
-  - Tree11
+  - Tree1
   - plant2
   - box2
   - Arrow_up
   - plant1
-  - obstacle
+  - Spikes
   - coin6
   - Arrow_right
   - Arrow_down
-  - tree22
+  - Tree2
   - rock
-  - Tree12
   - FruitOrange
   - plant3
-  - tree32
   - coin5
   - coin4
   - Arrow_stop
-  - tree21
   - Arrow_left
-  - box1
+  - Box1
   - coin1
   - treasure2
   - coin2
   - FruitApple
   - FruitBanana
-  - tree31
   m_RenderDataMap: {}
   m_Tag: Items
   m_IsVariant: 0
