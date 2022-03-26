@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5310298444030502}
   m_Layer: 0
-  m_Name: TabletDeath
+  m_Name: TabletUp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -102,7 +102,7 @@ SpriteRenderer:
   m_SortingLayerID: -241740045
   m_SortingLayer: 3
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: f2f4c7a1f6c697f418e07985fc7f59c2, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 20c90ef4200b9bb489aaff629f15274b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
