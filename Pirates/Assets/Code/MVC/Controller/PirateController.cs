@@ -148,17 +148,17 @@ namespace PiratesGame
         {
             switch (triggerObject.tag)
             {
-                case TagsAndLayers.TagCoin:
+                case TagsAndLayers.TAG_COIN:
                     Debug.Log("Coin collected");
                     triggerObject.SetActive(false);
                     break;
 
-                case TagsAndLayers.TagDanger:
+                case TagsAndLayers.TAG_DANGER:
                     Debug.Log("Death become..");
                     DoDie();
                     break;
 
-                case TagsAndLayers.TagWin:
+                case TagsAndLayers.TAG_WIN:
                     Debug.Log("WIN");
                     break;
 

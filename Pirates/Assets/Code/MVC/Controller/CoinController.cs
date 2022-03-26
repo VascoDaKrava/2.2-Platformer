@@ -1,6 +1,3 @@
-using UnityEngine;
-
-
 namespace PiratesGame
 {
     public sealed class CoinController
@@ -15,21 +12,18 @@ namespace PiratesGame
 
         #region CodeLifeCycles
 
-        public CoinController(GameObject[] coins, ResourcesManager resourcesManager, MonoBehaviourManager monoBehaviourManager)
+        public CoinController(CoinView[] coins, ResourcesManager resourcesManager, MonoBehaviourManager monoBehaviourManager)
         {
             _monoBehaviourManager = monoBehaviourManager;
 
-            foreach (GameObject coinGameObject in coins)
+            foreach (CoinView coinView in coins)
             {
-                if (coinGameObject.TryGetComponent(out CoinView coinView))
-                {
-                    new SimpleAnimator(
-                    resourcesManager.CoinSprites,
-                    CoinModel.RotationAnimationDuration,
-                    true,
-                    coinView.CoinSpriteRenderer,
-                    _monoBehaviourManager).Play();
-                }
+                new SimpleAnimator(
+                resourcesManager.CoinSprites,
+                CoinModel.RotationAnimationDuration,
+                true,
+                coinView.CoinSpriteRenderer,
+                _monoBehaviourManager).Play();
             }
         }
 

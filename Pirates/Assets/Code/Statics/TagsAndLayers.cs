@@ -8,9 +8,9 @@ namespace PiratesGame
 
         #region Fields
 
-        public const string TagCoin = "Coin";
-        public const string TagDanger = "Danger";
-        public const string TagWin = "WinZone";
+        public const string TAG_COIN = "Coin";
+        public const string TAG_DANGER = "Danger";
+        public const string TAG_WIN = "WinZone";
 
         #endregion
 
