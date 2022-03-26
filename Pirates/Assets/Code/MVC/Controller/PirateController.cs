@@ -63,6 +63,7 @@ namespace PiratesGame
 
         private void CheckMove()
         {
+            _calculateVelocityX = 0.0f;
 
             if (_framesLeftBeforeCheck > 0)
             {
@@ -85,15 +86,16 @@ namespace PiratesGame
             }
             else
             {
-                if (!Mathf.Approximately(InputManager.DirectionX, 0.0f))
+                if (Mathf.Abs(InputManager.DirectionX) > 0.0f)
                 {
+                    _calculateVelocityX = InputManager.DirectionX * _model.WalkSpeed;
+
+                    _view.PlayerSpriteRenderer.flipX = InputManager.DirectionX < 0 ? true : false;
+
                     if (_model.isGrounded)
                     {
                         _animator.AnimationState = AnimationTypes.Walk;
                     }
-
-                    _calculateVelocityX = InputManager.DirectionX * _model.WalkSpeed;
-                    _view.PlayerSpriteRenderer.flipX = InputManager.DirectionX < 0 ? true : false;
 
                     if (_calculateVelocityX < 0.0f && _contactChecker.LeftContact ||
                         _calculateVelocityX > 0.0f && _contactChecker.RightContact)
@@ -113,9 +115,16 @@ namespace PiratesGame
 
         private void DoMove()
         {
-            if (!Mathf.Approximately(_calculateVelocityX, 0.0f))
+            if (_view.ExtraVelocity != Vector2.zero)
             {
-                _view.PlayerRigidbody.velocity = new Vector2(_calculateVelocityX, _view.PlayerRigidbody.velocity.y);
+                _view.PlayerRigidbody.velocity = new Vector2(_calculateVelocityX + _view.ExtraVelocity.x, _view.ExtraVelocity.y);
+            }
+            else
+            {
+                if (!Mathf.Approximately(_calculateVelocityX, 0.0f))
+                {
+                    _view.PlayerRigidbody.velocity = new Vector2(_calculateVelocityX, _view.PlayerRigidbody.velocity.y);
+                }
             }
         }
 
