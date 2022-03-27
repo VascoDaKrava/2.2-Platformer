@@ -92,6 +92,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5310298444030502}
   - component: {fileID: 1972557262459838269}
+  - component: {fileID: 5322593094513057443}
   m_Layer: 0
   m_Name: CannonBall
   m_TagString: Untagged
@@ -127,6 +128,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1b3a39ac17fad541930b554bb344834, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _explosionSpriteRenderer: {fileID: 254748843373173360}
+  _rigidbody: {fileID: 5322593094513057443}
+--- !u!50 &5322593094513057443
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1651671494125516823}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &9014516435952278660
 GameObject:
   m_ObjectHideFlags: 0
@@ -137,8 +161,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1455434753216649152}
   - component: {fileID: 5899727784909275821}
+  - component: {fileID: 8392171595636432093}
   m_Layer: 0
-  m_Name: Square
+  m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -209,3 +234,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!58 &8392171595636432093
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9014516435952278660}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 1.6499999
