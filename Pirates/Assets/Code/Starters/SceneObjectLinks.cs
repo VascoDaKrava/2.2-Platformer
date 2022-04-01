@@ -24,7 +24,7 @@ namespace PiratesGame
         private Transform[] _airPoints;
 
         [SerializeField]
-        private Transform _ghost;
+        private GhostView _ghostView;
 
         #endregion
 
@@ -36,7 +36,7 @@ namespace PiratesGame
         public Transform CheckPoint2 => _point2;
         public Transform SpikeBall => _spikeBall;
         public Transform[] AirPoints => _airPoints;
-        public Transform Ghost => _ghost;
+        public GhostView Ghost => _ghostView;
 
         #endregion
 

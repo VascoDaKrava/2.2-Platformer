@@ -6684,7 +6684,7 @@ MonoBehaviour:
   - {fileID: 1138741259}
   - {fileID: 791461666}
   - {fileID: 554812434}
-  _ghost: {fileID: 2105641848}
+  _ghostView: {fileID: 2105641852}
 --- !u!1001 &1773861267
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8084,6 +8084,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5310298444030502, guid: 22c08eac90b24844a8e722d4a77a5a38, type: 3}
   m_PrefabInstance: {fileID: 1920322847}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2105641852 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8212871923930609568, guid: 22c08eac90b24844a8e722d4a77a5a38, type: 3}
+  m_PrefabInstance: {fileID: 1920322847}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a00ebb4b19fb1b4aab8b4230fcbf37e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &2107192610 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8107177342480866327, guid: 6b16f184fd458e649aa700c869025507, type: 3}

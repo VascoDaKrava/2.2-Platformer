@@ -28,7 +28,7 @@ namespace PiratesGame
             new CameraController(monoBehaviourManager, _pirateController.PirateTransform, Camera.main);
             new SliderJointController(monoBehaviourManager, _sceneObjectLinks.SliderPlatform.GetComponent<SliderJointView>());
             new CheckPointChanger(_sceneObjectLinks.SpikeBall, _sceneObjectLinks.CheckPoint1, _sceneObjectLinks.CheckPoint2, monoBehaviourManager);
-            new GhostController(_sceneObjectLinks.AirPoints, _sceneObjectLinks.Ghost, _pirateController.PirateTransform);
+            new GhostController(_sceneObjectLinks.AirPoints, _sceneObjectLinks.Ghost, monoBehaviourManager);
         }
 
         #endregion
