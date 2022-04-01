@@ -10,6 +10,9 @@ namespace PiratesGame
 
         #region Fields
 
+        public Action<Vector2> OnAddExtraVelocity;
+        public Action<GameObject> OnTriggerEvent;
+
         [SerializeField]
         private SpriteRenderer _bodySpriteRenderer;
 
@@ -21,9 +24,7 @@ namespace PiratesGame
 
         #region Properties
 
-        public Action<Vector2> OnAddExtraVelocity { get; set; }
         public Vector2 ExtraVelocity { get; set; }
-        public Action<GameObject> OnTriggerEvent { get; set; }
         public Rigidbody2D PlayerRigidbody => _rigidbody;
         public SpriteRenderer PlayerSpriteRenderer => _bodySpriteRenderer;
         public Timer Timer { get; private set; }

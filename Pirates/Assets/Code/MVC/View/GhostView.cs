@@ -10,6 +10,9 @@ namespace PiratesGame
 
         #region Fields
 
+        public Action<Collider2D> OnTriggerEnter;
+        public Action<Collider2D> OnTriggerExit;
+
         [SerializeField]
         private AIPath _path;
 
@@ -24,8 +27,6 @@ namespace PiratesGame
 
         #region Properties
 
-        public Action<Collider2D> OnTriggerEnter;
-        public Action<Collider2D> OnTriggerExit;
         public AIPath Path => _path;
         public AIDestinationSetter DestinationSetter => _destinationSetter;
         public SpriteRenderer SpriteRenderer => _spriteRenderer;
@@ -37,12 +38,12 @@ namespace PiratesGame
 
         private void OnTriggerEnter2D(Collider2D collision)
         {
-            OnTriggerEnter.Invoke(collision);
+            OnTriggerEnter?.Invoke(collision);
         }
 
         private void OnTriggerExit2D(Collider2D collision)
         {
-            OnTriggerExit.Invoke(collision);
+            OnTriggerExit?.Invoke(collision);
         }
 
         #endregion
