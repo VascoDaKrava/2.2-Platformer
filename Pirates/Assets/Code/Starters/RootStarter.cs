@@ -27,6 +27,7 @@ namespace PiratesGame
             new CoinController(GameObject.FindObjectsOfType<CoinView>(), _resourcesManager, monoBehaviourManager);
             new CameraController(monoBehaviourManager, _pirateController.PirateTransform, Camera.main);
             new SliderJointController(monoBehaviourManager, _sceneObjectLinks.SliderPlatform.GetComponent<SliderJointView>());
+            new CheckPointChanger(_sceneObjectLinks.SpikeBall, _sceneObjectLinks.CheckPoint1, _sceneObjectLinks.CheckPoint2, monoBehaviourManager);
         }
 
         #endregion
