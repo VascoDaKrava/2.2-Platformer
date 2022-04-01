@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace PiratesGame
 {
+    [RequireComponent(typeof(Timer))]
     public sealed class PirateView : MonoBehaviour
     {
 
