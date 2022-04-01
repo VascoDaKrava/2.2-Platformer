@@ -37,14 +37,13 @@ namespace PiratesGame
         {
             if (_bulletsStack.Count > 0)
             {
-                _bulletsStack.Peek().SetActive = true;
+                _bulletsStack.Peek().SetActive(true);
                 _bulletsStack.Pop();
             }
         }
 
         public void PushToPool(BulletController bulletController)
         {
-            bulletController.SetActive = false;
             _bulletsStack.Push(bulletController);
         }
 

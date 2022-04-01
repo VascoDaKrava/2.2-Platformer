@@ -10,18 +10,17 @@ namespace PiratesGame
 
         #region Fields
 
+
         private event Action _animationPlayFinishedEvent;
 
-        private bool _isPlaying;
+        private bool _isLoop;
+        private bool _isNeedToPlay;
         private int _currentSpriteNumber;
         private float _timeBetweenSprites;
         private float _timeToNextSprite;
-        private SpriteRenderer _spriteRenderer;
         private List<Sprite> _sprites;
         private MonoBehaviourManager _monoBehaviourManager;
-
-        public bool IsLoop;
-        public float AnimationDuration;
+        private SpriteRenderer _spriteRenderer;
 
         #endregion
 
@@ -34,26 +33,19 @@ namespace PiratesGame
             remove { _animationPlayFinishedEvent -= value; }
         }
 
-        public List<Sprite> SpritesList
-        {
-            set
-            {
-                _sprites?.Clear();
-                _sprites = new List<Sprite>(value);
-                _timeBetweenSprites = AnimationDuration / _sprites.Count;
-                _timeToNextSprite = _timeBetweenSprites;
-                _currentSpriteNumber = 0;
-            }
-        }
-
         public bool Play
         {
             set
             {
-                if (_isPlaying != value)
+                if (_sprites == null || _sprites?.Count == 0)
                 {
-                    _isPlaying = value;
-                    if (_isPlaying)
+                    throw new Exception("List<Sprite> is empty! Use method ChangeAnimation before.");
+                }
+
+                if (_isNeedToPlay != value)
+                {
+                    _isNeedToPlay = value;
+                    if (_isNeedToPlay)
                     {
                         _monoBehaviourManager.ChangeUpdateList(this, UpdatableTypes.AddCandidateUpdate);
                         _timeToNextSprite = _timeBetweenSprites;
@@ -72,20 +64,28 @@ namespace PiratesGame
 
         #region ClassLifeCycles
 
-        public AnimationPlayer(float animationDuration, SpriteRenderer spriteRenderer, List<Sprite> spritesList, MonoBehaviourManager monoBehaviourManager)
+        public AnimationPlayer(SpriteRenderer spriteRenderer, MonoBehaviourManager monoBehaviourManager)
         {
-            AnimationDuration = animationDuration;
             _spriteRenderer = spriteRenderer;
             _monoBehaviourManager = monoBehaviourManager;
-
-            SpritesList = spritesList;
-            IsLoop = true;
         }
 
         #endregion
 
 
         #region Methods
+
+        public void ChangeAnimation(List<Sprite> spritesList, float animationDuration, bool isLoop)
+        {
+            _sprites?.Clear();
+            _sprites = new List<Sprite>(spritesList);
+            _currentSpriteNumber = 0;
+
+            _timeBetweenSprites = animationDuration / _sprites.Count;
+            _timeToNextSprite = _timeBetweenSprites;
+
+            _isLoop = isLoop;
+        }
 
         private void PlayAnimation()
         {
@@ -100,14 +100,15 @@ namespace PiratesGame
 
                 if (_currentSpriteNumber == _sprites.Count)
                 {
-                    if (IsLoop)
+                    if (_isLoop)
                     {
                         _currentSpriteNumber = 0;
                     }
                     else
                     {
                         _currentSpriteNumber--;
-                        _animationPlayFinishedEvent.Invoke();
+                        Play = false;
+                        _animationPlayFinishedEvent?.Invoke();
                     }
                 }
 

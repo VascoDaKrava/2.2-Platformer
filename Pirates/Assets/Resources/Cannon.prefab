@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5310298444030502}
   - component: {fileID: 4379217709647030634}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Cannon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -59,7 +59,7 @@ GameObject:
   - component: {fileID: 3472700804260744475}
   - component: {fileID: 8095046757672039965}
   - component: {fileID: 9210786514686060220}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BackPart
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -167,7 +167,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3266940774117266795}
   - component: {fileID: 1870087195204397156}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BulletStartPosition
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -251,7 +251,7 @@ GameObject:
   - component: {fileID: 5899727784909275821}
   - component: {fileID: 7394641747367916309}
   - component: {fileID: 4751667048705778231}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Burrel
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,11 +10,10 @@ namespace PiratesGame
 
         #region Fields
 
-        private float _idleAnimationDuration;
-        private float _walkAnimationDuration;
-
         private AnimationPlayer _animationPlayer;
-        private AnimationTypes _animationState;
+        private AnimationTypes _currentAnimationState;
+
+        private PirateModel _model;
 
         private Dictionary<AnimationTypes, List<Sprite>> _animations;
 
@@ -22,12 +22,26 @@ namespace PiratesGame
 
         #region Properties
 
+        public event Action AnimationPlayFinished
+        {
+            add
+            {
+                _animationPlayer.AnimationPlayFinished += value;
+            }
+
+            remove
+            {
+                _animationPlayer.AnimationPlayFinished -= value;
+            }
+        }
+
         public AnimationTypes AnimationState
         {
-            get { return _animationState; }
+            get => _currentAnimationState;
+
             set
             {
-                if (_animationState != value && _animationPlayer.IsLoop)
+                if (value != _currentAnimationState)
                 {
                     switch (value)
                     {
@@ -38,36 +52,32 @@ namespace PiratesGame
                             break;
 
                         case AnimationTypes.Die:
+                            _animationPlayer.ChangeAnimation(_animations[AnimationTypes.Die], _model.AnimationDurationDie, false);
                             break;
 
                         case AnimationTypes.Hurt:
                             break;
 
                         case AnimationTypes.Idle:
-                            _animationPlayer.SpritesList = _animations[AnimationTypes.Idle];
-                            _animationPlayer.AnimationDuration = _idleAnimationDuration;
-                            _animationPlayer.IsLoop = true;
+                            _animationPlayer.ChangeAnimation(_animations[AnimationTypes.Idle], _model.AnimationDurationIdle, true);
                             break;
 
                         case AnimationTypes.Jump:
-                            _animationPlayer.SpritesList = _animations[AnimationTypes.Jump];
-                            _animationPlayer.AnimationDuration = _idleAnimationDuration;
-                            _animationPlayer.IsLoop = false;
+                            _animationPlayer.ChangeAnimation(_animations[AnimationTypes.Jump], _model.AnimationDurationDie, false);
                             break;
 
                         case AnimationTypes.Run:
                             break;
 
                         case AnimationTypes.Walk:
-                            _animationPlayer.SpritesList = _animations[AnimationTypes.Walk];
-                            _animationPlayer.AnimationDuration = _walkAnimationDuration;
-                            _animationPlayer.IsLoop = true;
+                            _animationPlayer.ChangeAnimation(_animations[AnimationTypes.Walk], _model.AnimationDurationWalk, true);
                             break;
 
                         default:
                             break;
                     }
-                    _animationState = value;
+                    _currentAnimationState = value;
+                    _animationPlayer.Play = true;
                 }
             }
         }
@@ -79,8 +89,7 @@ namespace PiratesGame
 
         public PirateAnimator(
             ResourcesManager resources,
-            float animationDurationIdle,
-            float animationDurationWalk,
+            PirateModel model,
             SpriteRenderer spriteRenderer,
             MonoBehaviourManager monoBehaviourManager)
         {
@@ -93,30 +102,10 @@ namespace PiratesGame
             _animations.Add(AnimationTypes.Run, resources.PirateRunSprites);
             _animations.Add(AnimationTypes.Walk, resources.PirateWalkSprites);
 
-            _idleAnimationDuration = animationDurationIdle;
-            _walkAnimationDuration = animationDurationWalk;
+            _model = model;
 
-            _animationPlayer = new AnimationPlayer(_idleAnimationDuration, spriteRenderer, _animations[AnimationTypes.Idle], monoBehaviourManager);
-            _animationPlayer.Play = true;
+            _animationPlayer = new AnimationPlayer(spriteRenderer, monoBehaviourManager);
 
-            _animationPlayer.AnimationPlayFinished += AnimationOnePlayFinishedEventHandler;
-
-            _animationState = AnimationTypes.Idle;
-        }
-
-        ~PirateAnimator()
-        {
-            _animationPlayer.AnimationPlayFinished -= AnimationOnePlayFinishedEventHandler;
-        }
-
-        #endregion
-
-
-        #region Methods
-
-        private void AnimationOnePlayFinishedEventHandler()
-        {
-            _animationPlayer.IsLoop = true;
             AnimationState = AnimationTypes.Idle;
         }
 

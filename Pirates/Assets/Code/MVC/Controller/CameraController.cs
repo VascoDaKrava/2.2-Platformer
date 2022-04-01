@@ -1,9 +1,10 @@
+using System;
 using UnityEngine;
 
 
 namespace PiratesGame
 {
-    public sealed class CameraController : IUpdatable
+    public sealed class CameraController : IUpdatable, IDisposable
     {
 
         #region Fields
@@ -17,19 +18,15 @@ namespace PiratesGame
 
         #region CodeLifeCycles
 
-        public CameraController(MonoBehaviourManager monoBehaviourManager, Transform playerTransfom)
+        public CameraController(MonoBehaviourManager monoBehaviourManager, Transform playerTransfom, Camera camera)
         {
             _monoBehaviourManager = monoBehaviourManager;
             _playerTransform = playerTransfom;
-            _camera = Camera.main;
+            _camera = camera;
 
             _monoBehaviourManager.ChangeUpdateList(this, UpdatableTypes.AddCandidateUpdate);
         }
 
-        ~CameraController()
-        {
-            _monoBehaviourManager.ChangeUpdateList(this, UpdatableTypes.RemoveCandidateUpdate);
-        }
         #endregion
 
 
@@ -41,6 +38,16 @@ namespace PiratesGame
         }
 
         public void LetFixedUpdate() { }
+
+        #endregion
+
+
+        #region IDisposable
+
+        public void Dispose()
+        {
+            _monoBehaviourManager.ChangeUpdateList(this, UpdatableTypes.RemoveCandidateUpdate);
+        }
 
         #endregion
 

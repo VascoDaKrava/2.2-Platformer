@@ -1,12 +1,17 @@
+using System;
 using UnityEngine;
 
 
 namespace PiratesGame
 {
-    public sealed class PirateController : IUpdatable
+    public sealed class PirateController : IUpdatable, IDisposable
     {
 
         #region Fields
+
+        private int _framesLeftBeforeCheck;
+
+        private float _calculateVelocityX;
 
         private MonoBehaviourManager _monoBehaviourManager;
 
@@ -15,8 +20,6 @@ namespace PiratesGame
         private PirateView _view;
 
         private RigidbodyContactChecker _contactChecker;
-
-        private float _calculateVelocityX;
 
         #endregion
 
@@ -41,8 +44,7 @@ namespace PiratesGame
 
             _animator = new PirateAnimator(
                 resourcesManager,
-                _model.AnimationDurationIdle,
-                _model.AnimationDurationWalk,
+                _model,
                 _view.PlayerSpriteRenderer,
                 _monoBehaviourManager
                 );
@@ -51,14 +53,7 @@ namespace PiratesGame
             _monoBehaviourManager.ChangeUpdateList(this, UpdatableTypes.AddCandidateUpdateFixed);
 
             _view.OnTriggerEvent += OnTriggerEventHandler;
-        }
-
-        ~PirateController()
-        {
-            _monoBehaviourManager.ChangeUpdateList(this, UpdatableTypes.RemoveCandidateUpdate);
-            _monoBehaviourManager.ChangeUpdateList(this, UpdatableTypes.RemoveCandidateUpdateFixed);
-
-            _view.OnTriggerEvent -= OnTriggerEventHandler;
+            _view.Timer.TimerFinishedEvent += DoRestart;
         }
 
         #endregion
@@ -68,7 +63,16 @@ namespace PiratesGame
 
         private void CheckMove()
         {
-            _model.isGrounded = _contactChecker.BottomContact;
+            _calculateVelocityX = 0.0f;
+
+            if (_framesLeftBeforeCheck > 0)
+            {
+                _framesLeftBeforeCheck--;
+            }
+            else
+            {
+                _model.isGrounded = _contactChecker.BottomContact;
+            }
 
             if (InputManager.isJump)
             {
@@ -76,15 +80,22 @@ namespace PiratesGame
                 {
                     _animator.AnimationState = AnimationTypes.Jump;
                     DoJump();
+                    _framesLeftBeforeCheck = _model.FrameSkipForJumpCheck;
+                    _model.isGrounded = false;
                 }
             }
             else
             {
-                if (!Mathf.Approximately(InputManager.DirectionX, 0.0f))
+                if (Mathf.Abs(InputManager.DirectionX) > 0.0f)
                 {
-                    _animator.AnimationState = AnimationTypes.Walk;
                     _calculateVelocityX = InputManager.DirectionX * _model.WalkSpeed;
+
                     _view.PlayerSpriteRenderer.flipX = InputManager.DirectionX < 0 ? true : false;
+
+                    if (_model.isGrounded)
+                    {
+                        _animator.AnimationState = AnimationTypes.Walk;
+                    }
 
                     if (_calculateVelocityX < 0.0f && _contactChecker.LeftContact ||
                         _calculateVelocityX > 0.0f && _contactChecker.RightContact)
@@ -94,16 +105,26 @@ namespace PiratesGame
                 }
                 else
                 {
-                    _animator.AnimationState = AnimationTypes.Idle;
+                    if (_model.isGrounded)
+                    {
+                        _animator.AnimationState = AnimationTypes.Idle;
+                    }
                 }
             }
         }
 
         private void DoMove()
         {
-            if (!Mathf.Approximately(_calculateVelocityX, 0.0f))
+            if (_view.ExtraVelocity != Vector2.zero)
             {
-                _view.PlayerRigidbody.velocity = new Vector2(_calculateVelocityX, _view.PlayerRigidbody.velocity.y);
+                _view.PlayerRigidbody.velocity = new Vector2(_calculateVelocityX + _view.ExtraVelocity.x, _view.ExtraVelocity.y);
+            }
+            else
+            {
+                if (!Mathf.Approximately(_calculateVelocityX, 0.0f))
+                {
+                    _view.PlayerRigidbody.velocity = new Vector2(_calculateVelocityX, _view.PlayerRigidbody.velocity.y);
+                }
             }
         }
 
@@ -112,27 +133,52 @@ namespace PiratesGame
             _view.PlayerRigidbody.AddForce(Vector2.up * _model.JumpForce);
         }
 
+        private void DoDie()
+        {
+            _view.OnTriggerEvent -= OnTriggerEventHandler;
+            _model.isMotorStop = true;
+            _calculateVelocityX = 0.0f;
+            _view.PlayerRigidbody.velocity = Vector2.zero;
+            _animator.AnimationState = AnimationTypes.Die;
+            _animator.AnimationPlayFinished += AnimationOnePlayFinishedEventHandler;
+        }
+
+        private void DoRestart()
+        {
+            _animator.AnimationPlayFinished -= AnimationOnePlayFinishedEventHandler;
+            _model.isMotorStop = false;
+            _view.PlayerRigidbody.velocity = Vector2.zero;
+            _view.transform.position = _model.StartPosition;
+            _animator.AnimationState = AnimationTypes.Idle;
+            _view.OnTriggerEvent += OnTriggerEventHandler;
+        }
+
         private void OnTriggerEventHandler(GameObject triggerObject)
         {
             switch (triggerObject.tag)
             {
-                case TagsAndLayers.TagCoin:
+                case TagsAndLayers.TAG_COIN:
                     Debug.Log("Coin collected");
                     triggerObject.SetActive(false);
                     break;
 
-                case TagsAndLayers.TagDanger:
+                case TagsAndLayers.TAG_DANGER:
                     Debug.Log("Death become..");
-                    _view.transform.position = _model.StartPosition;
+                    DoDie();
                     break;
 
-                case TagsAndLayers.TagWin:
+                case TagsAndLayers.TAG_WIN:
                     Debug.Log("WIN");
                     break;
 
                 default:
                     break;
             }
+        }
+
+        private void AnimationOnePlayFinishedEventHandler()
+        {
+            _view.Timer.StartTimer(_model.TimeToReset);
         }
 
         #endregion
@@ -142,12 +188,29 @@ namespace PiratesGame
 
         public void LetUpdate()
         {
-            CheckMove();
+            if (!_model.isMotorStop)
+            {
+                CheckMove();
+            }
         }
 
         public void LetFixedUpdate()
         {
             DoMove();
+        }
+
+        #endregion
+
+
+        #region IDisposable
+
+        public void Dispose()
+        {
+            _monoBehaviourManager.ChangeUpdateList(this, UpdatableTypes.RemoveCandidateUpdate);
+            _monoBehaviourManager.ChangeUpdateList(this, UpdatableTypes.RemoveCandidateUpdateFixed);
+
+            _view.OnTriggerEvent -= OnTriggerEventHandler;
+            _view.Timer.TimerFinishedEvent -= DoRestart;
         }
 
         #endregion

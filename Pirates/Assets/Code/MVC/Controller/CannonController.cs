@@ -1,9 +1,10 @@
+using System;
 using UnityEngine;
 
 
 namespace PiratesGame
 {
-    public sealed class CannonController : IUpdatable
+    public sealed class CannonController : IUpdatable, IDisposable
     {
 
         #region Fields
@@ -27,21 +28,12 @@ namespace PiratesGame
 
             _model = new CannonModel();
             _view = GameObject.Instantiate(resourcesManager.Cannon, _model.StartPosition, Quaternion.identity);
-            foreach (var item in _view.gameObject.GetComponentsInChildren<Transform>())
-            {
-                item.gameObject.layer = _model.Layer;
-            }
 
             _bulletPool = new BulletPool(_model.BulletsInPool, _monoBehaviourManager, resourcesManager, _view.BulletStartTransform);
 
             _animator = new SimpleAnimator(resourcesManager.ShootSprites, _model.ShootAnimationDuration, false, _view.BulletStartRenderer, _monoBehaviourManager);
 
             _monoBehaviourManager.ChangeUpdateList(this, UpdatableTypes.AddCandidateUpdate);
-        }
-
-        ~CannonController()
-        {
-            _monoBehaviourManager.ChangeUpdateList(this, UpdatableTypes.RemoveCandidateUpdate);
         }
 
         #endregion
@@ -85,6 +77,16 @@ namespace PiratesGame
         }
 
         public void LetFixedUpdate() { }
+
+        #endregion
+
+
+        #region IDisposable
+
+        public void Dispose()
+        {
+            _monoBehaviourManager.ChangeUpdateList(this, UpdatableTypes.RemoveCandidateUpdate);
+        }
 
         #endregion
 

@@ -10,10 +10,6 @@ namespace PiratesGame
         #region Fields
 
         private Dictionary<UpdatableTypes, List<IUpdatable>> _updatables;
-        //private List<IUpdatable> _updatables;
-        //private List<IUpdatable> _updatablesFixed;
-        //private List<IUpdatable> _candidatsForAddingToUpdatables;
-        //private List<IUpdatable> _candidatsForRemovingFromUpdatables;
 
         #endregion
 

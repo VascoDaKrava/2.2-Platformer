@@ -1,10 +1,11 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 
 namespace PiratesGame
 {
-    public class SimpleAnimator
+    public class SimpleAnimator : IDisposable
     {
 
         #region Fields
@@ -18,20 +19,10 @@ namespace PiratesGame
 
         public SimpleAnimator(List<Sprite> animation, float animationDuration, bool isLoop, SpriteRenderer spriteRenderer, MonoBehaviourManager monoBehaviourManager)
         {
-            if (!isLoop)
-            {
-                animation.Add(null);
-            }
-
-            _animationPlayer = new AnimationPlayer(animationDuration, spriteRenderer, animation, monoBehaviourManager);
-            _animationPlayer.IsLoop = isLoop;
+            _animationPlayer = new AnimationPlayer(spriteRenderer, monoBehaviourManager);
+            _animationPlayer.ChangeAnimation(animation, animationDuration, isLoop);
 
             _animationPlayer.AnimationPlayFinished += AnimationOnePlayFinishedEventHandler;
-        }
-
-        ~SimpleAnimator()
-        {
-            _animationPlayer.AnimationPlayFinished -= AnimationOnePlayFinishedEventHandler;
         }
 
         #endregion
@@ -39,14 +30,24 @@ namespace PiratesGame
 
         #region Methods
 
+        public void Play()
+        {
+            _animationPlayer.Play = true;
+        }
+
         private void AnimationOnePlayFinishedEventHandler()
         {
             _animationPlayer.Play = false;
         }
 
-        public void Play()
+        #endregion
+
+
+        #region IDisposable
+
+        public void Dispose()
         {
-            _animationPlayer.Play = true;
+            _animationPlayer.AnimationPlayFinished -= AnimationOnePlayFinishedEventHandler;
         }
 
         #endregion

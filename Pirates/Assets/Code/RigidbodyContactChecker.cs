@@ -1,10 +1,11 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 
 namespace PiratesGame
 {
-    public sealed class RigidbodyContactChecker : IUpdatable
+    public sealed class RigidbodyContactChecker : IUpdatable, IDisposable
     {
 
         #region Fields
@@ -39,10 +40,6 @@ namespace PiratesGame
             _monoBehaviourManager.ChangeUpdateList(this, UpdatableTypes.AddCandidateUpdate);
         }
 
-        ~RigidbodyContactChecker()
-        {
-            _monoBehaviourManager.ChangeUpdateList(this, UpdatableTypes.RemoveCandidateUpdate);
-        }
         #endregion
 
 
@@ -55,12 +52,14 @@ namespace PiratesGame
             BottomContact = false;
 
             _rigidbody.GetContacts(_contacts);
+            
             foreach (ContactPoint2D contactPoint in _contacts)
             {
                 if (contactPoint.normal.y > COLLISION_FACTOR)
                 {
                     BottomContact = true;
                 }
+
                 if (contactPoint.rigidbody == null)
                 {
                     if (contactPoint.normal.x > COLLISION_FACTOR)
@@ -89,6 +88,16 @@ namespace PiratesGame
         }
 
         public void LetFixedUpdate() { }
+
+        #endregion
+
+
+        #region IDisposable
+
+        public void Dispose()
+        {
+            _monoBehaviourManager.ChangeUpdateList(this, UpdatableTypes.RemoveCandidateUpdate);
+        }
 
         #endregion
 
