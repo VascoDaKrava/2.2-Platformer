@@ -11,24 +11,22 @@ namespace PiratesGame
         private PirateController _pirateController;
         private ResourcesManager _resourcesManager;
 
-        private SceneObjectLinks _sceneObjectLinks;
-
         #endregion
 
 
         #region ClassLifeCycles
 
-        public RootStarter(MonoBehaviourManager monoBehaviourManager)
+        public RootStarter(MonoBehaviourManager monoBehaviourManager, SceneObjectLinks sceneObjectLinks)
         {
-            _sceneObjectLinks = GameObject.FindObjectOfType<SceneObjectLinks>();
             _resourcesManager = new ResourcesManager();
             _pirateController = new PirateController(_resourcesManager, monoBehaviourManager);
+
             new CannonController(_resourcesManager, monoBehaviourManager, _pirateController.PirateTransform);
-            new CoinController(GameObject.FindObjectsOfType<CoinView>(), _resourcesManager, monoBehaviourManager);
+            new CoinController(sceneObjectLinks.Coins, _resourcesManager, monoBehaviourManager);
             new CameraController(monoBehaviourManager, _pirateController.PirateTransform, Camera.main);
-            new SliderJointController(monoBehaviourManager, _sceneObjectLinks.SliderPlatform.GetComponent<SliderJointView>());
-            new CheckPointChanger(_sceneObjectLinks.SpikeBall, _sceneObjectLinks.CheckPoint1, _sceneObjectLinks.CheckPoint2, monoBehaviourManager);
-            new GhostController(_sceneObjectLinks.AirPoints, _sceneObjectLinks.Ghost, monoBehaviourManager);
+            new SliderJointController(monoBehaviourManager, sceneObjectLinks.SliderPlatform);
+            new CheckPointChanger(sceneObjectLinks.SpikeBall, sceneObjectLinks.CheckPoint1, sceneObjectLinks.CheckPoint2, monoBehaviourManager);
+            new GhostController(sceneObjectLinks.AirPoints, sceneObjectLinks.Ghost, monoBehaviourManager);
         }
 
         #endregion
