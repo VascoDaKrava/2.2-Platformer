@@ -78,14 +78,7 @@ namespace PiratesGame
 
         private void CorrectViewOnDirection()
         {
-            if (_path.velocity.x >= 0)
-            {
-                _ghostSpriteRenderer.flipX = true;
-            }
-            else
-            {
-                _ghostSpriteRenderer.flipX = false;
-            }
+            _ghostSpriteRenderer.flipX = _path.velocity.x >= 0;
         }
 
         #endregion
