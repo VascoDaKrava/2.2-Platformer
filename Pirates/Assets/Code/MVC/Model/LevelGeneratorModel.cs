@@ -10,6 +10,9 @@ namespace PiratesGame
 
         private int _mapWidth = 3;
 
+        private float _terrainPutFactor = 0.3f;
+        private float _terrainContinueFactor = 0.5f;
+
         #endregion
 
 
@@ -19,6 +22,9 @@ namespace PiratesGame
         public int MapHeight => _mapHeightBase;
         public int MapOffsetX => -_mapWidthBase * 3 / 2;
         public int MapOffsetY => -_mapHeightBase / 2;
+        public int TerrainStartPositionX => _mapWidthBase / 2;
+        public float TerrainPutFactor => _terrainPutFactor;
+        public float TerrainContinueFactor => _terrainContinueFactor;
 
         #endregion
 

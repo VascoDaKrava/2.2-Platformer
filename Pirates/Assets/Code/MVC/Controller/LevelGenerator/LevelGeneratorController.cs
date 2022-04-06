@@ -8,8 +8,6 @@ namespace PiratesGame
 
         #region Fields
 
-        private System.Random _random;
-
         private LevelGeneratorView _view;
         private LevelGeneratorModel _model;
 
@@ -26,7 +24,6 @@ namespace PiratesGame
             _model = new LevelGeneratorModel();
 
             _map = new TileTypes[_model.MapWidth, _model.MapHeight];
-            _random = new System.Random();
         }
 
         #endregion
@@ -36,20 +33,29 @@ namespace PiratesGame
 
         public void GenerateLevel()
         {
+            ClearMap();
             GenerateMap();
             DrawTiles();
         }
 
         public void ClearMap()
         {
+            for (int x = 0; x < _model.MapWidth; x++)
+            {
+                for (int y = 0; y < _model.MapHeight; y++)
+                {
+                    _map[x, y] = TileTypes.None;
+                }
+            }
+
             _view.TilemapWater.ClearAllTiles();
             _view.TilemapPlatform.ClearAllTiles();
         }
 
         private void GenerateMap()
         {
-            GenerateTerrain();
             GenerateWatter();
+            GenerateTerrain();
         }
 
         private void DrawTiles()
@@ -67,7 +73,7 @@ namespace PiratesGame
                             break;
 
                         case TileTypes.GroundCenter:
-                            _view.TilemapPlatform.SetTile(tilePosition, _view.TileCenter[_random.Next(_view.TileCenter.Length)]);
+                            _view.TilemapPlatform.SetTile(tilePosition, _view.TileCenter[Random.Range(0, _view.TileCenter.Length)]);
                             break;
 
                         case TileTypes.GroundRight:
@@ -91,15 +97,42 @@ namespace PiratesGame
 
         private void GenerateTerrain()
         {
-            Debug.LogWarning("MAP = " + _model.MapWidth + " : " + _model.MapOffsetX);
             for (int y = 2; y < _model.MapHeight - 2; y++)
             {
-                for (int x = -_model.MapOffsetX; x < _model.MapWidth - 1; x++)
+                for (int x = _model.TerrainStartPositionX; x < _model.MapWidth - 1; x++)
                 {
-                    Debug.LogWarning(x + " : " + y);
-                    if (CanMakeGround(x, y))
+                    if (CanMakeGround(x, y) && Random.Range(0.0f, 1.0f) < _model.TerrainPutFactor)
                     {
-                        _map[x, y] = TileTypes.GroundLeft;
+                        //Debug.LogWarning("Try = " + (bolt < 50 ? "OK" : "NO"));
+                        if (_map[x - 1, y] == TileTypes.None)
+                        {
+                            _map[x, y] = TileTypes.GroundLeft;
+                        }
+                        else
+                        {
+                            if (_map[x - 1, y] != TileTypes.GroundRight)
+                            {
+                                if (Random.Range(0.0f, 1.0f) < _model.TerrainContinueFactor)
+                                {
+                                    _map[x, y] = TileTypes.GroundCenter;
+                                }
+                                else
+                                {
+                                    _map[x, y] = TileTypes.GroundRight;
+                                }
+                            }
+                        }
+                    }
+                    else
+                    {
+                        if (_map[x - 1, y] == TileTypes.GroundLeft || _map[x - 1, y] == TileTypes.GroundCenter)
+                        {
+                            _map[x, y] = TileTypes.GroundRight;
+                        }
+                        else
+                        {
+                            _map[x, y] = TileTypes.None;
+                        }
                     }
                 }
             }
