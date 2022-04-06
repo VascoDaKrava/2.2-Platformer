@@ -26,14 +26,7 @@ namespace PiratesGame
             set
             {
                 _isCatchPlayer = value;
-                if (value)
-                {
-                    _color = _dangerColor;
-                }
-                else
-                {
-                    _color = _normalColor;
-                }
+                _color = value ? _dangerColor : _normalColor;
             }
         }
 
