@@ -26,7 +26,7 @@ namespace PiratesGame
             _updatables.Add(UpdatableTypes.AddCandidateUpdateFixed, new List<IUpdatable>());
             _updatables.Add(UpdatableTypes.RemoveCandidateUpdateFixed, new List<IUpdatable>());
 
-            new RootStarter(this);
+            new RootStarter(this, GetComponent<SceneObjectLinks>());
         }
 
         private void Update()

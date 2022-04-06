@@ -9,6 +9,9 @@ namespace PiratesGame
 
         #region Fields
 
+        public Action<GameObject> OnTriggerExit;
+        public Action<GameObject> OnTriggerStay;
+
         [SerializeField]
         private SliderJoint2D _sliderJoint;
 
@@ -18,8 +21,6 @@ namespace PiratesGame
         #region Properties
 
         public SliderJoint2D PlatformSliderJoint => _sliderJoint;
-        public Action<GameObject> OnTriggerStay { get; set; }
-        public Action<GameObject> OnTriggerExit { get; set; }
 
         #endregion
 

@@ -10,6 +10,7 @@ namespace PiratesGame
 
         public const string TAG_COIN = "Coin";
         public const string TAG_DANGER = "Danger";
+        public const string TAG_PLAYER = "Player";
         public const string TAG_WIN = "WinZone";
 
         #endregion

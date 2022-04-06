@@ -10,8 +10,7 @@ namespace PiratesGame
 
         #region Fields
 
-
-        private event Action _animationPlayFinishedEvent;
+        public Action AnimationPlayFinished;
 
         private bool _isLoop;
         private bool _isNeedToPlay;
@@ -26,12 +25,6 @@ namespace PiratesGame
 
 
         #region Properties
-
-        public event Action AnimationPlayFinished
-        {
-            add { _animationPlayFinishedEvent += value; }
-            remove { _animationPlayFinishedEvent -= value; }
-        }
 
         public bool Play
         {
@@ -108,7 +101,7 @@ namespace PiratesGame
                     {
                         _currentSpriteNumber--;
                         Play = false;
-                        _animationPlayFinishedEvent?.Invoke();
+                        AnimationPlayFinished?.Invoke();
                     }
                 }
 
