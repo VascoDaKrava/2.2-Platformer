@@ -29,7 +29,7 @@ namespace PiratesGame
                 new CannonController(_resourcesManager, monoBehaviourManager, _pirateController.PirateTransform);
                 new CoinController(sceneObjectLinks.Coins, _resourcesManager, monoBehaviourManager);
                 new SliderJointController(monoBehaviourManager, sceneObjectLinks.SliderPlatform);
-                new CheckPointChanger(sceneObjectLinks.SpikeBall, sceneObjectLinks.CheckPoint1, sceneObjectLinks.CheckPoint2, monoBehaviourManager);
+                new CheckPointChanger(sceneObjectLinks.SpikeBall, sceneObjectLinks.GroundPoints, monoBehaviourManager);
                 new GhostController(sceneObjectLinks.AirPoints, sceneObjectLinks.Ghost, monoBehaviourManager);
             }
         }

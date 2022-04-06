@@ -6838,6 +6838,9 @@ MonoBehaviour:
   _sliderJointView: {fileID: 2133742143}
   _point1: {fileID: 1693247238}
   _point2: {fileID: 705534575}
+  _groundPoints:
+  - {fileID: 1693247238}
+  - {fileID: 705534575}
   _spikeBall: {fileID: 2120063284}
   _airPoints:
   - {fileID: 1802081170}

@@ -11,21 +11,21 @@ namespace PiratesGame
         [SerializeField]
         private SliderJointView _sliderJointView;
 
+        [Space]
         [SerializeField]
-        private Transform _point1;
-
-        [SerializeField]
-        private Transform _point2;
+        private Transform[] _groundPoints;
 
         [SerializeField]
         private Transform _spikeBall;
 
+        [Space]
         [SerializeField]
         private Transform[] _airPoints;
 
         [SerializeField]
         private GhostView _ghostView;
 
+        [Space]
         [SerializeField]
         private CoinView[] _coins;
 
@@ -35,8 +35,7 @@ namespace PiratesGame
         #region Properties
 
         public SliderJointView SliderPlatform => _sliderJointView;
-        public Transform CheckPoint1 => _point1;
-        public Transform CheckPoint2 => _point2;
+        public Transform[] GroundPoints => _groundPoints;
         public Transform SpikeBall => _spikeBall;
         public Transform[] AirPoints => _airPoints;
         public GhostView Ghost => _ghostView;
