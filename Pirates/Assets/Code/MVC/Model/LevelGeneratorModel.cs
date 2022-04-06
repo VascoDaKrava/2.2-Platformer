@@ -10,7 +10,7 @@ namespace PiratesGame
 
         private int _mapWidth = 3;
 
-        private float _terrainPutFactor = 0.3f;
+        private float _terrainPutFactor = 0.5f;
         private float _terrainContinueFactor = 0.5f;
 
         #endregion

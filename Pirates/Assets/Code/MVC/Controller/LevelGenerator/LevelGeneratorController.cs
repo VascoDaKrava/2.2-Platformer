@@ -54,8 +54,9 @@ namespace PiratesGame
 
         private void GenerateMap()
         {
-            GenerateWatter();
             GenerateTerrain();
+            CorrectingTerrain();
+            GenerateWatter();
         }
 
         private void DrawTiles()
@@ -99,39 +100,71 @@ namespace PiratesGame
         {
             for (int y = 2; y < _model.MapHeight - 2; y++)
             {
-                for (int x = _model.TerrainStartPositionX; x < _model.MapWidth - 1; x++)
+                for (int x = _model.TerrainStartPositionX; x < _model.MapWidth - 2; x++)
                 {
-                    if (CanMakeGround(x, y) && Random.Range(0.0f, 1.0f) < _model.TerrainPutFactor)
+                    if (CanMakeGround(x, y))
                     {
-                        //Debug.LogWarning("Try = " + (bolt < 50 ? "OK" : "NO"));
-                        if (_map[x - 1, y] == TileTypes.None)
+                        if (Random.Range(0.0f, 1.0f) < _model.TerrainPutFactor)
                         {
-                            _map[x, y] = TileTypes.GroundLeft;
+                            if (_map[x - 1, y] == TileTypes.None)
+                            {
+                                _map[x, y] = TileTypes.GroundLeft;
+                            }
+                            else
+                            {
+                                if (_map[x - 1, y] != TileTypes.GroundRight)
+                                {
+                                    if (Random.Range(0.0f, 1.0f) < _model.TerrainContinueFactor)
+                                    {
+                                        _map[x, y] = TileTypes.GroundCenter;
+                                    }
+                                    else
+                                    {
+                                        _map[x, y] = TileTypes.GroundRight;
+                                    }
+                                }
+                            }
                         }
                         else
                         {
-                            if (_map[x - 1, y] != TileTypes.GroundRight)
+                            if (_map[x - 1, y] == TileTypes.GroundLeft || _map[x - 1, y] == TileTypes.GroundCenter)
                             {
-                                if (Random.Range(0.0f, 1.0f) < _model.TerrainContinueFactor)
-                                {
-                                    _map[x, y] = TileTypes.GroundCenter;
-                                }
-                                else
-                                {
-                                    _map[x, y] = TileTypes.GroundRight;
-                                }
+                                _map[x, y] = TileTypes.GroundRight;
                             }
                         }
                     }
                     else
                     {
-                        if (_map[x - 1, y] == TileTypes.GroundLeft || _map[x - 1, y] == TileTypes.GroundCenter)
+                        _map[x, y] = TileTypes.None;
+                    }
+                }
+
+                if (_map[_model.MapWidth - 3, y] == TileTypes.GroundLeft ||
+                    _map[_model.MapWidth - 3, y] == TileTypes.GroundCenter)
+                {
+                    _map[_model.MapWidth - 2, y] = TileTypes.GroundRight;
+                }
+            }
+        }
+
+        private void CorrectingTerrain()
+        {
+            for (int y = 2; y < _model.MapHeight - 2; y++)
+            {
+                for (int x = _model.TerrainStartPositionX; x < _model.MapWidth - 2; x++)
+                {
+                    if (_map[x + 1, y] == TileTypes.None)
+                    {
+                        switch (_map[x, y])
                         {
-                            _map[x, y] = TileTypes.GroundRight;
-                        }
-                        else
-                        {
-                            _map[x, y] = TileTypes.None;
+                            case TileTypes.GroundLeft:
+                                _map[x, y] = TileTypes.None;
+                                break;
+                            case TileTypes.GroundCenter:
+                                _map[x, y] = TileTypes.GroundRight;
+                                break;
+                            default:
+                                break;
                         }
                     }
                 }
@@ -154,7 +187,8 @@ namespace PiratesGame
             {
                 if (_map[x, y - 1] == TileTypes.None &&
                 _map[x, y - 2] == TileTypes.None &&
-                _map[x + 1, y - 1] == TileTypes.None)
+                _map[x + 1, y - 1] == TileTypes.None &&
+                _map[x + 1, y - 2] == TileTypes.None)
                 {
                     return true;
                 }
@@ -162,7 +196,7 @@ namespace PiratesGame
             // case new
             else
             {
-                if (_map[x - 1, y - 1] != TileTypes.None)
+                if (_map[x - 1, y - 1] == TileTypes.GroundRight)
                 {
                     return true;
                 }
@@ -170,7 +204,10 @@ namespace PiratesGame
                 {
                     if (_map[x, y - 1] == TileTypes.None &&
                         _map[x, y - 2] == TileTypes.None &&
-                        _map[x - 1, y - 2] == TileTypes.None)
+                        _map[x - 1, y - 2] == TileTypes.None &&
+                        _map[x + 1, y - 1] == TileTypes.None &&
+                        _map[x + 1, y - 2] == TileTypes.None &&
+                        _map[x + 2, y - 2] == TileTypes.None)
                     {
                         return true;
                     }
