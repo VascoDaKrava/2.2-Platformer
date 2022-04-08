@@ -78,7 +78,7 @@ namespace PiratesGame
             {
                 if (_model.isGrounded)
                 {
-                    _animator.AnimationState = AnimationTypes.Jump;
+                    _animator.AnimationState = AnimationType.Jump;
                     DoJump();
                     _framesLeftBeforeCheck = _model.FrameSkipForJumpCheck;
                     _model.isGrounded = false;
@@ -94,7 +94,7 @@ namespace PiratesGame
 
                     if (_model.isGrounded)
                     {
-                        _animator.AnimationState = AnimationTypes.Walk;
+                        _animator.AnimationState = AnimationType.Walk;
                     }
 
                     if (_calculateVelocityX < 0.0f && _contactChecker.LeftContact ||
@@ -107,7 +107,7 @@ namespace PiratesGame
                 {
                     if (_model.isGrounded)
                     {
-                        _animator.AnimationState = AnimationTypes.Idle;
+                        _animator.AnimationState = AnimationType.Idle;
                     }
                 }
             }
@@ -139,7 +139,7 @@ namespace PiratesGame
             _model.isMotorStop = true;
             _calculateVelocityX = 0.0f;
             _view.PlayerRigidbody.velocity = Vector2.zero;
-            _animator.AnimationState = AnimationTypes.Die;
+            _animator.AnimationState = AnimationType.Die;
             _animator.AnimationPlayFinished += AnimationOnePlayFinishedEventHandler;
         }
 
@@ -149,7 +149,7 @@ namespace PiratesGame
             _model.isMotorStop = false;
             _view.PlayerRigidbody.velocity = Vector2.zero;
             _view.transform.position = _model.StartPosition;
-            _animator.AnimationState = AnimationTypes.Idle;
+            _animator.AnimationState = AnimationType.Idle;
             _view.OnTriggerEvent += OnTriggerEventHandler;
         }
 

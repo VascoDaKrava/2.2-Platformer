@@ -107,7 +107,7 @@ SpriteAtlas:
   m_PackedSpriteNamesToIndex:
   - plant4
   - coin3
-  - treasure1
+  - TreasureOpen
   - Arrow_death
   - Box3
   - Tree1
@@ -129,7 +129,7 @@ SpriteAtlas:
   - Arrow_left
   - Box1
   - coin1
-  - treasure2
+  - Treasure
   - coin2
   - FruitApple
   - FruitBanana

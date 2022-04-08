@@ -31,6 +31,8 @@ namespace PiratesGame
                 new SliderJointController(monoBehaviourManager, sceneObjectLinks.SliderPlatform);
                 new CheckPointChanger(sceneObjectLinks.SpikeBall, sceneObjectLinks.GroundPoints, monoBehaviourManager);
                 new GhostController(sceneObjectLinks.AirPoints, sceneObjectLinks.Ghost, monoBehaviourManager);
+
+                new QuestCoinTowerController(sceneObjectLinks.TowerView);
             }
         }
 

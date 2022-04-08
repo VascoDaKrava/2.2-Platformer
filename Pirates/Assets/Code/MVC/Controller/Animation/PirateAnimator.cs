@@ -11,11 +11,11 @@ namespace PiratesGame
         #region Fields
 
         private AnimationPlayer _animationPlayer;
-        private AnimationTypes _currentAnimationState;
+        private AnimationType _currentAnimationState;
 
         private PirateModel _model;
 
-        private Dictionary<AnimationTypes, List<Sprite>> _animations;
+        private Dictionary<AnimationType, List<Sprite>> _animations;
 
         #endregion
 
@@ -35,7 +35,7 @@ namespace PiratesGame
             }
         }
 
-        public AnimationTypes AnimationState
+        public AnimationType AnimationState
         {
             get => _currentAnimationState;
 
@@ -45,32 +45,32 @@ namespace PiratesGame
                 {
                     switch (value)
                     {
-                        case AnimationTypes.None:
+                        case AnimationType.None:
                             break;
 
-                        case AnimationTypes.Attack:
+                        case AnimationType.Attack:
                             break;
 
-                        case AnimationTypes.Die:
-                            _animationPlayer.ChangeAnimation(_animations[AnimationTypes.Die], _model.AnimationDurationDie, false);
+                        case AnimationType.Die:
+                            _animationPlayer.ChangeAnimation(_animations[AnimationType.Die], _model.AnimationDurationDie, false);
                             break;
 
-                        case AnimationTypes.Hurt:
+                        case AnimationType.Hurt:
                             break;
 
-                        case AnimationTypes.Idle:
-                            _animationPlayer.ChangeAnimation(_animations[AnimationTypes.Idle], _model.AnimationDurationIdle, true);
+                        case AnimationType.Idle:
+                            _animationPlayer.ChangeAnimation(_animations[AnimationType.Idle], _model.AnimationDurationIdle, true);
                             break;
 
-                        case AnimationTypes.Jump:
-                            _animationPlayer.ChangeAnimation(_animations[AnimationTypes.Jump], _model.AnimationDurationDie, false);
+                        case AnimationType.Jump:
+                            _animationPlayer.ChangeAnimation(_animations[AnimationType.Jump], _model.AnimationDurationDie, false);
                             break;
 
-                        case AnimationTypes.Run:
+                        case AnimationType.Run:
                             break;
 
-                        case AnimationTypes.Walk:
-                            _animationPlayer.ChangeAnimation(_animations[AnimationTypes.Walk], _model.AnimationDurationWalk, true);
+                        case AnimationType.Walk:
+                            _animationPlayer.ChangeAnimation(_animations[AnimationType.Walk], _model.AnimationDurationWalk, true);
                             break;
 
                         default:
@@ -93,20 +93,20 @@ namespace PiratesGame
             SpriteRenderer spriteRenderer,
             MonoBehaviourManager monoBehaviourManager)
         {
-            _animations = new Dictionary<AnimationTypes, List<Sprite>>();
-            _animations.Add(AnimationTypes.Attack, resources.PirateAttackSprites);
-            _animations.Add(AnimationTypes.Die, resources.PirateDieSprites);
-            _animations.Add(AnimationTypes.Hurt, resources.PirateHurtSprites);
-            _animations.Add(AnimationTypes.Idle, resources.PirateIdleSprites);
-            _animations.Add(AnimationTypes.Jump, resources.PirateJumpSprites);
-            _animations.Add(AnimationTypes.Run, resources.PirateRunSprites);
-            _animations.Add(AnimationTypes.Walk, resources.PirateWalkSprites);
+            _animations = new Dictionary<AnimationType, List<Sprite>>();
+            _animations.Add(AnimationType.Attack, resources.PirateAttackSprites);
+            _animations.Add(AnimationType.Die, resources.PirateDieSprites);
+            _animations.Add(AnimationType.Hurt, resources.PirateHurtSprites);
+            _animations.Add(AnimationType.Idle, resources.PirateIdleSprites);
+            _animations.Add(AnimationType.Jump, resources.PirateJumpSprites);
+            _animations.Add(AnimationType.Run, resources.PirateRunSprites);
+            _animations.Add(AnimationType.Walk, resources.PirateWalkSprites);
 
             _model = model;
 
             _animationPlayer = new AnimationPlayer(spriteRenderer, monoBehaviourManager);
 
-            AnimationState = AnimationTypes.Idle;
+            AnimationState = AnimationType.Idle;
         }
 
         #endregion

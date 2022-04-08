@@ -1,6 +1,6 @@
 namespace PiratesGame
 {
-    public enum TileTypes
+    public enum TileType
     {
         None = 0,
         GroundLeft = 1,
