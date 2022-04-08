@@ -1,4 +1,6 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEditor.SceneManagement;
 
 
 namespace PiratesGame
@@ -50,6 +52,8 @@ namespace PiratesGame
 
             _view.TilemapWater.ClearAllTiles();
             _view.TilemapPlatform.ClearAllTiles();
+
+            EditorSceneManager.MarkSceneDirty(SceneManager.GetActiveScene());
         }
 
         private void GenerateMap()
@@ -112,16 +116,18 @@ namespace PiratesGame
                             }
                             else
                             {
-                                if (_map[x - 1, y] != TileType.GroundRight)
+                                if (_map[x - 1, y] == TileType.GroundRight)
                                 {
-                                    if (Random.Range(0.0f, 1.0f) < _model.TerrainContinueFactor)
-                                    {
-                                        _map[x, y] = TileType.GroundCenter;
-                                    }
-                                    else
-                                    {
-                                        _map[x, y] = TileType.GroundRight;
-                                    }
+                                    continue;
+                                }
+
+                                if (Random.Range(0.0f, 1.0f) < _model.TerrainContinueFactor)
+                                {
+                                    _map[x, y] = TileType.GroundCenter;
+                                }
+                                else
+                                {
+                                    _map[x, y] = TileType.GroundRight;
                                 }
                             }
                         }
