@@ -191,13 +191,7 @@ namespace PiratesGame
             // case continue
             if (_map[x - 1, y] != TileType.None)
             {
-                if (_map[x, y - 1] == TileType.None &&
-                _map[x, y - 2] == TileType.None &&
-                _map[x + 1, y - 1] == TileType.None &&
-                _map[x + 1, y - 2] == TileType.None)
-                {
-                    return true;
-                }
+                return CheckGroundForContinue(x, y);
             }
             // case new
             else
@@ -223,6 +217,14 @@ namespace PiratesGame
             return false;
         }
 
+        private bool CheckGroundForContinue(int x, int y)
+        {
+            return
+                _map[x, y - 1] == TileType.None &&
+                _map[x, y - 2] == TileType.None &&
+                _map[x + 1, y - 1] == TileType.None &&
+                _map[x + 1, y - 2] == TileType.None;
+        }
 
         #endregion
 
