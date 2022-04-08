@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 
 namespace PiratesGame
@@ -21,12 +22,16 @@ namespace PiratesGame
             _resourcesManager = new ResourcesManager();
             _pirateController = new PirateController(_resourcesManager, monoBehaviourManager);
 
-            new CannonController(_resourcesManager, monoBehaviourManager, _pirateController.PirateTransform);
-            new CoinController(sceneObjectLinks.Coins, _resourcesManager, monoBehaviourManager);
             new CameraController(monoBehaviourManager, _pirateController.PirateTransform, Camera.main);
-            new SliderJointController(monoBehaviourManager, sceneObjectLinks.SliderPlatform);
-            new CheckPointChanger(sceneObjectLinks.SpikeBall, sceneObjectLinks.CheckPoint1, sceneObjectLinks.CheckPoint2, monoBehaviourManager);
-            new GhostController(sceneObjectLinks.AirPoints, sceneObjectLinks.Ghost, monoBehaviourManager);
+
+            if (SceneManager.GetActiveScene().buildIndex == 0)
+            {
+                new CannonController(_resourcesManager, monoBehaviourManager, _pirateController.PirateTransform);
+                new CoinController(sceneObjectLinks.Coins, _resourcesManager, monoBehaviourManager);
+                new SliderJointController(monoBehaviourManager, sceneObjectLinks.SliderPlatform);
+                new CheckPointChanger(sceneObjectLinks.SpikeBall, sceneObjectLinks.GroundPoints, monoBehaviourManager);
+                new GhostController(sceneObjectLinks.AirPoints, sceneObjectLinks.Ghost, monoBehaviourManager);
+            }
         }
 
         #endregion

@@ -26,7 +26,7 @@ namespace PiratesGame
         public float WalkSpeed => 2.0f;
         public float JumpForce => 300.0f;
 
-        public Vector3 StartPosition => new Vector3(0.0f, 2.0f, 0.0f);
+        public Vector3 StartPosition => new Vector3(0.0f, 6.0f, 0.0f);
 
         #endregion
 

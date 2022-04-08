@@ -12,29 +12,42 @@ namespace PiratesGame
 
         private static float CONTROL_DISTANCE = 0.5f;
 
+        private int _currentPointNumber = -1;
+
         private MonoBehaviourManager _monoBehaviourManager;
 
-        private Transform _checkPoint1;
-        private Transform _checkPoint2;
+        private Transform[] _checkPoints;
         private Transform _spikeBall;
 
-        private AIDestinationSetter _spikeBallDestinationSetter;
+        private AIDestinationSetter _destinationSetter;
 
         #endregion
 
 
         #region ClassLifeCycles
 
-        public CheckPointChanger(Transform spikeBall, Transform checkPoint1, Transform checkPoint2, MonoBehaviourManager monoBehaviourManager)
+        public CheckPointChanger(Transform spikeBall, Transform [] checkPoints, MonoBehaviourManager monoBehaviourManager)
         {
-            _checkPoint1 = checkPoint1;
-            _checkPoint2 = checkPoint2;
+            _checkPoints = checkPoints;
             _spikeBall = spikeBall;
             _monoBehaviourManager = monoBehaviourManager;
 
-            _spikeBallDestinationSetter = _spikeBall.GetComponent<AIDestinationSetter>();
+            _destinationSetter = _spikeBall.GetComponent<AIDestinationSetter>();
+
+            SetNextPoint();
 
             _monoBehaviourManager.ChangeUpdateList(this, UpdatableTypes.AddCandidateUpdate);
+        }
+
+        #endregion
+
+
+        #region Methods
+
+        private void SetNextPoint()
+        {
+            _currentPointNumber = (_currentPointNumber + 1) % _checkPoints.Length;
+            _destinationSetter.target = _checkPoints[_currentPointNumber];
         }
 
         #endregion
@@ -44,13 +57,9 @@ namespace PiratesGame
 
         public void LetUpdate()
         {
-            if (Vector3.Distance(_spikeBall.position, _checkPoint1.position) <= CONTROL_DISTANCE)
+            if (Vector3.Distance(_spikeBall.position, _checkPoints[_currentPointNumber].position) <= CONTROL_DISTANCE)
             {
-                _spikeBallDestinationSetter.target = _checkPoint2;
-            }
-            else if (Vector3.Distance(_spikeBall.position, _checkPoint2.position) <= CONTROL_DISTANCE)
-            {
-                _spikeBallDestinationSetter.target = _checkPoint1;
+                SetNextPoint();
             }
         }
 
