@@ -10,6 +10,10 @@ namespace PiratesGame
 
         [Space]
         [SerializeField]
+        private QuestType _questType;
+
+        [Space]
+        [SerializeField]
         private QuestObjectView[] _questObjects;
 
         [SerializeField]
@@ -47,14 +51,50 @@ namespace PiratesGame
 
         #region Methods
 
-        private void OnQuestComplete(IQuestable quest)
+        private void OnQuestComplete(IQuestable quest, QuestObjectView caller)
         {
-            _questTarget.QuestStepFinish();
-            quest.Completed -= OnQuestComplete;
+            switch (_questType)
+            {
+                case QuestType.Collector:
+                    QuestSwitchComplete(quest);
+                    break;
+
+                case QuestType.Chain:
+                    QuestChainComplete(quest, caller);
+                    break;
+
+                default:
+                    break;
+            }
 
             if (CheckStoryComplete())
             {
                 _questTarget.QuestDone();
+            }
+        }
+
+        private void QuestSwitchComplete(IQuestable quest)
+        {
+            _questTarget.QuestStepFinish();
+            quest.Completed -= OnQuestComplete;
+        }
+
+        private void QuestChainComplete(IQuestable quest, QuestObjectView caller)
+        {
+            for (int i = 0; i < _questObjects.Length; i++)
+            {
+                if (_questObjects[i] == caller)
+                {
+                    if (i == 0 || _questControllers[i - 1].IsCompete)
+                    {
+                        _questTarget.QuestStepFinish(i);
+                        quest.Completed -= OnQuestComplete;
+                    }
+                    else
+                    {
+                        _questControllers[i].ResetQuest();
+                    }
+                }
             }
         }
 

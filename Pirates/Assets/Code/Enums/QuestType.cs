@@ -4,6 +4,6 @@ namespace PiratesGame
     {
         None = 0,
         Collector = 1,
-        Chain = 1
+        Chain = 2
     }
 }

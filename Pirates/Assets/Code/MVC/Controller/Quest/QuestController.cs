@@ -21,6 +21,7 @@ namespace PiratesGame
             _targetView = view;
 
             _targetView.OnStepFinish += OnStepHandler;
+            _targetView.OnStepFinishInt += OnChainStepHandler;
             _targetView.OnQuestDone += OnQuestDoneHandler;
         }
 
@@ -30,6 +31,10 @@ namespace PiratesGame
         #region Methods
 
         public virtual void OnStepHandler()
+        {
+        }
+
+        public virtual void OnChainStepHandler(int activatorID)
         {
         }
 
@@ -46,6 +51,7 @@ namespace PiratesGame
         public virtual void Dispose()
         {
             _targetView.OnStepFinish -= OnStepHandler;
+            _targetView.OnStepFinishInt -= OnChainStepHandler;
             _targetView.OnQuestDone -= OnQuestDoneHandler;
         }
 

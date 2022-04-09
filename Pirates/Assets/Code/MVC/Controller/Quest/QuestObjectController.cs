@@ -17,7 +17,7 @@ namespace PiratesGame
 
         #region Properties
 
-        public event Action<IQuestable> Completed;
+        public event Action<IQuestable, QuestObjectView> Completed;
         public bool IsCompete { get; private set; }
 
         #endregion
@@ -38,12 +38,18 @@ namespace PiratesGame
 
         #region Methods
 
-        private void OnEnterredQuestObject(GameObject activator)
+        public void ResetQuest()
+        {
+            IsCompete = false;
+            _questObjectView.OnEnterred += OnEnterredQuestObject;
+        }
+
+        private void OnEnterredQuestObject(GameObject activator, QuestObjectView caller)
         {
             if (_questChecker.TryComplete(activator))
             {
                 IsCompete = true;
-                Completed?.Invoke(this);
+                Completed?.Invoke(this, caller);
                 Dispose();
             }
         }

@@ -33,6 +33,7 @@ namespace PiratesGame
                 new GhostController(sceneObjectLinks.AirPoints, sceneObjectLinks.Ghost, monoBehaviourManager);
 
                 new QuestCoinTowerController(sceneObjectLinks.TowerView);
+                new QuestLadderTreeController(sceneObjectLinks.LadderTreeView);
             }
         }
 

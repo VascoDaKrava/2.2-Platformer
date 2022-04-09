@@ -1,6 +1,3 @@
-using System;
-
-
 namespace PiratesGame
 {
     public sealed class QuestCoinTowerController : QuestController

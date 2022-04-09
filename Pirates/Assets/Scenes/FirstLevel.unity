@@ -596,7 +596,7 @@ GameObject:
   m_Component:
   - component: {fileID: 129637398}
   m_Layer: 0
-  m_Name: Ladders
+  m_Name: LadderActivators
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2235,7 +2235,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 501606343}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2.5, z: 0}
+  m_LocalPosition: {x: 0, y: 4, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 129637398}
@@ -7314,6 +7314,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed583be23d4ae384d9c081ca8f46f2fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _questType: 1
   _questObjects:
   - {fileID: 1433158269}
   - {fileID: 1521989961}
@@ -7457,6 +7458,7 @@ MonoBehaviour:
   - {fileID: 248287573}
   - {fileID: 1711188741}
   _questCoinTowerView: {fileID: 9068847477972602731}
+  _questLadderTreeView: {fileID: 1360062192}
 --- !u!1001 &1773861267
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7884,7 +7886,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1877720861}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.25, z: 0}
+  m_LocalPosition: {x: 0, y: 2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 129637398}
@@ -9055,6 +9057,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed583be23d4ae384d9c081ca8f46f2fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _questType: 2
   _questObjects:
   - {fileID: 185153872}
   - {fileID: 1877720863}

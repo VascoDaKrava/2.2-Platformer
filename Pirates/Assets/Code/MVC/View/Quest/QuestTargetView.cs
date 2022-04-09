@@ -11,6 +11,7 @@ namespace PiratesGame
 
         public Action OnQuestDone;
         public Action OnStepFinish;
+        public Action<int> OnStepFinishInt;
 
         #endregion
 
@@ -25,6 +26,11 @@ namespace PiratesGame
         public void QuestStepFinish()
         {
             OnStepFinish?.Invoke();
+        }
+
+        public void QuestStepFinish(int activatorID)
+        {
+            OnStepFinishInt?.Invoke(activatorID);
         }
 
         #endregion

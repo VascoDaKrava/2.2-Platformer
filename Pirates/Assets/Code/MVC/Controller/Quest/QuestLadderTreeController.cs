@@ -15,6 +15,11 @@ namespace PiratesGame
         public QuestLadderTreeController(QuestLadderTreeView view) : base(view)
         {
             _ladderTreeView = view;
+
+            foreach (var ladder in _ladderTreeView.Ladders)
+            {
+                ladder.SetActive(false);
+            }
         }
 
         #endregion
@@ -22,14 +27,9 @@ namespace PiratesGame
 
         #region Methods
 
-        public override void OnStepHandler()
+        public override void OnChainStepHandler(int activatorID)
         {
-            //if (_ladderTreeView.)
-        }
-
-        public override void OnQuestDoneHandler()
-        {
-
+            _ladderTreeView.Ladders[activatorID].SetActive(true);
         }
 
         #endregion

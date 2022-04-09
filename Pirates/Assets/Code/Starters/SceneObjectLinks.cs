@@ -33,6 +33,10 @@ namespace PiratesGame
         [SerializeField]
         private QuestCoinTowerView _questCoinTowerView;
 
+        [Space]
+        [SerializeField]
+        private QuestLadderTreeView _questLadderTreeView;
+
         #endregion
 
 
@@ -45,6 +49,7 @@ namespace PiratesGame
         public GhostView Ghost => _ghostView;
         public CoinView[] Coins => _coins;
         public QuestCoinTowerView TowerView => _questCoinTowerView;
+        public QuestLadderTreeView LadderTreeView => _questLadderTreeView;
 
         #endregion
 
