@@ -57,7 +57,7 @@ namespace PiratesGame
 
         public void LetUpdate()
         {
-            if (Vector3.Distance(_spikeBall.position, _checkPoints[_currentPointNumber].position) <= CONTROL_DISTANCE)
+            if (Vector3.SqrMagnitude(_spikeBall.position - _checkPoints[_currentPointNumber].position) <= CONTROL_DISTANCE * CONTROL_DISTANCE)
             {
                 SetNextPoint();
             }
