@@ -1,6 +1,3 @@
-using System;
-
-
 namespace PiratesGame
 {
     public sealed class QuestLadderTreeController : QuestController
@@ -18,6 +15,21 @@ namespace PiratesGame
         public QuestLadderTreeController(QuestLadderTreeView view) : base(view)
         {
             _ladderTreeView = view;
+        }
+
+        #endregion
+
+
+        #region Methods
+
+        public override void OnStepHandler()
+        {
+            //if (_ladderTreeView.)
+        }
+
+        public override void OnQuestDoneHandler()
+        {
+
         }
 
         #endregion

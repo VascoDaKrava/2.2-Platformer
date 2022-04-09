@@ -3,7 +3,7 @@ using System;
 
 namespace PiratesGame
 {
-    public sealed class QuestCoinTowerController : IDisposable
+    public sealed class QuestCoinTowerController : QuestController
     {
 
         #region Fields
@@ -16,12 +16,9 @@ namespace PiratesGame
 
         #region CodeLifeCycles
 
-        public QuestCoinTowerController(QuestCoinTowerView view)
+        public QuestCoinTowerController(QuestCoinTowerView view) : base(view)
         {
             _towerView = view;
-
-            _towerView.OnStepFinish += OnStepHandler;
-            _towerView.OnQuestDone += OnQuestDoneHandler;
         }
 
         #endregion
@@ -29,7 +26,7 @@ namespace PiratesGame
 
         #region Methods
 
-        private void OnStepHandler()
+        public override void OnStepHandler()
         {
             if (_currentBox < _towerView.Boxes.Length)
             {
@@ -38,21 +35,9 @@ namespace PiratesGame
             }
         }
 
-        private void OnQuestDoneHandler()
+        public override void OnQuestDoneHandler()
         {
             _towerView.TowerBody.constraints = UnityEngine.RigidbodyConstraints2D.None;
-            Dispose();
-        }
-
-        #endregion
-
-
-        #region IDisposable
-
-        public void Dispose()
-        {
-            _towerView.OnStepFinish -= OnStepHandler;
-            _towerView.OnQuestDone -= OnQuestDoneHandler;
         }
 
         #endregion
