@@ -6,7 +6,7 @@ SpriteAtlas:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Terrain
+  m_Name: TerrainItems
   m_EditorData:
     serializedVersion: 2
     textureSettings:
@@ -66,58 +66,127 @@ SpriteAtlas:
     - {fileID: 2800000, guid: 21901598004ed0d4c9d0cfe92cfb0cfb, type: 3}
     - {fileID: 2800000, guid: f679e3c5ae442a9438aba7e8f6891c1b, type: 3}
     - {fileID: 2800000, guid: b6006947d1c53d242b8d4596371ed4b7, type: 3}
+    - {fileID: 2800000, guid: 06779c853029f1e4d9a45e09f32b7003, type: 3}
+    - {fileID: 2800000, guid: c6822c9b4c4e9a147ade1199dc832762, type: 3}
+    - {fileID: 2800000, guid: f2f4c7a1f6c697f418e07985fc7f59c2, type: 3}
+    - {fileID: 2800000, guid: fd6634d6f3436854494b95ec5c94fe5c, type: 3}
+    - {fileID: 2800000, guid: 53b5f21c7d84b754083aa9492091b064, type: 3}
+    - {fileID: 2800000, guid: 3cc8ca56954d3d349ad2cba853423ea3, type: 3}
+    - {fileID: 2800000, guid: 0cb0816b0dbcb604e856f609e13b3cfe, type: 3}
+    - {fileID: 2800000, guid: 20c90ef4200b9bb489aaff629f15274b, type: 3}
+    - {fileID: 2800000, guid: 97d6bedc1b177934c9d822b3b5136900, type: 3}
+    - {fileID: 2800000, guid: 145f08b47b4ba4646b864e93fa1f07f5, type: 3}
+    - {fileID: 2800000, guid: 514f59d1df2381248812dc8528c4306e, type: 3}
+    - {fileID: 2800000, guid: c3ad9d8e28e218e45b39d03c287b65ee, type: 3}
+    - {fileID: 2800000, guid: 96b706cf3961cb545bd10f691d279b4e, type: 3}
+    - {fileID: 2800000, guid: 3af90119f02cc244ba8db181d39cc1cf, type: 3}
+    - {fileID: 2800000, guid: f560cc8582744904da8910c03ff4bda3, type: 3}
+    - {fileID: 2800000, guid: cf1830b503c259742b350a7a470b7332, type: 3}
+    - {fileID: 2800000, guid: b914b683affebcf4aa9dabf5d4a26ae0, type: 3}
+    - {fileID: 2800000, guid: 8f0e8279dfe57d64f9c24da6f8f800c9, type: 3}
+    - {fileID: 2800000, guid: 8a5fde5105a3f29488fb85712b630ad5, type: 3}
+    - {fileID: 2800000, guid: c49a75b79880c0d4a9b8761db28a2458, type: 3}
+    - {fileID: 2800000, guid: 744584e50a73c8049baec7da4e897a55, type: 3}
+    - {fileID: 2800000, guid: 994b301d76a2fe24097afab45beb758e, type: 3}
+    - {fileID: 2800000, guid: e2a30481f8ee2ca4faf006dab240b977, type: 3}
     bindAsDefault: 1
     isAtlasV2: 0
     cachedData: {fileID: 0}
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
   - {fileID: 21300000, guid: 1ee95ce0c539c724c96cd42f23fa45b4, type: 3}
+  - {fileID: 21300000, guid: 8a5fde5105a3f29488fb85712b630ad5, type: 3}
+  - {fileID: 21300000, guid: e2a30481f8ee2ca4faf006dab240b977, type: 3}
+  - {fileID: 21300000, guid: f2f4c7a1f6c697f418e07985fc7f59c2, type: 3}
+  - {fileID: 21300000, guid: 514f59d1df2381248812dc8528c4306e, type: 3}
   - {fileID: 21300000, guid: fb1ab072fb41f1b4c89ad352d1fd5010, type: 3}
   - {fileID: 21300000, guid: 4097ef72bb21a4a46b5ea4cb7426480a, type: 3}
+  - {fileID: 21300000, guid: b914b683affebcf4aa9dabf5d4a26ae0, type: 3}
   - {fileID: 21300000, guid: 1da4d983480114b4e9ac41321af2a207, type: 3}
+  - {fileID: 21300000, guid: 145f08b47b4ba4646b864e93fa1f07f5, type: 3}
   - {fileID: 21300000, guid: 2f59d8d4deb03e04fb2016c767334f41, type: 3}
+  - {fileID: 21300000, guid: 20c90ef4200b9bb489aaff629f15274b, type: 3}
   - {fileID: 21300000, guid: 86e3c745abd93234ba0618f5fa9dab61, type: 3}
   - {fileID: 21300000, guid: 10d01e659adf23645bb46b48d8f60c7e, type: 3}
+  - {fileID: 21300000, guid: 06779c853029f1e4d9a45e09f32b7003, type: 3}
+  - {fileID: 21300000, guid: f560cc8582744904da8910c03ff4bda3, type: 3}
+  - {fileID: 21300000, guid: cf1830b503c259742b350a7a470b7332, type: 3}
   - {fileID: 21300000, guid: 1f79f8b52d0a2df489895c8637f4a466, type: 3}
   - {fileID: 21300000, guid: f679e3c5ae442a9438aba7e8f6891c1b, type: 3}
+  - {fileID: 21300000, guid: 744584e50a73c8049baec7da4e897a55, type: 3}
   - {fileID: 21300000, guid: 073809163ccbd444ca403ad5b70a162a, type: 3}
+  - {fileID: 21300000, guid: 3cc8ca56954d3d349ad2cba853423ea3, type: 3}
+  - {fileID: 21300000, guid: fd6634d6f3436854494b95ec5c94fe5c, type: 3}
   - {fileID: 21300000, guid: fa823fe6dce842a48950d9087ba04c8b, type: 3}
   - {fileID: 21300000, guid: b6006947d1c53d242b8d4596371ed4b7, type: 3}
   - {fileID: 21300000, guid: 93275377cf41b1746b45eb9a50a13068, type: 3}
+  - {fileID: 21300000, guid: c49a75b79880c0d4a9b8761db28a2458, type: 3}
   - {fileID: 21300000, guid: d839488897dcc004f9b266632ff73a2a, type: 3}
   - {fileID: 21300000, guid: 21901598004ed0d4c9d0cfe92cfb0cfb, type: 3}
+  - {fileID: 21300000, guid: 3af90119f02cc244ba8db181d39cc1cf, type: 3}
+  - {fileID: 21300000, guid: 8f0e8279dfe57d64f9c24da6f8f800c9, type: 3}
   - {fileID: 21300000, guid: 94fc0c8ad601e584ebddc81a8118cb7f, type: 3}
+  - {fileID: 21300000, guid: 0cb0816b0dbcb604e856f609e13b3cfe, type: 3}
   - {fileID: 21300000, guid: 82648f6b44c9a14428beea18be08408c, type: 3}
+  - {fileID: 21300000, guid: c6822c9b4c4e9a147ade1199dc832762, type: 3}
   - {fileID: 21300000, guid: 1bc406abf0c370c4f9a889bf4bd3a91e, type: 3}
+  - {fileID: 21300000, guid: 53b5f21c7d84b754083aa9492091b064, type: 3}
   - {fileID: 21300000, guid: 789c899c6444ced4ea6405c0b7dfd024, type: 3}
+  - {fileID: 21300000, guid: 97d6bedc1b177934c9d822b3b5136900, type: 3}
+  - {fileID: 21300000, guid: 994b301d76a2fe24097afab45beb758e, type: 3}
   - {fileID: 21300000, guid: 5cb0fa6db2d591746898fb4e8baacf9d, type: 3}
   - {fileID: 21300000, guid: e47fcf6e0a3d53d468a9de800707969e, type: 3}
+  - {fileID: 21300000, guid: c3ad9d8e28e218e45b39d03c287b65ee, type: 3}
   - {fileID: 21300000, guid: 23987c7f007b9aa4983b5be446a74678, type: 3}
   - {fileID: 21300000, guid: f4d78c7f100b3fa4b961de966da50249, type: 3}
+  - {fileID: 21300000, guid: 96b706cf3961cb545bd10f691d279b4e, type: 3}
   m_PackedSpriteNamesToIndex:
   - Tileset12
+  - plant4
+  - TreasureOpen
+  - Arrow_death
+  - Box3
   - Tileset10
   - Tileset6
+  - plant2
   - Tileset2
+  - Box2
   - Tileset20
+  - Arrow_up
   - Tileset7
   - Tileset8
+  - WaterDOWN
+  - Laser
+  - plant1
   - Tileset1
   - Tileset22
+  - Spikes
   - Tileset9
+  - Arrow_right
+  - Arrow_down
   - Tileset11
   - Tileset23
   - Tileset13
+  - rock
   - Tileset4
   - Tileset21
+  - FruitOrange
+  - plant3
   - Tileset17
+  - Arrow_stop
   - Tileset15
+  - WaterUP
   - Tileset18
+  - Arrow_left
   - Tileset14
+  - Box1
+  - Treasure
   - Tileset5
   - Tileset16
+  - FruitApple
   - Tileset3
   - Tileset19
+  - FruitBanana
   m_RenderDataMap: {}
-  m_Tag: Terrain
+  m_Tag: TerrainItems
   m_IsVariant: 0

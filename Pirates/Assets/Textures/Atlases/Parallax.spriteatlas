@@ -52,6 +52,7 @@ SpriteAtlas:
     - {fileID: 2800000, guid: 120e5a7adb0ca344cbfdd4879c7a16da, type: 3}
     - {fileID: 2800000, guid: f815fc0318237414085ec5fe5e1e7238, type: 3}
     - {fileID: 2800000, guid: 18c6a58eda9fb134fa8421d2a59ab89b, type: 3}
+    - {fileID: 2800000, guid: 728cd793789bbcb43ac0c0d289e6d2f5, type: 3}
     bindAsDefault: 1
     isAtlasV2: 0
     cachedData: {fileID: 0}
@@ -61,6 +62,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: b98336f08b6f98b4f92e7e3cbc711661, type: 3}
   - {fileID: 21300000, guid: 345de9c15d6d4b74580d6b10e7fb134d, type: 3}
   - {fileID: 21300000, guid: f815fc0318237414085ec5fe5e1e7238, type: 3}
+  - {fileID: 21300000, guid: 728cd793789bbcb43ac0c0d289e6d2f5, type: 3}
   - {fileID: 21300000, guid: 0ec68f9704872844a939461d44f48b95, type: 3}
   - {fileID: 21300000, guid: 34109a994ee49cd458abe9a3d7074667, type: 3}
   - {fileID: 21300000, guid: 120e5a7adb0ca344cbfdd4879c7a16da, type: 3}
@@ -71,6 +73,7 @@ SpriteAtlas:
   - 5 Mountains
   - 1 Layer1
   - 8 Stars2
+  - Sea
   - 6 Sun
   - 4 Layer4
   - 7 Clouds
