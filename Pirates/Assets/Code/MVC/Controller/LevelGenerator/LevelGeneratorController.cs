@@ -1,4 +1,6 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEditor.SceneManagement;
 
 
 namespace PiratesGame
@@ -11,7 +13,7 @@ namespace PiratesGame
         private LevelGeneratorView _view;
         private LevelGeneratorModel _model;
 
-        private TileTypes[,] _map;
+        private TileType[,] _map;
 
         #endregion
 
@@ -23,7 +25,7 @@ namespace PiratesGame
             _view = view;
             _model = new LevelGeneratorModel();
 
-            _map = new TileTypes[_model.MapWidth, _model.MapHeight];
+            _map = new TileType[_model.MapWidth, _model.MapHeight];
         }
 
         #endregion
@@ -44,12 +46,14 @@ namespace PiratesGame
             {
                 for (int y = 0; y < _model.MapHeight; y++)
                 {
-                    _map[x, y] = TileTypes.None;
+                    _map[x, y] = TileType.None;
                 }
             }
 
             _view.TilemapWater.ClearAllTiles();
             _view.TilemapPlatform.ClearAllTiles();
+
+            EditorSceneManager.MarkSceneDirty(SceneManager.GetActiveScene());
         }
 
         private void GenerateMap()
@@ -69,23 +73,23 @@ namespace PiratesGame
 
                     switch (_map[x, y])
                     {
-                        case TileTypes.GroundLeft:
+                        case TileType.GroundLeft:
                             _view.TilemapPlatform.SetTile(tilePosition, _view.TileLeft);
                             break;
 
-                        case TileTypes.GroundCenter:
+                        case TileType.GroundCenter:
                             _view.TilemapPlatform.SetTile(tilePosition, _view.TileCenter[Random.Range(0, _view.TileCenter.Length)]);
                             break;
 
-                        case TileTypes.GroundRight:
+                        case TileType.GroundRight:
                             _view.TilemapPlatform.SetTile(tilePosition, _view.TileRight);
                             break;
 
-                        case TileTypes.WaterUp:
+                        case TileType.WaterUp:
                             _view.TilemapWater.SetTile(tilePosition, _view.TileWaterUp);
                             break;
 
-                        case TileTypes.WaterDown:
+                        case TileType.WaterDown:
                             _view.TilemapWater.SetTile(tilePosition, _view.TileWaterDown);
                             break;
 
@@ -106,43 +110,45 @@ namespace PiratesGame
                     {
                         if (Random.Range(0.0f, 1.0f) < _model.TerrainPutFactor)
                         {
-                            if (_map[x - 1, y] == TileTypes.None)
+                            if (_map[x - 1, y] == TileType.None)
                             {
-                                _map[x, y] = TileTypes.GroundLeft;
+                                _map[x, y] = TileType.GroundLeft;
                             }
                             else
                             {
-                                if (_map[x - 1, y] != TileTypes.GroundRight)
+                                if (_map[x - 1, y] == TileType.GroundRight)
                                 {
-                                    if (Random.Range(0.0f, 1.0f) < _model.TerrainContinueFactor)
-                                    {
-                                        _map[x, y] = TileTypes.GroundCenter;
-                                    }
-                                    else
-                                    {
-                                        _map[x, y] = TileTypes.GroundRight;
-                                    }
+                                    continue;
+                                }
+
+                                if (Random.Range(0.0f, 1.0f) < _model.TerrainContinueFactor)
+                                {
+                                    _map[x, y] = TileType.GroundCenter;
+                                }
+                                else
+                                {
+                                    _map[x, y] = TileType.GroundRight;
                                 }
                             }
                         }
                         else
                         {
-                            if (_map[x - 1, y] == TileTypes.GroundLeft || _map[x - 1, y] == TileTypes.GroundCenter)
+                            if (_map[x - 1, y] == TileType.GroundLeft || _map[x - 1, y] == TileType.GroundCenter)
                             {
-                                _map[x, y] = TileTypes.GroundRight;
+                                _map[x, y] = TileType.GroundRight;
                             }
                         }
                     }
                     else
                     {
-                        _map[x, y] = TileTypes.None;
+                        _map[x, y] = TileType.None;
                     }
                 }
 
-                if (_map[_model.MapWidth - 3, y] == TileTypes.GroundLeft ||
-                    _map[_model.MapWidth - 3, y] == TileTypes.GroundCenter)
+                if (_map[_model.MapWidth - 3, y] == TileType.GroundLeft ||
+                    _map[_model.MapWidth - 3, y] == TileType.GroundCenter)
                 {
-                    _map[_model.MapWidth - 2, y] = TileTypes.GroundRight;
+                    _map[_model.MapWidth - 2, y] = TileType.GroundRight;
                 }
             }
         }
@@ -153,15 +159,15 @@ namespace PiratesGame
             {
                 for (int x = _model.TerrainStartPositionX; x < _model.MapWidth - 2; x++)
                 {
-                    if (_map[x + 1, y] == TileTypes.None)
+                    if (_map[x + 1, y] == TileType.None)
                     {
                         switch (_map[x, y])
                         {
-                            case TileTypes.GroundLeft:
-                                _map[x, y] = TileTypes.None;
+                            case TileType.GroundLeft:
+                                _map[x, y] = TileType.None;
                                 break;
-                            case TileTypes.GroundCenter:
-                                _map[x, y] = TileTypes.GroundRight;
+                            case TileType.GroundCenter:
+                                _map[x, y] = TileType.GroundRight;
                                 break;
                             default:
                                 break;
@@ -175,48 +181,36 @@ namespace PiratesGame
         {
             for (int x = 0; x < _model.MapWidth; x++)
             {
-                _map[x, 1] = TileTypes.WaterUp;
-                _map[x, 0] = TileTypes.WaterDown;
+                _map[x, 1] = TileType.WaterUp;
+                _map[x, 0] = TileType.WaterDown;
             }
         }
 
         private bool CanMakeGround(int x, int y)
         {
-            // case continue
-            if (_map[x - 1, y] != TileTypes.None)
-            {
-                if (_map[x, y - 1] == TileTypes.None &&
-                _map[x, y - 2] == TileTypes.None &&
-                _map[x + 1, y - 1] == TileTypes.None &&
-                _map[x + 1, y - 2] == TileTypes.None)
-                {
-                    return true;
-                }
-            }
-            // case new
-            else
-            {
-                if (_map[x - 1, y - 1] == TileTypes.GroundRight)
-                {
-                    return true;
-                }
-                else
-                {
-                    if (_map[x, y - 1] == TileTypes.None &&
-                        _map[x, y - 2] == TileTypes.None &&
-                        _map[x - 1, y - 2] == TileTypes.None &&
-                        _map[x + 1, y - 1] == TileTypes.None &&
-                        _map[x + 1, y - 2] == TileTypes.None &&
-                        _map[x + 2, y - 2] == TileTypes.None)
-                    {
-                        return true;
-                    }
-                }
-            }
-
-            return false;
+            return _map[x - 1, y] != TileType.None ? CheckGroundForContinue(x, y) : CheckGroundForNew(x, y);
         }
 
+        private bool CheckGroundForContinue(int x, int y)
+        {
+            return
+                _map[x, y - 1] == TileType.None &&
+                _map[x, y - 2] == TileType.None &&
+                _map[x + 1, y - 1] == TileType.None &&
+                _map[x + 1, y - 2] == TileType.None;
+        }
+
+        private bool CheckGroundForNew(int x, int y)
+        {
+            return
+                _map[x - 1, y - 1] == TileType.GroundRight ||
+                _map[x, y - 1] == TileType.None &&
+                _map[x, y - 2] == TileType.None &&
+                _map[x - 1, y - 2] == TileType.None &&
+                _map[x + 1, y - 1] == TileType.None &&
+                _map[x + 1, y - 2] == TileType.None &&
+                _map[x + 2, y - 2] == TileType.None;
+        }
 
         #endregion
 

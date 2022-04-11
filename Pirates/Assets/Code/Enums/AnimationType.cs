@@ -1,6 +1,6 @@
 namespace PiratesGame
 {
-    public enum AnimationTypes
+    public enum AnimationType
     {
         None = 0,
         Attack = 1,
