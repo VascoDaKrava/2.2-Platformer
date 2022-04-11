@@ -27,6 +27,9 @@ namespace PiratesGame
         #region Properties
 
         public Transform PirateTransform => _view.PlayerRigidbody.transform;
+        public Action PirateCollectCoin;
+        public Action PirateDie;
+        public Action PirateWin;
 
         #endregion
 
@@ -158,17 +161,17 @@ namespace PiratesGame
             switch (triggerObject.tag)
             {
                 case TagsAndLayers.TAG_COIN:
-                    Debug.Log("Coin collected");
+                    PirateCollectCoin.Invoke();
                     triggerObject.SetActive(false);
                     break;
 
                 case TagsAndLayers.TAG_DANGER:
-                    Debug.Log("Death become..");
+                    PirateDie.Invoke();
                     DoDie();
                     break;
 
                 case TagsAndLayers.TAG_WIN:
-                    Debug.Log("WIN");
+                    PirateWin.Invoke();
                     break;
 
                 default:
