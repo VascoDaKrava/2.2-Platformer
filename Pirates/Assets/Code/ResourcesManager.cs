@@ -26,6 +26,8 @@ namespace PiratesGame
 
         public List<Sprite> CoinSprites { get; private set; }
 
+        public UIView UI { get; private set; }
+
         #endregion
 
 
@@ -50,6 +52,8 @@ namespace PiratesGame
             ExplosionSprites = new List<Sprite>(Resources.Load<AnimationsSO>(ResourcesPath.EXPLOSION_ANIMATION).SpriteList);
 
             CoinSprites = new List<Sprite>(Resources.Load<AnimationsSO>(ResourcesPath.COIN_ANIMATION).SpriteList);
+
+            UI = Resources.Load<UIView>(ResourcesPath.UI_VIEW);
         }
 
         #endregion

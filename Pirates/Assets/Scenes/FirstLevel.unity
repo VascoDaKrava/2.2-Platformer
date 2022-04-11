@@ -7459,6 +7459,7 @@ MonoBehaviour:
   - {fileID: 1711188741}
   _questCoinTowerView: {fileID: 9068847477972602731}
   _questLadderTreeView: {fileID: 1360062192}
+  _ui: {fileID: 0}
 --- !u!1001 &1773861267
 PrefabInstance:
   m_ObjectHideFlags: 0

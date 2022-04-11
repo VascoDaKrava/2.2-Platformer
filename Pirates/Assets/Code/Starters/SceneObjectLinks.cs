@@ -51,6 +51,7 @@ namespace PiratesGame
         public QuestCoinTowerView TowerView => _questCoinTowerView;
         public QuestLadderTreeView LadderTreeView => _questLadderTreeView;
 
+
         #endregion
 
     }
