@@ -11,6 +11,10 @@ namespace PiratesGame
 
         private Dictionary<UpdatableTypes, List<IUpdatable>> _updatables;
 
+        [Space]
+        [SerializeField]
+        private SceneObjectLinks _sceneObjects;
+
         #endregion
 
 
@@ -26,7 +30,7 @@ namespace PiratesGame
             _updatables.Add(UpdatableTypes.AddCandidateUpdateFixed, new List<IUpdatable>());
             _updatables.Add(UpdatableTypes.RemoveCandidateUpdateFixed, new List<IUpdatable>());
 
-            new RootStarter(this, GetComponent<SceneObjectLinks>());
+            new RootStarter(this, _sceneObjects);
         }
 
         private void Update()

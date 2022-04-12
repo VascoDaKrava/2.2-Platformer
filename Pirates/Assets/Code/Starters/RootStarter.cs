@@ -22,8 +22,9 @@ namespace PiratesGame
             _resourcesManager = new ResourcesManager();
             _pirateController = new PirateController(_resourcesManager, monoBehaviourManager);
 
-            new CameraController(monoBehaviourManager, _pirateController.PirateTransform, Camera.main);
+            new CameraController(monoBehaviourManager, _pirateController.PirateTransform, sceneObjectLinks.PlayerWatchCamera);
             new LevelProgressController(_pirateController, GameObject.Instantiate(_resourcesManager.UI));
+            new ParallaxController(_resourcesManager.Parallax, sceneObjectLinks.PlayerWatchCamera, monoBehaviourManager);
                 
             if (SceneManager.GetActiveScene().buildIndex == 0)
             {

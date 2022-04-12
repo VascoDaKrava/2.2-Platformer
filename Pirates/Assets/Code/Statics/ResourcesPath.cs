@@ -15,6 +15,7 @@ namespace PiratesGame
         public const string CANNON = "Cannon";
         public const string CANNON_BALL = "CannonBall";
         public const string UI_VIEW = "UI";
+        public const string PARALLAX = "Parallax";
 
         private const string FOLDER_ANIMATION = "Animations";
 

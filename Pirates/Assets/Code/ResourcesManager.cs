@@ -28,6 +28,8 @@ namespace PiratesGame
 
         public UIView UI { get; private set; }
 
+        public ParallaxView Parallax { get; private set; }
+
         #endregion
 
 
@@ -54,6 +56,8 @@ namespace PiratesGame
             CoinSprites = new List<Sprite>(Resources.Load<AnimationsSO>(ResourcesPath.COIN_ANIMATION).SpriteList);
 
             UI = Resources.Load<UIView>(ResourcesPath.UI_VIEW);
+
+            Parallax = Resources.Load<ParallaxView>(ResourcesPath.PARALLAX);
         }
 
         #endregion
