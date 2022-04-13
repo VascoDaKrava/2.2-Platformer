@@ -8,6 +8,7 @@ namespace PiratesGame
 
         #region Fields
 
+        [Space]
         [SerializeField]
         private SliderJointView _sliderJointView;
 
@@ -37,6 +38,10 @@ namespace PiratesGame
         [SerializeField]
         private QuestLadderTreeView _questLadderTreeView;
 
+        [Space]
+        [SerializeField]
+        private Camera _playerWatchCamera;
+
         #endregion
 
 
@@ -50,6 +55,7 @@ namespace PiratesGame
         public CoinView[] Coins => _coins;
         public QuestCoinTowerView TowerView => _questCoinTowerView;
         public QuestLadderTreeView LadderTreeView => _questLadderTreeView;
+        public Camera PlayerWatchCamera => _playerWatchCamera;
 
         #endregion
 

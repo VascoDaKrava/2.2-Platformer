@@ -7,7 +7,7 @@ namespace PiratesGame
     {
         public bool TryComplete(GameObject activator)
         {
-            return activator.CompareTag(TagsAndLayers.TAG_PLAYER);
+            return activator.TryGetComponent<PirateView>(out _);
         }
     }
 }
